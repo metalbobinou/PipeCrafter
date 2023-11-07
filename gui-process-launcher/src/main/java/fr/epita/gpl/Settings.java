@@ -32,11 +32,7 @@ public class Settings {
     }
 
     public static void setExecutionDirectory(String executionDirectoryPath) {
-        Settings.executionDirectory = new File(executionDirectoryPath);
-        if (executionDirectory == null | !executionDirectory.isDirectory() | !executionDirectory.canWrite()) {
-            throw new IllegalArgumentException(
-                    "The specified execution directory is not specified, is not a directory or is not writable.");
-        }
+        setExecutionDirectory(new File(executionDirectoryPath));
     }
 
     public static File getOutputSavingDirectory() {
@@ -52,10 +48,6 @@ public class Settings {
     }
 
     public static void setOutputSavingDirectory(String outputSavingDirectoryPath) {
-        Settings.outputSavingDirectory = new File(outputSavingDirectoryPath);
-        if (outputSavingDirectory == null | !outputSavingDirectory.isDirectory() | !outputSavingDirectory.canWrite()) {
-            throw new IllegalArgumentException(
-                    "The specified saving directory is not specified, is not a directory or is not writable.");
-        }
+        setOutputSavingDirectory(new File(outputSavingDirectoryPath));
     }
 }
