@@ -5,11 +5,22 @@ import java.io.File;
 /** Handle all app settings */
 public class Settings {
 
+    public enum Shell {
+        NONE,
+        BASH,
+        CMD,
+        POWERSHELL,
+        WSL,
+    }
+
     /** Represents the directory where commands should be executed */
     private static File executionDirectory = null;
 
     /** Represents the directory where output files should be saved */
     private static File outputSavingDirectory = null;
+
+    /** Shell to use during execution */
+    private static Shell usedShell = Shell.NONE;
 
     // -- Getters and setters
     public static File getExecutionDirectory() {
@@ -42,5 +53,13 @@ public class Settings {
 
     public static void setOutputSavingDirectory(String outputSavingDirectoryPath) {
         setOutputSavingDirectory(new File(outputSavingDirectoryPath));
+    }
+
+    public static Shell getUsedShell() {
+        return usedShell;
+    }
+
+    public static void setUsedShell(Shell usedShell) {
+        Settings.usedShell = usedShell;
     }
 }
