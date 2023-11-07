@@ -1,5 +1,6 @@
 package fr.epita.gpl;
 
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,8 +10,8 @@ import fr.epita.gpl.Settings.Shell;
 public class CommandManager {
 
     public enum OutputStream {
-        OUT("out"),
-        ERR("err");
+        OUT(".out"),
+        ERR(".err");
 
         private final String associatedString;
 
@@ -24,7 +25,7 @@ public class CommandManager {
     }
 
     public static String getPathForOutputOfStep(int step, OutputStream stream) {
-        return Settings.getOutputSavingDirectory().toString() + step + stream.associatedString;
+        return Paths.get(Settings.getOutputSavingDirectory().toString(), step + stream.getExtension()).toString();
     }
 
     /** Get the command as a list of strings */
