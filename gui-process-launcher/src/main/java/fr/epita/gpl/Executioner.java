@@ -15,8 +15,9 @@ public class Executioner {
             processBuilder.directory(new File(
                     "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/src/test"));
 
-            String command = "cat testFile.txt && echo \"Your error message\" >&2";
-            processBuilder.command(Arrays.asList("bash", "-c", command));
+            String command = "./script.sh";
+            processBuilder.command(Arrays.asList(command));
+            // have commented code with version to call via bash/cmd/powershell/wsl
 
             processBuilder.redirectOutput(new File(
                     "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/src/test/output/1.out"));
@@ -26,7 +27,7 @@ public class Executioner {
             Process process = processBuilder.start();
 
             int exitCode = process.waitFor();
-            System.out.println("Command executed with exit code: " + exitCode);
+            System.out.println("\nCommand executed with exit code: " + exitCode);
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
