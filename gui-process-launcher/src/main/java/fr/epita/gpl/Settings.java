@@ -2,20 +2,13 @@ package fr.epita.gpl;
 
 import java.io.File;
 
-/**
- * Class responsible of all app settings.
- */
+/** Handle all app settings */
 public class Settings {
 
-    /**
-     * File object representing the directory where commands should be executed.
-     */
+    /** Represents the directory where commands should be executed */
     private static File executionDirectory = null;
 
-    /**
-     * File object representing the directory where output files should be created
-     * and stored.
-     */
+    /** Represents the directory where output files should be saved */
     private static File outputSavingDirectory = null;
 
     // -- Getters and setters
