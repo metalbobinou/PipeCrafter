@@ -1,6 +1,5 @@
 package fr.epita.gpl;
 
-import java.io.File;
 import java.util.Scanner;
 
 import fr.epita.gpl.CommandManager.OutputStream;
@@ -39,6 +38,9 @@ public class V0 {
 
         System.out.print("What is the 1st command?: ");
         answer = scanner.nextLine();
+        if (answer == null || answer == "") {
+            answer = "cat script.sh";
+        }
         Integer res = ProcessManager.execute(CommandManager.getCommand(answer), 1);
         System.out.println("Command 1 gave output code: " + res.toString());
 
