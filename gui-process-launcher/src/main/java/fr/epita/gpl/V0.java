@@ -16,21 +16,21 @@ public class V0 {
         System.out.println("-- Config (enter nothing for default) --");
         System.out.print("Execution directory: ");
         String answer = scanner.nextLine();
-        if (answer == null || answer == "") {
+        if (answer == null || answer.equalsIgnoreCase("")) {
             answer = "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/src/test";
         }
         Settings.setExecutionDirectory(answer);
 
         System.out.print("Output directory: ");
         answer = scanner.nextLine();
-        if (answer == null || answer == "") {
+        if (answer == null || answer.equalsIgnoreCase("")) {
             answer = "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/src/test/output";
         }
         Settings.setOutputSavingDirectory(answer);
 
         System.out.print("Use bash? (y/n): ");
         answer = scanner.nextLine();
-        if (answer == "y") {
+        if (answer.equalsIgnoreCase("y")) {
             Settings.setUsedShell(Shell.BASH);
         }
 
@@ -38,7 +38,7 @@ public class V0 {
 
         System.out.print("What is the 1st command?: ");
         answer = scanner.nextLine();
-        if (answer == null || answer == "") {
+        if (answer == null || answer.equalsIgnoreCase("")) {
             answer = "cat script.sh";
         }
         Integer res = ProcessManager.execute(CommandManager.getCommand(answer), 1);
@@ -48,7 +48,7 @@ public class V0 {
                 "Now you can use the previous output with a second command: [command] <output from command 1> . Do you want to use the last stdout (1) output or stderr (2) ?: ");
         answer = scanner.nextLine();
         CommandManager.OutputStream stream = OutputStream.OUT;
-        if (answer == "2") {
+        if (answer.equalsIgnoreCase("2")) {
             stream = OutputStream.ERR;
         }
 
