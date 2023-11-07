@@ -8,6 +8,25 @@ import fr.epita.gpl.Settings.Shell;
 /** Handle command building operations */
 public class CommandManager {
 
+    public enum OutputStream {
+        OUT("out"),
+        ERR("err");
+
+        private final String associatedString;
+
+        OutputStream(String associatedString) {
+            this.associatedString = associatedString;
+        }
+
+        public String getExtension() {
+            return associatedString;
+        }
+    }
+
+    public static String getPathForOutputOfStep(int step, OutputStream stream) {
+        return Settings.getOutputSavingDirectory().toString() + step + stream.associatedString;
+    }
+
     /** Get the command as a list of strings */
     public static List<String> getCommand(List<String> command) {
 
@@ -36,5 +55,10 @@ public class CommandManager {
             default:
                 return command;
         }
+    }
+
+    // [Temp V0] convert a string to a list of strings using space as separator
+    public static List<String> getCommand(String command) {
+        return getCommand(Arrays.asList(command.split(" ")));
     }
 }
