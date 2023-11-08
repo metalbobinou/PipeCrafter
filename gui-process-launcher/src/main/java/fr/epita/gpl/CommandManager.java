@@ -58,6 +58,9 @@ public class CommandManager {
         }
     }
 
+    // Add function to check used output files have exec rights (read/write is given
+    // when generated)
+
     // [Temp V0] convert a string to a list of strings using space as separator
     public static List<String> getCommand(String command) {
         return getCommand(Arrays.asList(command.split(" ")));
