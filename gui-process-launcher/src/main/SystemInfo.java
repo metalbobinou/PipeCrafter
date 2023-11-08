@@ -1,4 +1,4 @@
-package fr.epita.gpl;
+package Main;
 
 public class SystemInfo {
 

@@ -1,4 +1,4 @@
-package fr.epita.gpl;
+package Main;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

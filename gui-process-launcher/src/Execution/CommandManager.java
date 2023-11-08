@@ -1,10 +1,10 @@
-package fr.epita.gpl;
+package Execution;
 
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.epita.gpl.Settings.Shell;
+import Execution.Settings.Shell;
 
 /** Handle command building operations */
 public class CommandManager {

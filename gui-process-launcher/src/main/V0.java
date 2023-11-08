@@ -1,9 +1,12 @@
-package fr.epita.gpl;
+package Main;
 
 import java.util.Scanner;
 
-import fr.epita.gpl.CommandManager.OutputStream;
-import fr.epita.gpl.Settings.Shell;
+import Execution.CommandManager.OutputStream;
+import Execution.Settings.Shell;
+import Execution.CommandManager;
+import Execution.Settings;
+import Execution.ProcessManager;
 
 public class V0 {
 
