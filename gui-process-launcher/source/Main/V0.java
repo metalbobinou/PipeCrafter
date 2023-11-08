@@ -20,14 +20,14 @@ public class V0 {
         System.out.print("Execution directory: ");
         String answer = scanner.nextLine();
         if (answer == null || answer.equalsIgnoreCase("")) {
-            answer = "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/src/test";
+            answer = "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/source/test";
         }
         Settings.setExecutionDirectory(answer);
 
         System.out.print("Output directory: ");
         answer = scanner.nextLine();
         if (answer == null || answer.equalsIgnoreCase("")) {
-            answer = "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/src/test/output";
+            answer = "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/source/test/output";
         }
         Settings.setOutputSavingDirectory(answer);
 
