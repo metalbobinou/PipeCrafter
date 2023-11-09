@@ -47,3 +47,4 @@ Thumbs.db
 *.a
 *.so
 output/
+target/
