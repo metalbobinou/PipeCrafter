@@ -4,7 +4,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-import Execution.Settings.Shell;
+import Business.Settings.Shell;
 
 /** Handle command building operations */
 public class CommandManager {
@@ -25,13 +25,14 @@ public class CommandManager {
     }
 
     public static String getPathForOutputOfStep(int step, OutputStream stream) {
-        return Paths.get(Settings.getOutputSavingDirectory().toString(), step + stream.getExtension()).toString();
+        return Paths.get(Business.Settings.getOutputSavingDirectory().toString(), step + stream.getExtension())
+                .toString();
     }
 
     /** Get the command as a list of strings */
     public static List<String> getCommand(List<String> command) {
 
-        if (Settings.getUsedShell() == Shell.NONE) {
+        if (Business.Settings.getUsedShell() == Shell.NONE) {
             return command;
         }
 
@@ -44,7 +45,7 @@ public class CommandManager {
         commandBuilder.deleteCharAt(0);
         String commandString = commandBuilder.toString();
 
-        switch (Settings.getUsedShell()) {
+        switch (Business.Settings.getUsedShell()) {
             case BASH:
                 return Arrays.asList("bash", "-c", commandString);
             case CMD:

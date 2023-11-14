@@ -5,10 +5,10 @@ TARGET=Business
 
 # Files to compile in this package
 CLASSES=                     \
-         AppBusiness.java \
-         ArgumentBusiness.java \
-		 ProcessBusiness.java \
-         SettingsBusiness.java
+         App.java \
+         Argument.java \
+		 Process.java \
+         Settings.java
          
 
 # JARs required for compiling this package

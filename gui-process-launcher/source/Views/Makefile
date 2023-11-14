@@ -5,11 +5,11 @@ TARGET=Views
 
 # Files to compile in this package
 CLASSES=                 \
-         AppView.java \
-         ArgumentTypeSelectorView.java \
-		 ArgumentView.java \
-		 ProcessView.java \
-         SettingsView.java
+         App.java \
+         ArgumentTypeSelector.java \
+		 Argument.java \
+		 Process.java \
+         Settings.java
          
 
 # JARs required for compiling this package

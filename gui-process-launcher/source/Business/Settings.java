@@ -1,10 +1,9 @@
-package Execution;
+package Business;
 
 import java.io.File;
 
-/** Handle all app settings */
+/** Business class for app settings */
 public class Settings {
-
     public enum Shell {
         NONE,
         BASH,

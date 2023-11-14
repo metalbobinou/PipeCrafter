@@ -27,7 +27,7 @@ import javafx.scene.Parent;
 // import javafx.scene.Node;
 // import javafx.scene.input.MouseEvent;
 
-public class AppView extends Application {
+public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {

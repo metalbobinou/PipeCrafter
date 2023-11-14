@@ -22,11 +22,11 @@ public class ProcessManager {
     /** Check and set the execution directory for the ProcessBuilder */
     public static void setExecution() {
         // "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/src/test"
-        if (Settings.getExecutionDirectory() == null) {
+        if (Business.Settings.getExecutionDirectory() == null) {
             throw new IllegalArgumentException(
                     "Tried to init a process builder with an unspecified execution directory");
         }
-        processBuilder.directory(Settings.getExecutionDirectory());
+        processBuilder.directory(Business.Settings.getExecutionDirectory());
     }
 
     /**
@@ -36,8 +36,8 @@ public class ProcessManager {
      */
     private static void setRedirection(int step) {
 
-        File stdOutsDestination = new File(Settings.getOutputSavingDirectory(), step + ".out");
-        File stdErrsDestination = new File(Settings.getOutputSavingDirectory(), step + ".err");
+        File stdOutsDestination = new File(Business.Settings.getOutputSavingDirectory(), step + ".out");
+        File stdErrsDestination = new File(Business.Settings.getOutputSavingDirectory(), step + ".err");
 
         // Settings setters guarantee that the directories exist and can be written to
         // Check that if files already exist, they can still be written to
