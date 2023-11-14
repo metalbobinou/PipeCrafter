@@ -1,4 +1,4 @@
-package Views.Controllers;
+package Views;
 
 public class SettingsView {
 
