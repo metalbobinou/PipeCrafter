@@ -5,7 +5,6 @@ TARGET=Executor
 
 # Files to compile in this package
 CLASSES=                     \
-         CommandManager.java \
          ProcessManager.java
          
 
