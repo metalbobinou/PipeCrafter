@@ -1,7 +1,7 @@
 -include ../../Makefile.rules
 
 # Target Package
-TARGET=Executor
+TARGET=Execution
 
 # Files to compile in this package
 CLASSES=                     \
