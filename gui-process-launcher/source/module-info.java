@@ -2,6 +2,8 @@ module fr.epita.gpl.guiprocesslauncher {
     requires javafx.controls;
     requires javafx.fxml;
 
+    exports Business;
     exports Execution;
-    exports Main;
+    exports Models;
+    exports Views.Controllers;
 }
