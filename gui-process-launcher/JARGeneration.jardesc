@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="gui-process-launcher/GUI-Process-Launcher.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/gui-process-launcher/JARGeneration.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="false" mainClassHandleIdentifier="=gui-process-launcher/src&lt;Main{Main.java[Main" manifestLocation="/gui-process-launcher/Manifest.mf" manifestVersion="1.0" reuseManifest="false" saveManifest="true" usesManifest="true">
+        <sealing sealJar="true">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/gui-process-launcher/JARGeneration.jardesc"/>
+        <javaElement handleIdentifier="=gui-process-launcher/src"/>
+        <file path="/gui-process-launcher/.project"/>
+        <file path="/gui-process-launcher/.classpath"/>
+        <file path="/gui-process-launcher/Manifest.mf"/>
+    </selectedElements>
+</jardesc>

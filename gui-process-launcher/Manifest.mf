@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Built-By: Metalman
+Sealed: true
+Main-Class: Main.App
+Class-Path: /usr/share/openjfx/libs ./ ./libs/javafx-base-11.jar  ./libs/javafx-controls-11.jar  ./libs/javafx-fxml-11.jar ./libs/javafx-graphics-11.jar ./libs/javafx-media-11.jar ./libs/javafx-swing-11.jar ./libs/javafx-web-11.jar
