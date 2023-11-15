@@ -14,7 +14,7 @@
          <content>
             <VBox fx:id="process_box" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="521.0" prefWidth="1356.0" style="-fx-background-color: black;">
                <children>
-                  <ImageView fx:id="add_process_button" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#add_process" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="add_process_button" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@add_icon.png" />
                      </image>
@@ -22,17 +22,17 @@
                </children></VBox>
          </content>
       </ScrollPane>
-      <ImageView fx:id="settings_button" fitHeight="79.0" fitWidth="105.0" layoutX="49.0" layoutY="26.0" onMouseClicked="#open_settings" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="26.0">
+      <ImageView fx:id="settings_button" fitHeight="79.0" fitWidth="105.0" layoutX="49.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="26.0">
          <image>
             <Image url="@settings_icon.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="load_button" fitHeight="90.0" fitWidth="90.0" layoutX="162.0" layoutY="20.0" onMouseClicked="#load" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="162.0" AnchorPane.topAnchor="20.0">
+      <ImageView fx:id="load_button" fitHeight="90.0" fitWidth="90.0" layoutX="162.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="162.0" AnchorPane.topAnchor="20.0">
          <image>
             <Image url="@download_icon.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="save_button" fitHeight="99.0" fitWidth="144.0" layoutX="279.0" layoutY="16.0" onMouseClicked="#save" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="279.0" AnchorPane.topAnchor="16.0">
+      <ImageView fx:id="save_button" fitHeight="99.0" fitWidth="144.0" layoutX="279.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="279.0" AnchorPane.topAnchor="16.0">
          <image>
             <Image url="@save_icon.png" />
          </image>

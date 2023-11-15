@@ -14,7 +14,7 @@ public class App extends Application {
 
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("../Views/Source/test.fxml"));// "../Views/Source/main_screen.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/Source/main_screen.fxml"));
         } catch (Exception e) {
             throw new RuntimeException("FXML file not found");
         }
