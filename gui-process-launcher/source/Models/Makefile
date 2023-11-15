@@ -4,10 +4,10 @@
 TARGET=Models
 
 # Files to compile in this package
-CLASSES=                     \
+CLASSES=               \
          Argument.java \
          Process.java
-         
+
 
 # JARs required for compiling this package
 CLASSPATH_JARS=

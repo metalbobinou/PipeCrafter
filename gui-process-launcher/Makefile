@@ -5,7 +5,9 @@ DIST_FOLDER=$(LOGIN_L)-$(TARGET)
 MANIFEST=Manifest.mf
 
 SRC_DIRS=Execution \
-         Main
+	Models     \
+	Views      \
+	Business
 
 JARFILE=$(TARGET).jar
 

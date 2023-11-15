@@ -4,12 +4,11 @@
 TARGET=Business
 
 # Files to compile in this package
-CLASSES=                     \
-         App.java \
+CLASSES=               \
+         App.java      \
          Argument.java \
-		 Process.java \
+         Process.java  \
          Settings.java
-         
 
 # JARs required for compiling this package
 CLASSPATH_JARS=

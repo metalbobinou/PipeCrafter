@@ -4,20 +4,19 @@
 TARGET=Views
 
 # Files to compile in this package
-CLASSES=                 \
-         App.java \
+CLASSES=                           \
+         App.java                  \
          ArgumentTypeSelector.java \
-		 Argument.java \
-		 Process.java \
+         Argument.java             \
+         Process.java              \
          Settings.java
-         
 
 # JARs required for compiling this package
 CLASSPATH_JARS=javafx-base-11.jar     \
                javafx-controls-11.jar \
+               javafx-fxml-11.jar     \
                javafx-graphics-11.jar
-               
-#               javafx-fxml-11.jar     \
+
 #               javafx-media-11.jar    \
 #               javafx-swing-11.jar    \
 #               javafx-web-11.jar
