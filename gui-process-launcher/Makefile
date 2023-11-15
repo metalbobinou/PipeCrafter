@@ -4,9 +4,10 @@ TARGET=GUI-Process-Launcher
 DIST_FOLDER=$(LOGIN_L)-$(TARGET)
 MANIFEST=Manifest.mf
 
-SRC_DIRS=Execution \
-	Models     \
-	Views      \
+SRC_DIRS=Execution      \
+        Execution/Utils \
+	Models          \
+	Views           \
 	Business
 
 JARFILE=$(TARGET).jar
