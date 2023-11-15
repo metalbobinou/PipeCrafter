@@ -4,8 +4,9 @@ TARGET=GUI-Process-Launcher
 DIST_FOLDER=$(LOGIN_L)-$(TARGET)
 MANIFEST=Manifest.mf
 
-SRC_DIRS=Execution      \
-        Execution/Utils \
+SRC_DIRS=App 		\
+	Execution       \
+    Execution/Utils \
 	Models          \
 	Views           \
 	Business

@@ -5,11 +5,7 @@ TARGET=Views
 
 # Files to compile in this package
 CLASSES=                           \
-         Main.java                  \
-         ArgumentTypeSelector.java \
-         Argument.java             \
-         Process.java              \
-         Settings.java
+         App.java
 
 # JARs required for compiling this package
 CLASSPATH_JARS=javafx-base-11.jar     \
