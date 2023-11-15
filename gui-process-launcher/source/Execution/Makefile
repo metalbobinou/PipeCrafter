@@ -1,14 +1,13 @@
 -include ../../Makefile.rules
 
 # Target Package
-TARGET=Executor
+TARGET=Execution
 
 # Files to compile in this package
 CLASSES=                     \
          CommandManager.java \
          ProcessManager.java \
          Settings.java
-         
 
 # JARs required for compiling this package
 CLASSPATH_JARS=

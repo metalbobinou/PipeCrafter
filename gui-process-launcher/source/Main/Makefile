@@ -8,13 +8,13 @@ CLASSES=                 \
          SystemInfo.java \
          V0.java         \
          App.java
-         
+
 
 # JARs required for compiling this package
 CLASSPATH_JARS=javafx-base-11.jar     \
                javafx-controls-11.jar \
                javafx-graphics-11.jar
-               
+
 #               javafx-fxml-11.jar     \
 #               javafx-media-11.jar    \
 #               javafx-swing-11.jar    \
