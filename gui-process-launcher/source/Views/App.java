@@ -32,7 +32,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("Source/test.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Source/main_screen.fxml"));
         stage.setTitle("Execution Pipeline Builder");
         stage.setScene(new Scene(root));
         // stage.sizeToScene();
