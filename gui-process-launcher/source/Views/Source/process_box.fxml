@@ -10,7 +10,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="751.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Process">
    <children>
       <Group layoutX="704.0" layoutY="33.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="704.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
@@ -38,9 +37,9 @@
             </ImageView>
             <Text fill="WHITE" layoutX="5.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N" />
             <TextField alignment="CENTER" layoutX="64.0" layoutY="15.0" prefHeight="25.0" prefWidth="623.0" style="-fx-border-color: white; -fx-background-color: black; -fx-text-fill: white;" text="CMD" />
-            <ScrollPane layoutX="64.0" layoutY="55.0">
+            <ScrollPane layoutX="64.0" layoutY="55.0" style="-fx-border-color: black; -fx-background-color: black;">
                <content>
-                  <HBox prefHeight="46.0" prefWidth="623.0" />
+                  <HBox prefHeight="46.0" prefWidth="623.0" style="-fx-background-color: black; -fx-border-color: black;" />
                </content>
             </ScrollPane>
          </children>
