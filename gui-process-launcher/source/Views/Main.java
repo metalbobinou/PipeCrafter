@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.shape.Rectangle;
 
 /** Controller class for the main view/screen */
 public class Main implements Initializable {
@@ -31,7 +33,10 @@ public class Main implements Initializable {
 
     @FXML
     public void add_process(MouseEvent event) {
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+        Rectangle rect = new Rectangle(100, 100);
+        rect.setFill(Color.RED);
+        processVBox.getChildren().add(0, rect);
+        // throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
     @FXML
