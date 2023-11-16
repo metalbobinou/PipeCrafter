@@ -44,5 +44,6 @@
             </ScrollPane>
          </children>
       </Group>
+      <Text fill="WHITE" layoutX="340.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit code: XX" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="339.23974609375" AnchorPane.topAnchor="191.0" />
    </children>
 </AnchorPane>
