@@ -37,9 +37,9 @@
             </ImageView>
             <Text fill="WHITE" layoutX="5.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N" />
             <TextField alignment="CENTER" layoutX="64.0" layoutY="15.0" prefHeight="25.0" prefWidth="623.0" style="-fx-border-color: white; -fx-background-color: black; -fx-text-fill: white;" text="CMD" />
-            <ScrollPane layoutX="64.0" layoutY="55.0" style="-fx-border-color: black; -fx-background-color: black;" vbarPolicy="NEVER">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="64.0" layoutY="55.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="623.0" style="-fx-border-color: black; -fx-background-color: black;" vbarPolicy="NEVER">
                <content>
-                  <HBox fx:id="argumentsHbox" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="623.0" style="-fx-background-color: black; -fx-border-color: black;" />
+                  <HBox fx:id="argumentsHbox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="623.0" style="-fx-background-color: black; -fx-border-color: black;" />
                </content>
             </ScrollPane>
          </children>

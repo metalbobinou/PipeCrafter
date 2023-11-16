@@ -96,5 +96,7 @@ public class Process {
         // object handled by the business
         Argument argumentController = loader.getController();
         argumentsHbox.getChildren().add(argument);
+
+        // !!! change scroll bar style and stop vertical scroll or just scroll bar okay?
     }
 }
