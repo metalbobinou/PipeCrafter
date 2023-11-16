@@ -47,7 +47,7 @@ public class Main implements Initializable {
 
         // object handled by the business
         Process processController = loader.getController();
-        processVBox.getChildren().add(0, process);
+        processVBox.getChildren().add(processVBox.getChildren().size() - 1, process);
         // throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
