@@ -1,5 +1,9 @@
 package Views;
 
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+
 // import java.util.ArrayList;
 // import java.util.Collections;
 // import java.util.List;
@@ -21,6 +25,30 @@ package Views;
 // import javafx.scene.input.MouseEvent;
 
 public class Main {
+
+    @FXML
+    public Text status_text;
+
+    @FXML
+    public void add_process(MouseEvent event) {
+
+    }
+
+    @FXML
+    public void load(MouseEvent event) {
+
+    }
+
+    @FXML
+    public void open_settings(MouseEvent event) {
+
+    }
+
+    @FXML
+    public void save(MouseEvent event) {
+
+    }
+
     // private static final String TAB_DRAG_KEY = "titledpane";
     // private ObjectProperty<TitledPane> draggingTab;
 
