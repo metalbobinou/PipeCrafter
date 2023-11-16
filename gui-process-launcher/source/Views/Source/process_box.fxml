@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="751.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Process">
+   <children>
+      <Group layoutX="704.0" layoutY="33.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="704.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="41.0" layoutX="1.0" stroke="WHITE" strokeType="INSIDE" width="46.0" />
+            <ImageView fitHeight="41.0" fitWidth="47.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/start_icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
+      <Group layoutY="74.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="74.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="110.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="751.0" />
+            <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="726.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/add2_icon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="43.0" layoutX="724.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/close_icon.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="5.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N" />
+            <TextField alignment="CENTER" layoutX="64.0" layoutY="15.0" prefHeight="25.0" prefWidth="623.0" style="-fx-border-color: white; -fx-background-color: black; -fx-text-fill: white;" text="CMD" />
+            <ScrollPane layoutX="64.0" layoutY="55.0">
+               <content>
+                  <HBox prefHeight="46.0" prefWidth="623.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </Group>
+   </children>
+</AnchorPane>

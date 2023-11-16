@@ -1,10 +1,13 @@
 package Views;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -32,10 +35,19 @@ public class Main implements Initializable {
     }
 
     @FXML
-    public void add_process(MouseEvent event) {
-        Rectangle rect = new Rectangle(100, 100);
-        rect.setFill(Color.RED);
-        processVBox.getChildren().add(0, rect);
+    public void add_process(MouseEvent event) throws IOException {
+        // Rectangle rect = new Rectangle(100, 100);
+        // rect.setFill(Color.RED);
+        // processVBox.getChildren().add(0, rect);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Source/process_box.fxml"));
+
+        // keep trace to remove from vbox?
+        Parent process = loader.load();
+
+        // object handled by the business
+        Process processController = loader.getController();
+        processVBox.getChildren().add(0, process);
         // throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
