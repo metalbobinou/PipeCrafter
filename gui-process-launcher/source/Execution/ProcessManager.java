@@ -7,8 +7,14 @@ import java.util.List;
 /** Handle a unique process object for all executions */
 public class ProcessManager {
 
+    // region Attributes
+
     /** The unique ProcessBuilder reference */
     private static ProcessBuilder processBuilder = null;
+
+    // endregion
+
+    // region Methods
 
     /** Initialize the unique ProcessBuilder reference and its directory */
     public static void init() {
@@ -71,8 +77,13 @@ public class ProcessManager {
         return null;
     }
 
-    // -- Getters
+    // endregion
+
+    // region Getters
+
     public static ProcessBuilder getProcessBuilder() {
         return processBuilder;
     }
+
+    // endregion
 }

@@ -6,58 +6,50 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-// import java.util.ArrayList;
-// import java.util.Collections;
-// import java.util.List;
-
-// import javafx.application.Application;
-// import javafx.beans.property.ObjectProperty;
-// import javafx.beans.property.SimpleObjectProperty;
-// import javafx.event.EventHandler;
-// import javafx.scene.Scene;
-// import javafx.scene.control.TitledPane;
-// import javafx.scene.input.ClipboardContent;
-// import javafx.scene.input.DragEvent;
-// import javafx.scene.input.Dragboard;
-// import javafx.scene.input.TransferMode;
-// import javafx.scene.layout.Pane;
-// import javafx.scene.layout.VBox;
-// import javafx.stage.Stage;
-// import javafx.scene.Node;
-// import javafx.scene.input.MouseEvent;
-
+/** Controller class for the main view/screen */
 public class Main implements Initializable {
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
-    }
+    // region Attributes
+
+    @FXML
+    public VBox processVBox;
 
     @FXML
     public Text status_text;
 
+    // endregion
+
+    // region Methods
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
     @FXML
     public void add_process(MouseEvent event) {
-
+        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
     @FXML
     public void load(MouseEvent event) {
-
+        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
     @FXML
     public void open_settings(MouseEvent event) {
-
+        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
     @FXML
     public void save(MouseEvent event) {
-
+        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
+
+    // endregion
 
     // private static final String TAB_DRAG_KEY = "titledpane";
     // private ObjectProperty<TitledPane> draggingTab;

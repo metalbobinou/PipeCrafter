@@ -4,6 +4,9 @@ import java.io.File;
 
 /** Business class for app settings */
 public class Settings {
+
+    // region Nested types
+
     public enum Shell {
         NONE,
         BASH,
@@ -11,6 +14,9 @@ public class Settings {
         POWERSHELL,
         WSL,
     }
+    // endregion
+
+    // region Attributes
 
     /** Represents the directory where commands should be executed */
     private static File executionDirectory = null;
@@ -20,8 +26,10 @@ public class Settings {
 
     /** Shell to use during execution */
     private static Shell usedShell = Shell.NONE;
+    // endregion
 
-    // -- Getters and setters
+    // region Getters and Setters
+
     public static File getExecutionDirectory() {
         return executionDirectory;
     }
@@ -61,4 +69,6 @@ public class Settings {
     public static void setUsedShell(Shell usedShell) {
         Settings.usedShell = usedShell;
     }
+
+    // endregion
 }

@@ -9,6 +9,8 @@ import Business.Settings.Shell;
 /** Handle command building operations */
 public class Command {
 
+    // region Nested types
+
     public enum OutputStream {
         OUT(".out"),
         ERR(".err");
@@ -24,6 +26,14 @@ public class Command {
         }
     }
 
+    // endregion
+
+    // region Methods
+
+    /**
+     * Build and return the path to the saved output of the given step from the
+     * given stream as a string
+     */
     public static String getPathForOutputOfStep(int step, OutputStream stream) {
         return Paths.get(Business.Settings.getOutputSavingDirectory().toString(), step + stream.getExtension())
                 .toString();
@@ -61,4 +71,6 @@ public class Command {
 
     // Add function to check used output files have exec rights (read/write is given
     // when generated)
+
+    // endregion
 }

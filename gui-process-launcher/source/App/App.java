@@ -7,8 +7,12 @@ import java.io.IOException;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
+/** Entry point for the application */
 public class App extends Application {
 
+    // region Methods
+
+    /** Open and set the main window/view */
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -29,4 +33,6 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+    // endregion
 }
