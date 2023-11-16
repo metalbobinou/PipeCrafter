@@ -16,7 +16,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#add_process" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@add_icon.png" />
+                        <Image url="@Images/add_icon.png" />
                      </image>
                   </ImageView>
                </children></VBox>
@@ -24,17 +24,17 @@
       </ScrollPane>
       <ImageView fitHeight="79.0" fitWidth="105.0" layoutX="49.0" layoutY="26.0" onMouseClicked="#open_settings" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="26.0">
          <image>
-            <Image url="@settings_icon.png" />
+            <Image url="@Images/settings_icon.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="162.0" layoutY="20.0" onMouseClicked="#load" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="162.0" AnchorPane.topAnchor="20.0">
          <image>
-            <Image url="@download_icon.png" />
+            <Image url="@Images/download_icon.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="99.0" fitWidth="144.0" layoutX="279.0" layoutY="16.0" onMouseClicked="#save" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="279.0" AnchorPane.topAnchor="16.0">
          <image>
-            <Image url="@save_icon.png" />
+            <Image url="@Images/save_icon.png" />
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="56.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" wrappingWidth="100.36488342285156" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="126.841796875">
