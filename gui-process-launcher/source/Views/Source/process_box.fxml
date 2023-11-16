@@ -25,7 +25,7 @@
       <Group layoutY="74.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="74.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="110.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="751.0" />
-            <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="726.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="726.0" layoutY="86.0" onMouseClicked="#add_argument" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/add2_icon.png" />
                </image>
@@ -39,7 +39,7 @@
             <TextField alignment="CENTER" layoutX="64.0" layoutY="15.0" prefHeight="25.0" prefWidth="623.0" style="-fx-border-color: white; -fx-background-color: black; -fx-text-fill: white;" text="CMD" />
             <ScrollPane layoutX="64.0" layoutY="55.0" style="-fx-border-color: black; -fx-background-color: black;">
                <content>
-                  <HBox prefHeight="46.0" prefWidth="623.0" style="-fx-background-color: black; -fx-border-color: black;" />
+                  <HBox fx:id="argumentsHbox" prefHeight="46.0" prefWidth="623.0" style="-fx-background-color: black; -fx-border-color: black;" />
                </content>
             </ScrollPane>
          </children>

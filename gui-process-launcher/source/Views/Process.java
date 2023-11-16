@@ -1,5 +1,6 @@
 package Views;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,8 +9,9 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.TitledPane;
+import javafx.scene.Parent;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -17,10 +19,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.HBox;
 
 public class Process {
 
     public Node node; // !!! change to have getters/setters
+
+    @FXML
+    public HBox argumentsHbox;
+
     private static final String TAB_DRAG_KEY = "process";
     private ObjectProperty<Node> draggingTab = new SimpleObjectProperty<Node>();
 
@@ -78,5 +85,16 @@ public class Process {
             }
         });
 
+    }
+
+    @FXML
+    public void add_argument(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Source/argument.fxml"));
+
+        Parent argument = loader.load();
+
+        // object handled by the business
+        Argument argumentController = loader.getController();
+        argumentsHbox.getChildren().add(argument);
     }
 }
