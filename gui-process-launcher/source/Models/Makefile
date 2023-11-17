@@ -8,7 +8,6 @@ CLASSES=               \
          Argument.java \
          Process.java
 
-
 # JARs required for compiling this package
 CLASSPATH_JARS=
 

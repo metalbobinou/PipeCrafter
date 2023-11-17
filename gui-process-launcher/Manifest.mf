@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Built-By: Metalman
 Sealed: true
-Main-Class: Main.App
-Class-Path: /usr/share/openjfx/libs ./ ./libs/javafx-base-11.jar  ./libs/javafx-controls-11.jar  ./libs/javafx-fxml-11.jar ./libs/javafx-graphics-11.jar ./libs/javafx-media-11.jar ./libs/javafx-swing-11.jar ./libs/javafx-web-11.jar
+Main-Class: App.App
+Class-Path: /usr/share/openjfx/libs ./ ./libs/javafx-base.jar  ./libs/javafx-controls.jar  ./libs/javafx-fxml.jar ./libs/javafx-graphics.jar ./libs/javafx-media.jar ./libs/javafx-swing.jar ./libs/javafx-web.jar
