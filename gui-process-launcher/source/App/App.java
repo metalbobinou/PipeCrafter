@@ -3,7 +3,11 @@ package App;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
@@ -18,7 +22,8 @@ public class App extends Application {
 
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("/Views/Source/main_screen.fxml"));
+            URL url = new File("source/Views/Source/main_screen.fxml").toURI().toURL();
+            root = FXMLLoader.load(url);
         } catch (Exception e) {
             throw new RuntimeException("FXML file not found");
         }

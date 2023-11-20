@@ -1,6 +1,9 @@
 package Views;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,11 +37,11 @@ public class Command {
     private static final String TAB_DRAG_KEY = "command";
     private ObjectProperty<Node> draggingTab = new SimpleObjectProperty<Node>();
 
-    public void SetUp(Node command) {
+    public void SetUp(Node command) throws MalformedURLException {
         node = command;
 
         arguments_scrollPane.getStylesheets()
-                .add(getClass().getResource("Source/scrollBarStyle.css").toExternalForm());
+                .add(new File("source/Views/Source/scrollBarStyle.css").toURI().toURL().toExternalForm());
 
         node.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
@@ -95,7 +98,7 @@ public class Command {
 
     @FXML
     public void add_argument(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Source/argument.fxml"));
+        FXMLLoader loader = new FXMLLoader(new File("source/Views/Source/argument.fxml").toURI().toURL());
 
         Parent argument = loader.load();
         Argument argumentController = loader.getController();
