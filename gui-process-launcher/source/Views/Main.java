@@ -10,9 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.shape.Rectangle;
 
 /** Controller class for the main view/screen */
 public class Main implements Initializable {
@@ -20,7 +18,7 @@ public class Main implements Initializable {
     // region Attributes
 
     @FXML
-    public VBox processVBox;
+    public VBox commandVBox;
 
     @FXML
     public Text status_text;
@@ -34,22 +32,20 @@ public class Main implements Initializable {
 
     }
 
+    /** Add a new command box to the command list */
     @FXML
-    public void add_process(MouseEvent event) throws IOException {
-        // Rectangle rect = new Rectangle(100, 100);
-        // rect.setFill(Color.RED);
-        // processVBox.getChildren().add(0, rect);
+    public void add_command(MouseEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Source/process_box.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Source/command_box.fxml"));
 
-        // keep trace to remove from vbox?
-        Parent process = loader.load();
+        Parent command = loader.load();
 
-        // object handled by the business
-        Process processController = loader.getController();
-        processController.SetUp(process);
-        processVBox.getChildren().add(processVBox.getChildren().size() - 1, process);
-        // throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+        Command commandController = loader.getController();
+
+        // TODO: save Command object in list for future handling
+
+        commandController.SetUp(command);
+        commandVBox.getChildren().add(commandVBox.getChildren().size() - 1, command);
     }
 
     @FXML

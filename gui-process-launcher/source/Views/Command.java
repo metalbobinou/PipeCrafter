@@ -31,11 +31,11 @@ public class Command {
     @FXML
     public HBox argumentsHbox;
 
-    private static final String TAB_DRAG_KEY = "process";
+    private static final String TAB_DRAG_KEY = "command";
     private ObjectProperty<Node> draggingTab = new SimpleObjectProperty<Node>();
 
-    public void SetUp(Node process) {
-        node = process;
+    public void SetUp(Node command) {
+        node = command;
 
         arguments_scrollPane.getStylesheets()
                 .add(getClass().getResource("Source/scrollBarStyle.css").toExternalForm());
