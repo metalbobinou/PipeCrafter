@@ -6,5 +6,6 @@ module fr.epita.gpl.guiprocesslauncher {
     exports Business;
     exports Execution;
     exports Models;
+    exports Utils;
     exports Views;
 }

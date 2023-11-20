@@ -1,11 +1,11 @@
--include ../../../Makefile.rules
+-include ../../Makefile.rules
 
 # Target Package
-TARGET=Execution.Utils
+TARGET=Models
 
 # Files to compile in this package
-CLASSES=                     \
-         CommandBuilder.java
+CLASSES=               \
+         OutputStream.java
 
 # JARs required for compiling this package
 CLASSPATH_JARS=

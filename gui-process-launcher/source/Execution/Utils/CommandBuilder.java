@@ -5,28 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import Business.Settings.Shell;
+import Utils.OutputStream;
 
 /** Handle command building operations */
-public class Command {
-
-    // region Nested Types
-
-    public enum OutputStream {
-        OUT(".out"),
-        ERR(".err");
-
-        private final String associatedString;
-
-        OutputStream(String associatedString) {
-            this.associatedString = associatedString;
-        }
-
-        public String getExtension() {
-            return associatedString;
-        }
-    }
-
-    // endregion
+public class CommandBuilder {
 
     // region Methods
 

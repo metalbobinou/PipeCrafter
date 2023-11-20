@@ -9,6 +9,7 @@ SRC_DIRS=App 		\
 	Execution/Utils \
 	Models          \
 	Views           \
+	Utils           \
 	Business
 
 JARFILE=$(TARGET).jar
