@@ -4,28 +4,28 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-/** Internal representation of process related data */
-public class Process {
+/** Internal representation of command related data */
+public class Command {
 
     // region Attributes
 
     /** A unique id */
     public final UUID id = UUID.randomUUID();
 
-    /** Position of the process in the execution pipeline */
+    /** Position of the command in the execution pipeline */
     private int position;
 
-    /** List of all arguments for this process */
+    /** List of all arguments for this command */
     private List<Argument> argumentList;
 
-    /** Exit code returned after execution of the process */
+    /** Exit code returned after execution of the command */
     private Integer exitCode;
 
     // endregion
 
     // region Constructors
 
-    public Process(int position) {
+    public Command(int position) {
         this.position = position;
         argumentList = Collections.emptyList();
         exitCode = null;

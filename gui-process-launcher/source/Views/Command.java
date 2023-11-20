@@ -19,10 +19,9 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.layout.HBox;
 
-public class Process {
+public class Command {
 
     public Node node; // !!! change to have getters/setters
 
@@ -99,11 +98,7 @@ public class Process {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Source/argument.fxml"));
 
         Parent argument = loader.load();
-
-        // object handled by the business
         Argument argumentController = loader.getController();
         argumentsHbox.getChildren().add(argument);
-
-        // !!! change scroll bar style and stop vertical scroll or just scroll bar okay?
     }
 }

@@ -9,7 +9,7 @@ import Business.Settings.Shell;
 /** Handle command building operations */
 public class Command {
 
-    // region Nested types
+    // region Nested Types
 
     public enum OutputStream {
         OUT(".out"),
