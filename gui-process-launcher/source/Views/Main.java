@@ -1,6 +1,5 @@
 package Views;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,7 +36,7 @@ public class Main implements Initializable {
     @FXML
     public void add_command(MouseEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(new File("source/Views/Source/command_box.fxml").toURI().toURL());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/command_box.fxml"));
 
         Parent command = loader.load();
 

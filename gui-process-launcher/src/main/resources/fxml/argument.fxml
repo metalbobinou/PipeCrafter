@@ -14,12 +14,12 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="34.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="146.0" />
             <ImageView fitHeight="8.0" fitWidth="9.0" layoutX="136.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Images/close_icon.png" />
+                  <Image url="@../images/close_icon.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="30.0" fitWidth="29.0" layoutX="3.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Images/text_input_icon.png" />
+                  <Image url="@../images/text_input_icon.png" />
                </image>
             </ImageView>
             <Text fill="WHITE" layoutX="39.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="92.89479446411133" />
