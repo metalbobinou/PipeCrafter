@@ -1,0 +1,4 @@
+.scroll-bar:horizontal {
+    -fx-pref-height: 10;
+    -fx-background-color: rgb(181, 181, 181);
+}

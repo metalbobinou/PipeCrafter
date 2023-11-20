@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -26,6 +27,9 @@ public class Process {
     public Node node; // !!! change to have getters/setters
 
     @FXML
+    public ScrollPane arguments_scrollPane;
+
+    @FXML
     public HBox argumentsHbox;
 
     private static final String TAB_DRAG_KEY = "process";
@@ -33,6 +37,9 @@ public class Process {
 
     public void SetUp(Node process) {
         node = process;
+
+        arguments_scrollPane.getStylesheets()
+                .add(getClass().getResource("Source/scrollBarStyle.css").toExternalForm());
 
         node.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
