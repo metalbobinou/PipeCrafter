@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -19,6 +20,8 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.scene.layout.HBox;
 
 /** Controller class for a command */
@@ -126,19 +129,28 @@ public class Command {
     @FXML
     public void add_argument(MouseEvent event) throws IOException {
 
-        // => Load argument type selector
-        // => Call ArgumentBusiness to handle choice and create corresponding argument
-        // object
+        // Show type selector window
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/argumentTypeSelector.fxml"));
+        Stage popupStage = new Stage();
+        popupStage.setTitle("Choose argument type");
+        // freeze main window
+        popupStage.initModality(Modality.APPLICATION_MODAL);
+        popupStage.setScene(new Scene(root));
+        popupStage.showAndWait();
+
+        // !!! Check if succeeded or just closed
+
         // => Call CommandBusiness to add argument to command's arguments list
         // => Load argument visual in command's VBox
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/argument.fxml"));
+        // FXMLLoader loader = new
+        // FXMLLoader(getClass().getResource("/fxml/argument.fxml"));
 
-        Parent argumentNode = loader.load();
-        Argument argumentController = loader.getController();
+        // Parent argumentNode = loader.load();
+        // Argument argumentController = loader.getController();
 
-        // Business.Command.addArgument(commandModel, )
-        argumentsHbox.getChildren().add(argumentNode);
+        // // Business.Command.addArgument(commandModel, )
+        // argumentsHbox.getChildren().add(argumentNode);
     }
 
     // endregion

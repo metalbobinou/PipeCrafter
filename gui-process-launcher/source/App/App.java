@@ -25,6 +25,7 @@ public class App extends Application {
             throw new RuntimeException("FXML file not found");
         }
         stage.setTitle("Execution Pipeline Builder");
+
         stage.setScene(new Scene(root));
         // stage.sizeToScene();
         stage.show();
