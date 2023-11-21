@@ -21,21 +21,45 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.HBox;
 
+/** Controller class for a command */
 public class Command {
 
-    public Node node; // !!! change to have getters/setters
+    // region Attributes
 
+    /** The FX object associated with this controller */
+    private Node commandNode;
+
+    /** Command model object associated with this view */
+    private Models.Command commandModel;
+
+    /** A key used to set a "type" for dragged elements */
+    private static final String TAB_DRAG_KEY = "command";
+
+    /** Object used to handle drag and drop */
+    private ObjectProperty<Node> draggingTab = new SimpleObjectProperty<Node>();
+
+    /** The scroll pane used for the arguments */
     @FXML
     public ScrollPane arguments_scrollPane;
 
+    /** The Hbox containing the arguments */
     @FXML
     public HBox argumentsHbox;
 
-    private static final String TAB_DRAG_KEY = "command";
-    private ObjectProperty<Node> draggingTab = new SimpleObjectProperty<Node>();
+    // endregion
 
-    public void SetUp(Node command) {
-        node = command;
+    // region Methods
+
+    /**
+     * Associate the controller with its node and model, and set FX objects for
+     * drag and drop
+     * 
+     * @param node  the controller's node
+     * @param model the controller's model
+     */
+    public void SetUp(Node node, Models.Command model) {
+        this.commandNode = node;
+        this.commandModel = model;
 
         arguments_scrollPane.getStylesheets()
                 .add(getClass().getResource("/css/scrollBarStyle.css").toExternalForm());
@@ -93,12 +117,45 @@ public class Command {
 
     }
 
+    /**
+     * Add an argument to the command
+     * 
+     * @param event triggering mouse event
+     * @throws IOException
+     */
     @FXML
     public void add_argument(MouseEvent event) throws IOException {
+
+        // => Load argument type selector
+        // => Call ArgumentBusiness to handle choice and create corresponding argument
+        // object
+        // => Call CommandBusiness to add argument to command's arguments list
+        // => Load argument visual in command's VBox
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/argument.fxml"));
 
-        Parent argument = loader.load();
+        Parent argumentNode = loader.load();
         Argument argumentController = loader.getController();
-        argumentsHbox.getChildren().add(argument);
+
+        // Business.Command.addArgument(commandModel, )
+        argumentsHbox.getChildren().add(argumentNode);
     }
+
+    // endregion
+
+    // region Getters and Setters
+
+    public Node getCommandNode() {
+        return commandNode;
+    }
+
+    public void setCommandNode(Node node) {
+        this.commandNode = node;
+    }
+
+    public Models.Command getCommandModel() {
+        return commandModel;
+    }
+
+    // endregion
 }
