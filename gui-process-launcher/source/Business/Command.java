@@ -29,5 +29,10 @@ public class Command {
         commands.add(model);
     }
 
+    public static void addArgument(Models.Command command) {
+        command.getArgumentList().add(Business.Argument.getAddedArg());
+        System.out.println(command.getArgumentList().get(command.getArgumentList().size() - 1));
+    }
+
     // endregion
 }
