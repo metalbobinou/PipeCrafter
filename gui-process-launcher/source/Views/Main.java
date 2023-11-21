@@ -17,9 +17,11 @@ public class Main implements Initializable {
 
     // region Attributes
 
+    /** The Vboc containing the commands */
     @FXML
     public VBox commandVBox;
 
+    /** The text object used to display the exit status */
     @FXML
     public Text status_text;
 
@@ -32,32 +34,46 @@ public class Main implements Initializable {
 
     }
 
-    /** Add a new command box to the command list */
+    /**
+     * Add a new command box to the command list
+     * 
+     * @param event triggering mouse event
+     * @throws IOException
+     */
     @FXML
     public void add_command(MouseEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/command_box.fxml"));
 
-        Parent command = loader.load();
+        Parent commandNode = loader.load();
+        Views.Command commandController = loader.getController();
 
-        Command commandController = loader.getController();
-
-        // TODO: save Command object in list for future handling
-
-        commandController.SetUp(command);
-        commandVBox.getChildren().add(commandVBox.getChildren().size() - 1, command);
+        Business.Command.addCommand(commandController, commandNode);
+        commandVBox.getChildren().add(commandVBox.getChildren().size() - 1, commandNode);
     }
 
+    /**
+     * 
+     * @param event
+     */
     @FXML
     public void load(MouseEvent event) {
         throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
+    /**
+     * 
+     * @param event
+     */
     @FXML
     public void open_settings(MouseEvent event) {
         throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
+    /**
+     * 
+     * @param event
+     */
     @FXML
     public void save(MouseEvent event) {
         throw new UnsupportedOperationException("Unimplemented method 'initialize'");
