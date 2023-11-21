@@ -1,5 +1,6 @@
 package Models;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -27,7 +28,7 @@ public class Command {
 
     public Command(int position) {
         this.position = position;
-        argumentList = Collections.emptyList();
+        argumentList = new ArrayList<>();
         exitCode = null;
     }
 
