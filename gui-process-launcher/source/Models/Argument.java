@@ -39,6 +39,13 @@ public class Argument {
 
     // region Methods
 
+    /**
+     * Check that the given value corresponds to the given type
+     * 
+     * @param type  type to check
+     * @param value value to check
+     * @return true if match and false otherwise
+     */
     private boolean checkTypeValueMatch(Type type, Object value) {
         switch (type) {
             case FILE:
@@ -52,6 +59,13 @@ public class Argument {
         }
     }
 
+    /**
+     * Change the argument's type and value only if they match, raise an
+     * exception otherwise
+     * 
+     * @param type        new type
+     * @param objectValue new value
+     */
     public void setArgument(Type type, Object objectValue) {
         if (!checkTypeValueMatch(type, objectValue)) {
             throw new IllegalArgumentException();

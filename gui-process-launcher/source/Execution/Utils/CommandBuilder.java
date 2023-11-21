@@ -13,15 +13,23 @@ public class CommandBuilder {
     // region Methods
 
     /**
-     * Build and return the path to the saved output of the given step from the
-     * given stream as a string
+     * Build and return the path to a saved output
+     * 
+     * @param step   step for which to retreive the output
+     * @param stream type of the saved stream to gather
+     * @return string representation of the path
      */
     public static String getPathForOutputOfStep(int step, OutputStream stream) {
         return Paths.get(Business.Settings.getOutputSavingDirectory().toString(), step + stream.getExtension())
                 .toString();
     }
 
-    /** Get the command as a list of strings */
+    /**
+     * Process the given command to be able to use it with the choosen shell
+     * 
+     * @param command the command as a list of strings
+     * @return the (wrapped) command as a list of strings
+     */
     public static List<String> getCommand(List<String> command) {
 
         if (Business.Settings.getUsedShell() == Shell.NONE) {
