@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="447.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.ArgumentTypeSelector">
+   <children>
+      <Text fill="WHITE" layoutX="79.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose argument type" textAlignment="CENTER" AnchorPane.bottomAnchor="273.25" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="62.3125" AnchorPane.topAnchor="6.0625">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="317.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="447.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Group layoutX="121.0" layoutY="77.0" onMouseClicked="#file">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/file_icon.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="75.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Existing file" wrappingWidth="167.64447784423828">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+         </children>
+      </Group>
+      <Group layoutX="121.0" layoutY="156.0" onMouseClicked="#text">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/text_input_icon.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="75.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="167.64447784423828">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+         </children>
+      </Group>
+      <Group layoutX="121.0" layoutY="237.0" onMouseClicked="#output">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/output_icon.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="75.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Command output" wrappingWidth="194.06085968017578">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+         </children>
+      </Group>
+   </children>
+</AnchorPane>
