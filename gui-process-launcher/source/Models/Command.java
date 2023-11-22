@@ -8,6 +8,16 @@ import java.util.UUID;
 /** Internal representation of command related data */
 public class Command {
 
+    // region Nested Types
+
+    public enum State {
+        ALREADY_RUN,
+        NEXT_TO_RUN,
+        TO_RUN;
+    }
+
+    // endregion
+
     // region Attributes
 
     /** A unique id */
@@ -15,6 +25,9 @@ public class Command {
 
     /** Position of the command in the execution pipeline */
     private int position;
+
+    /** Execution state of the command */
+    private State state;
 
     /** List of all arguments for this command */
     private List<Argument> argumentList;
@@ -57,6 +70,14 @@ public class Command {
 
     public void setExitCode(Integer exitCode) {
         this.exitCode = exitCode;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     // endregion
