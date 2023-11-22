@@ -34,10 +34,13 @@ public class ArgumentTypeSelector {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Text value");
         dialog.setHeaderText("Please enter your value:");
-        dialog.setContentText("");
+        dialog.setGraphic(null);
         Optional<String> result = dialog.showAndWait();
 
-        Business.Argument.setAddedArg(new Models.Argument(Type.TEXT, result.orElse("")));
+        result.ifPresent(text -> {
+            Business.Argument.setAddedArg(new Models.Argument(Type.TEXT, text));
+        });
+
         ((Stage) anchorPane.getScene().getWindow()).close();
     }
 
