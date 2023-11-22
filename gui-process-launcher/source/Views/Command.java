@@ -14,12 +14,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.layout.HBox;
@@ -48,6 +52,26 @@ public class Command {
     /** The Hbox containing the arguments */
     @FXML
     public HBox argumentsHbox;
+
+    /** Text used to inform about exit code */
+    @FXML
+    public Text exitCode_label;
+
+    /** Borders of the box */
+    @FXML
+    public Rectangle boxBorders;
+
+    /** Image representing the (re)run button */
+    @FXML
+    public ImageView run_button;
+
+    /** Text used to state the step of this command */
+    @FXML
+    public Text step_label;
+
+    /** Text field used by the user to enter their command */
+    @FXML
+    public TextField textField;
 
     // endregion
 
@@ -150,6 +174,30 @@ public class Command {
 
         Business.Argument.addArgument(commandModel, argumentController, argumentNode);
         argumentsHbox.getChildren().add(argumentNode);
+    }
+
+    public void setState() {
+        switch (commandModel.getState()) {
+            case ALREADY_RUN:
+
+                break;
+            case NEXT_TO_RUN:
+                break;
+            case TO_RUN:
+                break;
+            default:
+                break;
+        }
+    }
+
+    @FXML
+    public void delete(MouseEvent event) {
+        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+    }
+
+    @FXML
+    public void run(MouseEvent event) {
+        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
     // endregion

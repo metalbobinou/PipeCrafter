@@ -15,7 +15,7 @@
       <Group layoutX="704.0" layoutY="33.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="704.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="41.0" layoutX="1.0" stroke="WHITE" strokeType="INSIDE" width="46.0" />
-            <ImageView fitHeight="41.0" fitWidth="47.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="run_button" fitHeight="41.0" fitWidth="47.0" layoutX="1.0" layoutY="1.0" onMouseClicked="#run" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/start_icon.png" />
                </image>
@@ -24,19 +24,19 @@
       </Group>
       <Group layoutY="74.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="74.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="110.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="751.0" />
+            <Rectangle fx:id="boxBorders" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="110.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="751.0" />
             <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="726.0" layoutY="86.0" onMouseClicked="#add_argument" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/add2_icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="43.0" layoutX="724.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="43.0" layoutX="724.0" layoutY="2.0" onMouseClicked="#delete" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/close_icon.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="5.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N" />
-            <TextField alignment="CENTER" layoutX="64.0" layoutY="15.0" prefHeight="25.0" prefWidth="623.0" style="-fx-border-color: white; -fx-background-color: black; -fx-text-fill: white;" text="CMD" />
+            <Text fx:id="step_label" fill="WHITE" layoutX="5.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N" />
+            <TextField fx:id="textField" alignment="CENTER" layoutX="64.0" layoutY="15.0" prefHeight="25.0" prefWidth="623.0" style="-fx-border-color: white; -fx-background-color: black; -fx-text-fill: white;" text="CMD" />
             <ScrollPane fx:id="arguments_scrollPane" fitToHeight="true" fitToWidth="true" layoutX="65.0" layoutY="48.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="623.0" style="-fx-border-color: black; -fx-background-color: black;" vbarPolicy="NEVER">
                <content>
                   <HBox fx:id="argumentsHbox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="59.0" prefWidth="619.0" style="-fx-background-color: black; -fx-border-color: black;" />
@@ -44,6 +44,6 @@
             </ScrollPane>
          </children>
       </Group>
-      <Text fill="WHITE" layoutX="340.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit code: XX" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="339.23974609375" AnchorPane.topAnchor="191.0" />
+      <Text fx:id="exitCode_label" fill="WHITE" layoutX="340.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit code: XX" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="339.23974609375" AnchorPane.topAnchor="191.0" />
    </children>
 </AnchorPane>
