@@ -25,13 +25,8 @@ public class Command {
      */
     public static void addCommand(Views.Command controller, Node node) {
         Models.Command model = new Models.Command(commands.size() + 1);
-        controller.SetUp(node, model);
+        controller.setUp(node, model);
         commands.add(model);
-    }
-
-    public static void addArgument(Models.Command command) {
-        command.getArgumentList().add(Business.Argument.getAddedArg());
-        System.out.println(command.getArgumentList().get(command.getArgumentList().size() - 1));
     }
 
     // endregion

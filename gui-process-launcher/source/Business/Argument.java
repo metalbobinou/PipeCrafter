@@ -1,5 +1,7 @@
 package Business;
 
+import javafx.scene.Node;
+
 /** Business class for arguments */
 public class Argument {
 
@@ -12,15 +14,35 @@ public class Argument {
 
     // region Methods
 
-    // endregion
-
-    // region Getters and Setters
-
-    public static Models.Argument getAddedArg() {
+    /**
+     * Retreive addedArg variable and reset it to null
+     * 
+     * @return addedArg
+     */
+    public static Models.Argument popAddedArg() {
         Models.Argument res = addedArg;
         addedArg = null;
         return res;
     }
+
+    /**
+     * Check if addedArg is set
+     * 
+     * @return true if set, false otherwise
+     */
+    public static boolean isAddedArgSet() {
+        return addedArg != null;
+    }
+
+    public static void addArgument(Models.Command command, Views.Argument controller, Node node) {
+        Models.Argument model = Business.Argument.popAddedArg();
+        command.getArgumentList().add(model);
+        controller.setUp(node, model);
+    }
+
+    // endregion
+
+    // region Getters and Setters
 
     public static void setAddedArg(Models.Argument addedArg) {
         Argument.addedArg = addedArg;
