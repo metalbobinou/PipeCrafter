@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="447.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.ArgumentTypeSelector">
    <children>
       <Text fill="WHITE" layoutX="79.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose argument type" textAlignment="CENTER" AnchorPane.bottomAnchor="273.25" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="62.3125" AnchorPane.topAnchor="6.0625">
@@ -24,7 +23,7 @@
                   <Image url="@../images/file_icon.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="75.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Existing file" wrappingWidth="167.64447784423828">
+            <Text fill="WHITE" layoutX="48.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Existing file" textAlignment="CENTER" wrappingWidth="139.64447784423828">
                <font>
                   <Font size="25.0" />
                </font>
@@ -38,7 +37,7 @@
                   <Image url="@../images/text_input_icon.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="75.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="167.64447784423828">
+            <Text fill="WHITE" layoutX="48.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="82.64447784423828">
                <font>
                   <Font size="25.0" />
                </font>
@@ -52,7 +51,7 @@
                   <Image url="@../images/output_icon.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="75.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Command output" wrappingWidth="194.06085968017578">
+            <Text fill="WHITE" layoutX="55.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Command output" textAlignment="CENTER" wrappingWidth="194.06085968017578">
                <font>
                   <Font size="25.0" />
                </font>
