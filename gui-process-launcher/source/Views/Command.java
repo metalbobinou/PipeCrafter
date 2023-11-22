@@ -60,7 +60,7 @@ public class Command {
      * @param node  the controller's node
      * @param model the controller's model
      */
-    public void SetUp(Node node, Models.Command model) {
+    public void setUp(Node node, Models.Command model) {
         this.commandNode = node;
         this.commandModel = model;
 
@@ -138,19 +138,18 @@ public class Command {
         popupStage.setScene(new Scene(root));
         popupStage.showAndWait();
 
-        // !!! Check if succeeded or just closed
+        if (!Business.Argument.isAddedArgSet()) {
+            // Operation aborted
+            return;
+        }
 
-        // => Call CommandBusiness to add argument to command's arguments list
-        // => Load argument visual in command's VBox
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/argument.fxml"));
 
-        // FXMLLoader loader = new
-        // FXMLLoader(getClass().getResource("/fxml/argument.fxml"));
+        Parent argumentNode = loader.load();
+        Argument argumentController = loader.getController();
 
-        // Parent argumentNode = loader.load();
-        // Argument argumentController = loader.getController();
-
-        // // Business.Command.addArgument(commandModel, )
-        // argumentsHbox.getChildren().add(argumentNode);
+        Business.Argument.addArgument(commandModel, argumentController, argumentNode);
+        argumentsHbox.getChildren().add(argumentNode);
     }
 
     // endregion
