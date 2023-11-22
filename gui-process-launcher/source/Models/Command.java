@@ -1,7 +1,6 @@
 package Models;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,8 +38,9 @@ public class Command {
 
     // region Constructors
 
-    public Command(int position) {
+    public Command(int position, State state) {
         this.position = position;
+        this.state = state;
         argumentList = new ArrayList<>();
         exitCode = null;
     }
