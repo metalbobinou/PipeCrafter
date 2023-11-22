@@ -12,6 +12,7 @@ public class Command {
     public enum State {
         ALREADY_RUN,
         NEXT_TO_RUN,
+        RUNNING,
         TO_RUN;
     }
 

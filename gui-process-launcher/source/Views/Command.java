@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -22,6 +23,7 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -78,7 +80,8 @@ public class Command {
     // region Methods
 
     /**
-     * Associate the controller with its node and model, and set FX objects for
+     * Associate the controller with its node and model, and set FX objects
+     * with model's information and for
      * drag and drop
      * 
      * @param node  the controller's node
@@ -88,9 +91,13 @@ public class Command {
         this.commandNode = node;
         this.commandModel = model;
 
+        setState();
+        step_label.setText(String.valueOf(commandModel.getPosition()));
+
         arguments_scrollPane.getStylesheets()
                 .add(getClass().getResource("/css/scrollBarStyle.css").toExternalForm());
 
+        // region drag and drop implementation
         node.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
@@ -141,7 +148,7 @@ public class Command {
                 event.consume();
             }
         });
-
+        // endregion
     }
 
     /**
@@ -179,13 +186,21 @@ public class Command {
     public void setState() {
         switch (commandModel.getState()) {
             case ALREADY_RUN:
-
+                run_button.setImage(new Image(getClass().getResource("/images/restart_icon.png").toString()));
+                boxBorders.setStroke(Color.GRAY);
+                exitCode_label.setText("Exit code: " + commandModel.getExitCode());
                 break;
             case NEXT_TO_RUN:
+                run_button.setImage(new Image(getClass().getResource("/images/start_icon.png").toString()));
+                boxBorders.setStroke(Color.BLUE);
+                break;
+            case RUNNING:
+                run_button.setImage(new Image(getClass().getResource("/images/stop_icon.png").toString()));
+                boxBorders.setStroke(Color.VIOLET);
                 break;
             case TO_RUN:
-                break;
-            default:
+                run_button.setImage(new Image(getClass().getResource("/images/start_from_icon.png").toString()));
+                boxBorders.setStroke(Color.WHITE);
                 break;
         }
     }
