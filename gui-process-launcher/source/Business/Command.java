@@ -3,6 +3,7 @@ package Business;
 import java.util.ArrayList;
 import java.util.List;
 
+import Models.Command.State;
 import javafx.scene.Node;
 
 /** Business class for commands */
@@ -24,7 +25,9 @@ public class Command {
      * @param node       FX object representing the command
      */
     public static void addCommand(Views.Command controller, Node node) {
-        Models.Command model = new Models.Command(commands.size() + 1);
+
+        Models.Command model = new Models.Command(commands.size() + 1,
+                commands.size() == 0 ? State.NEXT_TO_RUN : State.TO_RUN);
         controller.setUp(node, model);
         commands.add(model);
     }
