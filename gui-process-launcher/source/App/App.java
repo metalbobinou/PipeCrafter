@@ -17,16 +17,14 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Parent root;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/fxml/main_screen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_screen.fxml"));
 
-        } catch (Exception e) {
-            throw new RuntimeException("FXML file not found");
-        }
+        Parent mainNode = loader.load();
+        Business.App.setMainController(loader.getController());
+
         stage.setTitle("Execution Pipeline Builder");
 
-        stage.setScene(new Scene(root));
+        stage.setScene(new Scene(mainNode));
         // stage.sizeToScene();
         stage.show();
         stage.setMinWidth(stage.getMinWidth()); // !!! set to "main" anchor pane min sizes
@@ -34,6 +32,16 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+
+        // region temp until settings implemented then call settings setup
+        Business.Settings.setExecutionDirectory(
+                "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/source/test");
+        Business.Settings.setOutputSavingDirectory(
+                "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/source/test/output");
+
+        // endregion
+
+        Execution.ProcessManager.init();
         launch();
     }
 
