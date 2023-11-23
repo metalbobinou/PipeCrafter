@@ -2,6 +2,8 @@ package Models;
 
 import java.io.File;
 
+import Utils.OutputStream;
+
 /** Internal representation of argument related data */
 public class Argument {
 
@@ -72,6 +74,22 @@ public class Argument {
         }
         this.type = type;
         this.objectValue = objectValue;
+    }
+
+    @Override
+    public String toString() {
+        switch (type) {
+            case FILE:
+                return ((File) objectValue).getAbsolutePath();
+            case OUTPUT:
+                Object[] objArr = (Object[]) objectValue;
+                return Utils.Utils.getPathForOutputOfStep((int) objArr[0],
+                        (OutputStream) objArr[1]);
+            case TEXT:
+                return (String) objectValue;
+            default:
+                return null;
+        }
     }
 
     // endregion
