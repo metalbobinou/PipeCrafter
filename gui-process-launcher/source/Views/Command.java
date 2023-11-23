@@ -212,7 +212,9 @@ public class Command {
 
     @FXML
     public void run(MouseEvent event) {
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+        commandModel.setCmd(textField.getText());
+        Business.Command.decideExec(commandModel);
+        setState();
     }
 
     // endregion
