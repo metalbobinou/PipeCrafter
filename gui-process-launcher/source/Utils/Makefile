@@ -5,7 +5,8 @@ TARGET=Models
 
 # Files to compile in this package
 CLASSES=               \
-         OutputStream.java
+         OutputStream.java \
+		 Utils.java
 
 # JARs required for compiling this package
 CLASSPATH_JARS=
