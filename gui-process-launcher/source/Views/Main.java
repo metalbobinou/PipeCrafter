@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -32,6 +33,29 @@ public class Main implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    /** Switch to edit mode */
+    public void setEditMode() {
+        status_text.setText("Editing");
+        Node addButton = commandVBox.getChildren().get(commandVBox.getChildren().size() - 1);
+        addButton.setVisible(true);
+        addButton.setDisable(false);
+    }
+
+    /** Switch to execution mode */
+    public void setExecMode() {
+        status_text.setText((new StringBuilder("Executing step ").append(Business.App.getCurrentStep()).append(" for "))
+                .toString()); // TODO get time ellapsed + refresh every second
+        Node addButton = commandVBox.getChildren().get(commandVBox.getChildren().size() - 1);
+        addButton.setVisible(false);
+        addButton.setDisable(true);
+    }
+
+    /** Switch to paused execution mode */
+    public void setPausedExecMode() {
+        status_text.setText((new StringBuilder("Execution paused at step ").append(Business.App.getCurrentStep()))
+                .toString());
     }
 
     /**
