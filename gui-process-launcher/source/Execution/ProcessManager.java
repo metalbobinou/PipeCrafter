@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import Execution.Utils.CommandBuilder;
+
 /** Handle a unique process object for all executions */
 public class ProcessManager {
 
@@ -27,7 +29,6 @@ public class ProcessManager {
 
     /** Check and set the execution directory for the ProcessBuilder */
     public static void setExecution() {
-        // "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/src/test"
         if (Business.Settings.getExecutionDirectory() == null) {
             throw new IllegalArgumentException(
                     "Tried to init a process builder with an unspecified execution directory");
@@ -57,20 +58,20 @@ public class ProcessManager {
     }
 
     /**
-     * Set the ProcessBuilder for the specified step and its arguments and
-     * execute it
+     * Set the ProcessBuilder for the specified command and execute it
      * 
-     * @param command list of the command and its arguments as strings to execute
-     * @param step    number of the step to execute
+     * @param command command to execute
      * @return the returned code or null if an execution error occured
      */
-    public static Integer execute(List<String> command, int step) {
+    public static Integer execute(Models.Command command) {
 
-        setRedirection(step);
-        processBuilder.command(command);
+        List<String> cmdList = CommandBuilder.getCommand(command);
+        setRedirection(command.getPosition());
+        processBuilder.command(cmdList);
         try {
             Process process = processBuilder.start();
             return process.waitFor();
+            // =>> handle post execution (after test?)
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
