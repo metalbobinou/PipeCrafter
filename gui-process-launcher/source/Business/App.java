@@ -27,6 +27,11 @@ public class App {
 
     // region Methods
 
+    /**
+     * Update app business variables when executing a command
+     * 
+     * @param command command to be executed
+     */
     public static void setRun(Models.Command command) {
         currentStep = command.getPosition();
         editModeOn = false;
