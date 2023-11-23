@@ -29,6 +29,9 @@ public class Command {
     /** Execution state of the command */
     private State state;
 
+    /** The command entered by the user without the arguments */
+    private String cmd;
+
     /** List of all arguments for this command */
     private List<Argument> argumentList;
 
@@ -59,6 +62,14 @@ public class Command {
             throw new IllegalArgumentException();
         }
         this.position = position;
+    }
+
+    public String getCmd() {
+        return cmd;
+    }
+
+    public void setCmd(String cmd) {
+        this.cmd = cmd;
     }
 
     public List<Argument> getArgumentList() {
