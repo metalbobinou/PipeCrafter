@@ -42,7 +42,7 @@
             <Font name="Arial" size="30.0" />
          </font>
       </Text>
-      <Text fx:id="status_text" fill="WHITE" layoutX="162.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editing" wrappingWidth="141.1981544494629" AnchorPane.leftAnchor="162.0" AnchorPane.topAnchor="125.99609375">
+      <Text fx:id="status_text" fill="WHITE" layoutX="162.0" layoutY="155.00390625" strokeType="OUTSIDE" strokeWidth="0.0" text="Editing" wrappingWidth="1114.6210670471191" AnchorPane.leftAnchor="162.0" AnchorPane.topAnchor="126.0">
          <font>
             <Font size="30.0" />
          </font>
