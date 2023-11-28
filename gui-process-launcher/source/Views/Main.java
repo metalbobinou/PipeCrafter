@@ -53,9 +53,8 @@ public class Main implements Initializable {
     }
 
     /** Switch to paused execution mode */
-    public void setPausedExecMode() {
-        status_text.setText((new StringBuilder("Execution paused at step ").append(Business.App.getCurrentStep()))
-                .toString());
+    public void setPausedExecMode(String statusMessage) {
+        status_text.setText(statusMessage);
     }
 
     /**
