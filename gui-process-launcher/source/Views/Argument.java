@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -61,7 +62,7 @@ public class Argument implements Initializable {
 
     /** Text displayed for the argument */
     @FXML
-    public Text text;
+    public Label text;
 
     // endregion
 
@@ -164,22 +165,17 @@ public class Argument implements Initializable {
 
     /** Set the argument's text according to its type and value */
     public void setText() {
-        text.setFill(Color.WHITE);
-        text.setTextAlignment(TextAlignment.CENTER);
+        text.setTextFill(Color.WHITE);
         switch (argumentModel.getType()) {
             case FILE:
-                text.setTextAlignment(TextAlignment.RIGHT);
-                text.setText(((File) argumentModel.getObjectValue()).getAbsolutePath());
+                text.setText(((File) argumentModel.getObjectValue()).getName());
                 break;
             case OUTPUT:
-                // TODO
-                // text.setText(argumentModel.getObjectValue());
-                break;
             case TEXT:
-                text.setText((String) argumentModel.getObjectValue());
+                text.setText(argumentModel.toString());
                 break;
             default:
-                text.setFill(Color.RED);
+                text.setTextFill(Color.RED);
                 text.setText("Invalid ref");
                 break;
 

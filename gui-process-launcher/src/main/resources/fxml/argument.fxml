@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="167.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Argument">
    <children>
@@ -22,7 +22,7 @@
                   <Image url="@../images/text_input_icon.png" />
                </image>
             </ImageView>
-            <Text fx:id="text" fill="WHITE" layoutX="39.0" layoutY="21.0" onMouseClicked="#edit" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="92.89479446411133" />
+            <Label fx:id="text" layoutX="38.0" layoutY="8.0" prefHeight="17.0" prefWidth="89.0" text="Label" textFill="WHITE" />
          </children>
       </Group>
    </children>
