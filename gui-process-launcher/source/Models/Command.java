@@ -23,6 +23,9 @@ public class Command {
     /** A unique id */
     public final UUID id = UUID.randomUUID();
 
+    /** View controller used by the representation of this object */
+    private Views.Command cmdView;
+
     /** Position of the command in the execution pipeline */
     private int position;
 
@@ -42,9 +45,10 @@ public class Command {
 
     // region Constructors
 
-    public Command(int position, State state) {
+    public Command(int position, State state, Views.Command cmdView) {
         this.position = position;
         this.state = state;
+        this.cmdView = cmdView;
         argumentList = new ArrayList<>();
         exitCode = null;
     }
@@ -52,6 +56,14 @@ public class Command {
     // endregion
 
     // region Getters and Setters
+
+    public Views.Command getCmdView() {
+        return cmdView;
+    }
+
+    public void setCmdView(Views.Command cmdView) {
+        this.cmdView = cmdView;
+    }
 
     public int getPosition() {
         return position;
