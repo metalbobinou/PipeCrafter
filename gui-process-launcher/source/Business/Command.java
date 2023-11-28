@@ -2,9 +2,6 @@ package Business;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
 import Models.Command.State;
 import javafx.scene.Node;
 
@@ -32,16 +29,6 @@ public class Command {
                 commands.size() == 0 ? State.NEXT_TO_RUN : State.TO_RUN, controller);
         commands.add(model);
         controller.setUp(node, model);
-    }
-
-    /**
-     * Get a command by its id
-     * 
-     * @param id id of the command to find
-     * @return the command with the matching id or null
-     */
-    public static Optional<Models.Command> getCommand(UUID id) {
-        return commands.stream().filter(cmd -> id.equals(cmd.id)).findFirst();
     }
 
     /**

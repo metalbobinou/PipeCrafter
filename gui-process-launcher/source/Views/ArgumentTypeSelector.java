@@ -2,7 +2,6 @@ package Views;
 
 import java.util.Optional;
 
-import Business.Argument;
 import Models.Argument.Type;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextInputDialog;
