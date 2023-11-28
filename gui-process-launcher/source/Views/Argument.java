@@ -28,12 +28,16 @@ public class Argument implements Initializable {
 
     // region Attributes
 
+    /** Image representing the file icon */
     private Image file_iconImage;
 
+    /** Image representing the output icon */
     private Image output_iconImage;
 
+    /** Image representing the text icon */
     private Image textImage;
 
+    /** Image representing the red output icon */
     private Image red_output_iconImage;
 
     /** The FX object associated with this controller */
