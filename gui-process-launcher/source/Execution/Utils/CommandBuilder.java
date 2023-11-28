@@ -1,5 +1,6 @@
 package Execution.Utils;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,7 +33,7 @@ public class CommandBuilder {
                 String argAsString = arg.toString();
 
                 if (arg.getType() == Type.OUTPUT) {
-                    setPermissions(argAsString);
+                    new File(argAsString).setExecutable(true);
                 }
                 cmdList.add(argAsString);
             }
@@ -46,7 +47,7 @@ public class CommandBuilder {
             String argAsString = arg.toString();
 
             if (arg.getType() == Type.OUTPUT) {
-                setPermissions(argAsString);
+                new File(argAsString).setExecutable(true);
             }
             commandBuilder.append(" ").append(argAsString);
         }
@@ -66,21 +67,5 @@ public class CommandBuilder {
                 return cmdList;
         }
     }
-
-    /**
-     * Give 755 permissions to a file
-     * 
-     * @param pathAsString path to the file to change permissions for
-     */
-    private static void setPermissions(String pathAsString) {
-        Path path = Paths.get(pathAsString);
-        try {
-            Files.setPosixFilePermissions(path,
-                    PosixFilePermissions.fromString("rwxr-xr-x"));
-        } catch (Exception e) {
-            System.err.println("Could not set permissions for file " + pathAsString);
-        }
-    }
-
     // endregion
 }
