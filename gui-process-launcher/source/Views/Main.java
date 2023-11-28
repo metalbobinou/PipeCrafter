@@ -18,6 +18,9 @@ public class Main implements Initializable {
 
     // region Attributes
 
+    /** URL for the fxml file representing a command */
+    private URL cmdBoxURL;
+
     /** The Vboc containing the commands */
     @FXML
     public VBox commandVBox;
@@ -32,7 +35,7 @@ public class Main implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        cmdBoxURL = getClass().getResource("/fxml/command_box.fxml");
     }
 
     /** Switch to edit mode */
@@ -66,7 +69,7 @@ public class Main implements Initializable {
     @FXML
     public void add_command(MouseEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/command_box.fxml"));
+        FXMLLoader loader = new FXMLLoader(cmdBoxURL);
 
         Parent commandNode = loader.load();
         Views.Command commandController = loader.getController();

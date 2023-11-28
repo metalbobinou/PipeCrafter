@@ -4,11 +4,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,9 +24,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /** Controller class for an argument */
-public class Argument {
+public class Argument implements Initializable {
 
     // region Attributes
+
+    private Image file_iconImage;
+
+    private Image output_iconImage;
+
+    private Image textImage;
+
+    private Image red_output_iconImage;
 
     /** The FX object associated with this controller */
     private Node argumentNode;
@@ -49,6 +59,14 @@ public class Argument {
     // endregion
 
     // region Methods
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        file_iconImage = new Image(getClass().getResource("/images/file_icon.png").toString());
+        output_iconImage = new Image(getClass().getResource("/images/output_icon.png").toString());
+        textImage = new Image(getClass().getResource("/images/text_input_icon.png").toString());
+        red_output_iconImage = new Image(getClass().getResource("/images/red_output_icon.png").toString());
+    }
 
     /**
      * Associate the controller with its node and model, and set FX objects for
@@ -120,16 +138,16 @@ public class Argument {
     public void setIcon() {
         switch (argumentModel.getType()) {
             case FILE:
-                icon.setImage(new Image(getClass().getResource("/images/file_icon.png").toString()));
+                icon.setImage(file_iconImage);
                 break;
             case OUTPUT:
-                icon.setImage(new Image(getClass().getResource("/images/output_icon.png").toString()));
+                icon.setImage(output_iconImage);
                 break;
             case TEXT:
-                icon.setImage(new Image(getClass().getResource("/images/text_input_icon.png").toString()));
+                icon.setImage(textImage);
                 break;
             default:
-                icon.setImage(new Image(getClass().getResource("/images/red_output_icon.png").toString()));
+                icon.setImage(red_output_iconImage);
                 break;
 
         }

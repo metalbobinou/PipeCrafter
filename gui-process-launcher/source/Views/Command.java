@@ -1,9 +1,11 @@
 package Views;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.UUID;
 
 import javafx.beans.property.ObjectProperty;
@@ -11,6 +13,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -32,7 +35,7 @@ import javafx.stage.Stage;
 import javafx.scene.layout.HBox;
 
 /** Controller class for a command */
-public class Command {
+public class Command implements Initializable {
 
     // region Attributes
 
@@ -47,6 +50,30 @@ public class Command {
 
     /** Object used to handle drag and drop */
     private ObjectProperty<Node> draggingTab = new SimpleObjectProperty<Node>();
+
+    /** String representing the CSS styling of the scroll bar */
+    private String scrollBarStyleCSS;
+
+    /**
+     * URL for the fxml file representing a the argument type selector
+     * window
+     */
+    private URL argumentTypeSelectorURL;
+
+    /** URL for the fxml file representing an argument */
+    private URL argumentURL;
+
+    /** Image representing the restart icon */
+    private Image restart_icon;
+
+    /** Image representing the start icon */
+    private Image start_icon;
+
+    /** Image representing the stop icon */
+    private Image stop_icon;
+
+    /** Image representing the start from icon */
+    private Image start_from_icon;
 
     /** The scroll pane used for the arguments */
     @FXML
@@ -80,6 +107,23 @@ public class Command {
 
     // region Methods
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        scrollBarStyleCSS = getClass().getResource("/css/scrollBarStyle.css").toExternalForm();
+
+        argumentTypeSelectorURL = getClass().getResource("/fxml/argumentTypeSelector.fxml");
+
+        argumentURL = getClass().getResource("/fxml/argument.fxml");
+
+        restart_icon = new Image(getClass().getResource("/images/restart_icon.png").toString());
+
+        start_icon = new Image(getClass().getResource("/images/start_icon.png").toString());
+
+        stop_icon = new Image(getClass().getResource("/images/stop_icon.png").toString());
+
+        start_from_icon = new Image(getClass().getResource("/images/start_from_icon.png").toString());
+    }
+
     /**
      * Associate the controller with its node and model, and set FX objects
      * with model's information and for
@@ -96,7 +140,7 @@ public class Command {
         updateState();
 
         arguments_scrollPane.getStylesheets()
-                .add(getClass().getResource("/css/scrollBarStyle.css").toExternalForm());
+                .add(scrollBarStyleCSS);
 
         // region drag and drop implementation
         node.setOnDragOver(new EventHandler<DragEvent>() {
@@ -162,7 +206,7 @@ public class Command {
     public void add_argument(MouseEvent event) throws IOException {
 
         // Show type selector window
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/argumentTypeSelector.fxml"));
+        Parent root = FXMLLoader.load(argumentTypeSelectorURL);
         Stage popupStage = new Stage();
         popupStage.setTitle("Choose argument type");
         // freeze main window
@@ -175,7 +219,7 @@ public class Command {
             return;
         }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/argument.fxml"));
+        FXMLLoader loader = new FXMLLoader(argumentURL);
 
         Parent argumentNode = loader.load();
         Argument argumentController = loader.getController();
@@ -195,20 +239,20 @@ public class Command {
         }
         switch (commandModel.getState()) {
             case ALREADY_RUN:
-                run_button.setImage(new Image(getClass().getResource("/images/restart_icon.png").toString()));
+                run_button.setImage(restart_icon);
                 boxBorders.setStroke(Color.GRAY);
                 exitCode_label.setText("Exit code: " + commandModel.getExitCode());
                 break;
             case NEXT_TO_RUN:
-                run_button.setImage(new Image(getClass().getResource("/images/start_icon.png").toString()));
+                run_button.setImage(start_icon);
                 boxBorders.setStroke(Color.BLUE);
                 break;
             case RUNNING:
-                run_button.setImage(new Image(getClass().getResource("/images/stop_icon.png").toString()));
+                run_button.setImage(stop_icon);
                 boxBorders.setStroke(Color.VIOLET);
                 break;
             case TO_RUN:
-                run_button.setImage(new Image(getClass().getResource("/images/start_from_icon.png").toString()));
+                run_button.setImage(start_from_icon);
                 boxBorders.setStroke(Color.WHITE);
                 break;
         }
