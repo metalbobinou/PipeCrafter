@@ -2,6 +2,8 @@ package Business;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import Models.Command.State;
 import javafx.scene.Node;
@@ -27,9 +29,19 @@ public class Command {
     public static void addCommand(Views.Command controller, Node node) {
 
         Models.Command model = new Models.Command(commands.size() + 1,
-                commands.size() == 0 ? State.NEXT_TO_RUN : State.TO_RUN);
-        controller.setUp(node, model);
+                commands.size() == 0 ? State.NEXT_TO_RUN : State.TO_RUN, controller);
         commands.add(model);
+        controller.setUp(node, model);
+    }
+
+    /**
+     * Get a command by its id
+     * 
+     * @param id id of the command to find
+     * @return the command with the matching id or null
+     */
+    public static Optional<Models.Command> getCommand(UUID id) {
+        return commands.stream().filter(cmd -> id.equals(cmd.id)).findFirst();
     }
 
     /**
@@ -70,7 +82,26 @@ public class Command {
     private static void run(Models.Command command) {
         command.setState(State.RUNNING);
         Business.App.setRun(command);
-        Execution.ProcessManager.execute(command);
+        Thread thread = new Thread(() -> {
+            Execution.ProcessManager.execute(command);
+
+            // Post execution updates:
+            // For executed command
+            command.setState(State.ALREADY_RUN);
+            command.getCmdView().updateState();
+
+            // For next command in line
+            boolean isOver = commands.size() == Business.App.getCurrentStep();
+            if (!isOver) {
+                Models.Command nextCmd = commands.get(Business.App.getCurrentStep());
+                nextCmd.setState(State.NEXT_TO_RUN);
+                nextCmd.getCmdView().updateState();
+            }
+
+            // App variables
+            Business.App.endRun(isOver);
+        });
+        thread.start();
     }
 
     // endregion
