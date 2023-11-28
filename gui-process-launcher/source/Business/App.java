@@ -37,7 +37,22 @@ public class App {
         editModeOn = false;
         execStartTime = System.currentTimeMillis();
         isExecuting = true;
-        mainController.setEditMode();
+        mainController.setExecMode();
+    }
+
+    /**
+     * Update app business variables after executing a command
+     * 
+     * @param isOver true if all commands have been executed
+     */
+    public static void endRun(boolean isOver) {
+        if (isOver) {
+            currentStep = 0;
+        }
+        currentStep++;
+        isExecuting = false;
+        mainController
+                .setPausedExecMode(isOver ? "Done, all commands executed" : "Execution paused at step " + currentStep);
     }
 
     // endregion
