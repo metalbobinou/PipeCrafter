@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -39,7 +40,7 @@ public class Command {
     private Node commandNode;
 
     /** Command model object associated with this view */
-    private Models.Command commandModel;
+    private UUID commandModelID;
 
     /** A key used to set a "type" for dragged elements */
     private static final String TAB_DRAG_KEY = "command";
@@ -89,10 +90,10 @@ public class Command {
      */
     public void setUp(Node node, Models.Command model) {
         this.commandNode = node;
-        this.commandModel = model;
+        this.commandModelID = model.id;
+        step_label.setText(String.valueOf(model.getPosition()));
 
-        setState();
-        step_label.setText(String.valueOf(commandModel.getPosition()));
+        updateState();
 
         arguments_scrollPane.getStylesheets()
                 .add(getClass().getResource("/css/scrollBarStyle.css").toExternalForm());
@@ -179,11 +180,19 @@ public class Command {
         Parent argumentNode = loader.load();
         Argument argumentController = loader.getController();
 
-        Business.Argument.addArgument(commandModel, argumentController, argumentNode);
+        Business.Argument.addArgument(commandModelID, argumentController, argumentNode);
         argumentsHbox.getChildren().add(argumentNode);
     }
 
-    public void setState() {
+    /** Update all UI elements of the command based on its model's state */
+    public void updateState() {
+        Models.Command commandModel = null;
+        try {
+            commandModel = Business.Command.getCommand(commandModelID).get();
+        } catch (Exception e) {
+            System.err.println("Error finding model for command with id: " + commandModelID.toString());
+            return;
+        }
         switch (commandModel.getState()) {
             case ALREADY_RUN:
                 run_button.setImage(new Image(getClass().getResource("/images/restart_icon.png").toString()));
@@ -210,11 +219,23 @@ public class Command {
         throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
+    /**
+     * Trigger the execution of the selected command
+     * 
+     * @param event
+     */
     @FXML
     public void run(MouseEvent event) {
+        Models.Command commandModel = null;
+        try {
+            commandModel = Business.Command.getCommand(commandModelID).get();
+        } catch (Exception e) {
+            System.err.println("Error finding model for command with id: " + commandModelID.toString());
+            return;
+        }
         commandModel.setCmd(textField.getText());
         Business.Command.decideExec(commandModel);
-        setState();
+        updateState();
     }
 
     // endregion
@@ -227,10 +248,6 @@ public class Command {
 
     public void setCommandNode(Node node) {
         this.commandNode = node;
-    }
-
-    public Models.Command getCommandModel() {
-        return commandModel;
     }
 
     // endregion
