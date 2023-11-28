@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.UUID;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
@@ -43,7 +41,7 @@ public class Command implements Initializable {
     private Node commandNode;
 
     /** Command model object associated with this view */
-    private UUID commandModelID;
+    private Models.Command commandModel;
 
     /** A key used to set a "type" for dragged elements */
     private static final String TAB_DRAG_KEY = "command";
@@ -134,7 +132,7 @@ public class Command implements Initializable {
      */
     public void setUp(Node node, Models.Command model) {
         this.commandNode = node;
-        this.commandModelID = model.id;
+        this.commandModel = model;
         step_label.setText(String.valueOf(model.getPosition()));
 
         updateState();
@@ -224,19 +222,12 @@ public class Command implements Initializable {
         Parent argumentNode = loader.load();
         Argument argumentController = loader.getController();
 
-        Business.Argument.addArgument(commandModelID, argumentController, argumentNode);
+        Business.Argument.addArgument(commandModel, argumentController, argumentNode);
         argumentsHbox.getChildren().add(argumentNode);
     }
 
     /** Update all UI elements of the command based on its model's state */
     public void updateState() {
-        Models.Command commandModel = null;
-        try {
-            commandModel = Business.Command.getCommand(commandModelID).get();
-        } catch (Exception e) {
-            System.err.println("Error finding model for command with id: " + commandModelID.toString());
-            return;
-        }
         switch (commandModel.getState()) {
             case ALREADY_RUN:
                 run_button.setImage(restart_icon);
@@ -270,13 +261,6 @@ public class Command implements Initializable {
      */
     @FXML
     public void run(MouseEvent event) {
-        Models.Command commandModel = null;
-        try {
-            commandModel = Business.Command.getCommand(commandModelID).get();
-        } catch (Exception e) {
-            System.err.println("Error finding model for command with id: " + commandModelID.toString());
-            return;
-        }
         commandModel.setCmd(textField.getText());
         Business.Command.decideExec(commandModel);
         updateState();

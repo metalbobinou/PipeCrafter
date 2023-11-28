@@ -1,7 +1,5 @@
 package Business;
 
-import java.util.UUID;
-
 import javafx.scene.Node;
 
 /** Business class for arguments */
@@ -36,17 +34,10 @@ public class Argument {
         return addedArg != null;
     }
 
-    public static void addArgument(UUID commandID, Views.Argument controller, Node node) {
+    public static void addArgument(Models.Command commandModel, Views.Argument controller, Node node) {
         Models.Argument model = Business.Argument.popAddedArg();
 
-        Business.Command.getCommand(commandID).ifPresentOrElse(
-                (commandModel) -> {
-                    commandModel.getArgumentList().add(model);
-                },
-                () -> {
-                    System.err.println("Error finding model for command with id: " + commandID.toString());
-                });
-
+        commandModel.getArgumentList().add(model);
         controller.setUp(node, model);
     }
 
