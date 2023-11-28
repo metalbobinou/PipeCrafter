@@ -1,8 +1,10 @@
 package Views;
 
+import java.io.File;
 import java.util.Optional;
 
 import Models.Argument.Type;
+import Utils.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
@@ -24,7 +26,13 @@ public class ArgumentTypeSelector {
 
     @FXML
     public void file(MouseEvent event) {
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+        File file = Utils.getFc().showOpenDialog(new Stage());
+
+        if (file != null) {
+            Business.Argument.setAddedArg(new Models.Argument(Type.FILE, file));
+        }
+
+        ((Stage) anchorPane.getScene().getWindow()).close();
     }
 
     /**

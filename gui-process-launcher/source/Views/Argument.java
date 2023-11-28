@@ -1,5 +1,6 @@
 package Views;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,6 +23,8 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextBoundsType;
 
 /** Controller class for an argument */
 public class Argument implements Initializable {
@@ -85,6 +88,8 @@ public class Argument implements Initializable {
         setIcon();
         setText();
 
+        // region Drag and Drop Imple
+
         node.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
@@ -135,7 +140,7 @@ public class Argument implements Initializable {
                 event.consume();
             }
         });
-
+        // endregion
     }
 
     /** Set the argument's icon according to its type */
@@ -160,10 +165,11 @@ public class Argument implements Initializable {
     /** Set the argument's text according to its type and value */
     public void setText() {
         text.setFill(Color.WHITE);
+        text.setTextAlignment(TextAlignment.CENTER);
         switch (argumentModel.getType()) {
             case FILE:
-                // TODO
-                // text.setText(argumentModel.getObjectValue());
+                text.setTextAlignment(TextAlignment.RIGHT);
+                text.setText(((File) argumentModel.getObjectValue()).getAbsolutePath());
                 break;
             case OUTPUT:
                 // TODO
