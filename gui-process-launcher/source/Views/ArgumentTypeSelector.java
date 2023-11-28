@@ -28,6 +28,11 @@ public class ArgumentTypeSelector {
         throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
+    /**
+     * Prompt the user to enter the desired text value
+     * 
+     * @param event
+     */
     @FXML
     public void text(MouseEvent event) {
 
