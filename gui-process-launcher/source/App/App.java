@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
 import java.io.IOException;
+
+import Utils.Utils;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
@@ -33,13 +35,16 @@ public class App extends Application {
 
     public static void main(String[] args) {
 
-        // region temp until settings implemented then call settings setup
+        // Region temp until settings implemented then call settings setup
+        // Default values tho ??
         Business.Settings.setExecutionDirectory(
                 "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/source/test");
         Business.Settings.setOutputSavingDirectory(
                 "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/source/test/output");
 
         // endregion
+
+        Utils.initFC();
 
         Execution.ProcessManager.init();
         launch();
