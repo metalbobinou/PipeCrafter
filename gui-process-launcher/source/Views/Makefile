@@ -9,6 +9,7 @@ CLASSES=                           \
          ArgumentTypeSelector.java \
          Argument.java             \
          Process.java              \
+         OutputSelector            \
          Settings.java
 
 # JARs required for compiling this package
