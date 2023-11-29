@@ -4,7 +4,8 @@
 TARGET=Models
 
 # Files to compile in this package
-CLASSES=               \
+CLASSES=                   \
+		 Alerts.java       \
          OutputStream.java \
 		 Utils.java
 
