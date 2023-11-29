@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import Utils.Alerts;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
@@ -73,6 +75,10 @@ public class Command implements Initializable {
     /** Image representing the start from icon */
     private Image start_from_icon;
 
+    /** Text field used by the user to name the command */
+    @FXML
+    public TextField nameField;
+
     /** The scroll pane used for the arguments */
     @FXML
     public ScrollPane arguments_scrollPane;
@@ -107,6 +113,17 @@ public class Command implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        nameField.textProperty().addListener((observable, oldValue, newValue) -> {
+            String newName = newValue;
+            if (newName.length() > 1024) {
+                newName = newName.substring(0, 1024);
+                nameField.setText(newName);
+                Alerts.getMaxCharAlert().showAndWait();
+            }
+            commandModel.setName(newName);
+        });
+
         scrollBarStyleCSS = getClass().getResource("/css/scrollBarStyle.css").toExternalForm();
 
         argumentTypeSelectorURL = getClass().getResource("/fxml/argumentTypeSelector.fxml");
