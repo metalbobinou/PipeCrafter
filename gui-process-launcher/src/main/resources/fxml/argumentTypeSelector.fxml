@@ -10,12 +10,12 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="447.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.ArgumentTypeSelector">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="317.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="447.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Text fill="WHITE" layoutX="79.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose argument type" textAlignment="CENTER" AnchorPane.bottomAnchor="273.25" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="62.3125" AnchorPane.topAnchor="6.0625">
          <font>
             <Font size="32.0" />
          </font>
       </Text>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="317.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="447.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Group layoutX="121.0" layoutY="77.0" onMouseClicked="#file">
          <children>
             <ImageView fitHeight="48.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
