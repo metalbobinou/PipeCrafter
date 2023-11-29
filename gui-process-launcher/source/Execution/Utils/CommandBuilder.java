@@ -20,48 +20,35 @@ public class CommandBuilder {
      */
     public static List<String> getCommand(Models.Command command) {
 
-        List<String> cmdList = new ArrayList<>();
+        List<String> cmdList = Arrays.asList(command.getCmd());
+        StringBuilder commandBuilder = new StringBuilder(command.getCmd());
 
-        if (Business.Settings.getUsedShell() == Shell.NONE) {
-
-            cmdList.add(command.getCmd());
-            for (Models.Argument arg : command.getArgumentList()) {
-                String argAsString = arg.toString();
-
-                if (arg.getType() == Type.OUTPUT) {
-                    new File(argAsString).setExecutable(true);
-                }
-                cmdList.add(argAsString);
-            }
-            return cmdList;
-        }
-
-        // - Wrap the command to use it with a shell
-        StringBuilder commandBuilder = new StringBuilder();
-        // Turn the list into a single string
         for (Models.Argument arg : command.getArgumentList()) {
             String argAsString = arg.toString();
 
             if (arg.getType() == Type.OUTPUT) {
                 new File(argAsString).setExecutable(true);
             }
+
             commandBuilder.append(" ").append(argAsString);
+            cmdList.add(argAsString);
         }
-        commandBuilder.deleteCharAt(0);
-        String commandString = commandBuilder.toString();
+
+        Business.Command.addExecutedCommand(commandBuilder.toString());
 
         switch (Business.Settings.getUsedShell()) {
             case BASH:
-                return Arrays.asList("bash", "-c", commandString);
+                return Arrays.asList("bash", "-c", commandBuilder.toString());
             case CMD:
-                return Arrays.asList("cmd", "/c", commandString);
+                return Arrays.asList("cmd", "/c", commandBuilder.toString());
             case POWERSHELL:
-                return Arrays.asList("powershell", "-Command", commandString);
+                return Arrays.asList("powershell", "-Command", commandBuilder.toString());
             case WSL:
-                return Arrays.asList("wsl", commandString);
+                return Arrays.asList("wsl", commandBuilder.toString());
             default:
                 return cmdList;
         }
     }
+
     // endregion
 }

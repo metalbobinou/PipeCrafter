@@ -13,6 +13,9 @@ public class Command {
     /** List of all commands */
     private static List<Models.Command> commands = new ArrayList<>();
 
+    /** List of all executed commands as String */
+    private static List<String> executedCommands = new ArrayList<>();
+
     // endregion
 
     // region Methods
@@ -29,6 +32,15 @@ public class Command {
                 commands.size() == 0 ? State.NEXT_TO_RUN : State.TO_RUN, controller);
         commands.add(model);
         controller.setUp(node, model);
+    }
+
+    /**
+     * Add a command to the list of executed commands
+     * 
+     * @param cmd the command executed as a String
+     */
+    public static void addExecutedCommand(String cmd) {
+        executedCommands.add(cmd);
     }
 
     /**
@@ -89,6 +101,17 @@ public class Command {
             Business.App.endRun(isOver);
         });
         thread.start();
+    }
+
+    // endregion
+
+    // region Getters and Setters
+    public static List<String> getExecutedCommands() {
+        return executedCommands;
+    }
+
+    public static void setExecutedCommands(List<String> executedCommands) {
+        Command.executedCommands = executedCommands;
     }
 
     // endregion
