@@ -23,6 +23,9 @@ public class Command {
     /** A unique id */
     public final UUID id = UUID.randomUUID();
 
+    /** Name used by the user for this command */
+    private String name = "";
+
     /** View controller used by the representation of this object */
     private Views.Command cmdView;
 
@@ -56,6 +59,14 @@ public class Command {
     // endregion
 
     // region Getters and Setters
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Views.Command getCmdView() {
         return cmdView;
