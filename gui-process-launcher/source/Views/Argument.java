@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import Utils.OutputStream;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
@@ -171,6 +172,9 @@ public class Argument implements Initializable {
                 text.setText(((File) argumentModel.getObjectValue()).getName());
                 break;
             case OUTPUT:
+                Object[] out = (Object[]) argumentModel.getObjectValue();
+                text.setText(String.valueOf(out[0]) + ((OutputStream) (out[1])).getExtension());
+                break;
             case TEXT:
                 text.setText(argumentModel.toString());
                 break;
