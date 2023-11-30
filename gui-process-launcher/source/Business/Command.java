@@ -13,8 +13,11 @@ public class Command {
     /** List of all commands */
     private static List<Models.Command> commands = new ArrayList<>();
 
-    /** List of all executed commands as String */
-    private static List<String> executedCommands = new ArrayList<>();
+    /**
+     * Inform on the position of the command to which the user wants to add an
+     * argument
+     */
+    private static int commandReiceivingArgument = -1;
 
     // endregion
 
@@ -32,15 +35,6 @@ public class Command {
                 commands.size() == 0 ? State.NEXT_TO_RUN : State.TO_RUN, controller);
         commands.add(model);
         controller.setUp(node, model);
-    }
-
-    /**
-     * Add a command to the list of executed commands
-     * 
-     * @param cmd the command executed as a String
-     */
-    public static void addExecutedCommand(String cmd) {
-        executedCommands.add(cmd);
     }
 
     /**
@@ -106,12 +100,21 @@ public class Command {
     // endregion
 
     // region Getters and Setters
-    public static List<String> getExecutedCommands() {
-        return executedCommands;
+
+    public static List<Models.Command> getCommands() {
+        return commands;
     }
 
-    public static void setExecutedCommands(List<String> executedCommands) {
-        Command.executedCommands = executedCommands;
+    public static void setCommands(List<Models.Command> commands) {
+        Command.commands = commands;
+    }
+
+    public static int getCommandReiceivingArgument() {
+        return commandReiceivingArgument;
+    }
+
+    public static void setCommandReiceivingArgument(int commandReiceivingArgument) {
+        Command.commandReiceivingArgument = commandReiceivingArgument;
     }
 
     // endregion
