@@ -4,9 +4,10 @@
 TARGET=Models
 
 # Files to compile in this package
-CLASSES=                   \
-		 Alerts.java       \
-         OutputStream.java \
+CLASSES=                     \
+		 Alerts.java         \
+         OutputStream.java   \
+		 CommandBuilder.java \
 		 Utils.java
 
 # JARs required for compiling this package

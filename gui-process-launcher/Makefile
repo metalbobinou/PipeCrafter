@@ -6,7 +6,6 @@ MANIFEST=Manifest.mf
 
 SRC_DIRS=App 		\
 	Execution       \
-	Execution/Utils \
 	Models          \
 	Views           \
 	Utils           \

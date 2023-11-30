@@ -1,10 +1,9 @@
-package Execution.Utils;
+package Utils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import Business.Settings.Shell;
 import Models.Argument.Type;
 
 /** Handle command building operations */
@@ -15,12 +14,15 @@ public class CommandBuilder {
     /**
      * Process the given command to be able to use it with the choosen shell
      * 
-     * @param cmdList the command as a list of strings
+     * @param command        the command as a list of strings
+     * @param returnAsString if set, return a list which first element is the
+     *                       command as one string
      * @return the command as a list of strings
      */
-    public static List<String> getCommand(Models.Command command) {
+    public static List<String> getCommand(Models.Command command, boolean returnAsString) {
 
-        List<String> cmdList = Arrays.asList(command.getCmd());
+        List<String> cmdList = new ArrayList<>();
+        cmdList.add(command.getCmd());
         StringBuilder commandBuilder = new StringBuilder(command.getCmd());
 
         for (Models.Argument arg : command.getArgumentList()) {
@@ -34,7 +36,9 @@ public class CommandBuilder {
             cmdList.add(argAsString);
         }
 
-        Business.Command.addExecutedCommand(commandBuilder.toString());
+        if (returnAsString) {
+            return Arrays.asList(commandBuilder.toString());
+        }
 
         switch (Business.Settings.getUsedShell()) {
             case BASH:
