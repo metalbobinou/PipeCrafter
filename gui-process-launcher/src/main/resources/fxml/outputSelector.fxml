@@ -18,14 +18,14 @@
             <Font size="32.0" />
          </font>
       </Text>
-      <ComboBox fx:id="commandBox" editable="true" layoutX="36.0" layoutY="135.0" prefHeight="26.0" prefWidth="268.0" promptText="Command" AnchorPane.bottomAnchor="156.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="135.0">
+      <ComboBox fx:id="commandBox" layoutX="36.0" layoutY="135.0" prefHeight="26.0" prefWidth="268.0" promptText="Command" AnchorPane.bottomAnchor="156.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="135.0">
          <tooltip>
             <Tooltip fx:id="cmdTooltip" text="Empty Tooltip" />
          </tooltip>
       </ComboBox>
       <ChoiceBox fx:id="streamBox" layoutX="332.0" layoutY="135.0" prefWidth="150.0" AnchorPane.bottomAnchor="156.0" AnchorPane.leftAnchor="332.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="135.0" />
-      <Button fx:id="doneButton" layoutX="201.0" layoutY="237.0" mnemonicParsing="false" onMouseClicked="#done" text="Done" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="201.0" AnchorPane.rightAnchor="199.5" AnchorPane.topAnchor="237.0" />
-      <CheckBox fx:id="displayCheckbox" layoutX="162.0" layoutY="195.0" mnemonicParsing="false" text="Dispay commands" textFill="WHITE" AnchorPane.bottomAnchor="104.5" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="160.5" AnchorPane.topAnchor="195.0" />
+      <Button layoutX="201.0" layoutY="237.0" mnemonicParsing="false" onMouseClicked="#done" text="Done" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="201.0" AnchorPane.rightAnchor="199.5" AnchorPane.topAnchor="237.0" />
+      <CheckBox fx:id="displayCheckbox" layoutX="162.0" layoutY="195.0" mnemonicParsing="false" onAction="#dispCmd" text="Dispay commands" textFill="WHITE" AnchorPane.bottomAnchor="104.5" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="160.5" AnchorPane.topAnchor="195.0" />
       <Text fx:id="cmdText" fill="WHITE" layoutX="13.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="421.3714904785156" />
    </children>
 </AnchorPane>
