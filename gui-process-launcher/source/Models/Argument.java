@@ -10,9 +10,10 @@ public class Argument {
     // region Nested Types
 
     public enum Type {
-        FILE,
-        OUTPUT,
-        TEXT,
+        FILE, // represented by a File
+        OUTPUT, // represented by the object array [Integer , OutputStream]
+                // representing the step and the stream used
+        TEXT, // represented by a String
         INVALID;
     }
 
@@ -53,7 +54,11 @@ public class Argument {
             case FILE:
                 return value instanceof File;
             case OUTPUT:
-                return value instanceof Object[];
+                if (!(value instanceof Object[])) {
+                    return false;
+                }
+                Object[] arr = (Object[]) value;
+                return arr.length == 2 && arr[0] instanceof Integer && arr[1] instanceof OutputStream;
             case TEXT:
                 return value instanceof String;
             default: // Invalid or unset
@@ -83,7 +88,7 @@ public class Argument {
                 return ((File) objectValue).getAbsolutePath();
             case OUTPUT:
                 Object[] objArr = (Object[]) objectValue;
-                return Utils.Utils.getPathForOutputOfStep((int) objArr[0],
+                return Utils.Utils.getPathForOutputOfStep((Integer) objArr[0],
                         (OutputStream) objArr[1]);
             case TEXT:
                 return (String) objectValue;
