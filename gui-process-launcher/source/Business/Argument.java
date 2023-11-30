@@ -35,7 +35,7 @@ public class Argument {
     }
 
     public static void addArgument(Models.Command commandModel, Views.Argument controller, Node node) {
-        Models.Argument model = Business.Argument.popAddedArg();
+        Models.Argument model = popAddedArg();
 
         commandModel.getArgumentList().add(model);
         controller.setUp(node, model);
