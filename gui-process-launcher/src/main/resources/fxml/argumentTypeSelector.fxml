@@ -44,7 +44,7 @@
             </Text>
          </children>
       </Group>
-      <Group layoutX="121.0" layoutY="237.0" onMouseClicked="#output">
+      <Group fx:id="outputGroup" layoutX="121.0" layoutY="237.0" onMouseClicked="#output">
          <children>
             <ImageView fitHeight="48.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
