@@ -220,6 +220,7 @@ public class Command implements Initializable {
     @FXML
     public void add_argument(MouseEvent event) throws IOException {
 
+        Business.Command.setCommandReiceivingArgument(commandModel.getPosition());
         // Show type selector window
         Parent root = FXMLLoader.load(argumentTypeSelectorURL);
         Stage popupStage = new Stage();
