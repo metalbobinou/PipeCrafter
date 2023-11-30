@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-import Execution.Utils.CommandBuilder;
+import Utils.CommandBuilder;
 import Utils.OutputStream;
 import Utils.Utils;
 
@@ -68,7 +68,7 @@ public class ProcessManager {
      */
     public static void execute(Models.Command command) {
 
-        List<String> cmdList = CommandBuilder.getCommand(command);
+        List<String> cmdList = CommandBuilder.getCommand(command, false);
         setRedirection(command.getPosition());
         processBuilder.command(cmdList);
         try {
