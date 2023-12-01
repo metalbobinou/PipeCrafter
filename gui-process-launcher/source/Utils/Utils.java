@@ -2,6 +2,7 @@ package Utils;
 
 import java.nio.file.Paths;
 
+import Utils.OutputParameters.OutputStream;
 import javafx.stage.FileChooser;
 
 /** Class providing utils methods generally */
@@ -27,6 +28,7 @@ public class Utils {
                 .toString();
     }
 
+    /** Init the single reference to the file chooser if needed */
     public static void initFC() {
         if (fc == null) {
             fc = new FileChooser();

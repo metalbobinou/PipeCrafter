@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.List;
 
 import Utils.CommandBuilder;
-import Utils.OutputStream;
 import Utils.Utils;
+import Utils.OutputParameters.OutputStream;
 
 /** Handle a unique process object for all executions */
 public class ProcessManager {
