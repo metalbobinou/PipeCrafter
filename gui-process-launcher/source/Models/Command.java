@@ -36,7 +36,7 @@ public class Command {
     private State state;
 
     /** The command entered by the user without the arguments */
-    private String cmd;
+    private String cmd = "";
 
     /** List of all arguments for this command */
     private List<Argument> argumentList;

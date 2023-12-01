@@ -115,13 +115,16 @@ public class Command implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         nameField.textProperty().addListener((observable, oldValue, newValue) -> {
-            String newName = newValue;
-            if (newName.length() > 1024) {
-                newName = newName.substring(0, 1024);
-                nameField.setText(newName);
+            if (newValue.length() > 1024) {
+                newValue = newValue.substring(0, 1024);
+                nameField.setText(newValue);
                 Alerts.getMaxCharAlert().showAndWait();
             }
-            commandModel.setName(newName);
+            commandModel.setName(newValue);
+        });
+
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            commandModel.setCmd(newValue);
         });
 
         scrollBarStyleCSS = getClass().getResource("/css/scrollBarStyle.css").toExternalForm();
@@ -279,7 +282,6 @@ public class Command implements Initializable {
      */
     @FXML
     public void run(MouseEvent event) {
-        commandModel.setCmd(textField.getText());
         Business.Command.decideExec(commandModel);
         updateState();
     }
