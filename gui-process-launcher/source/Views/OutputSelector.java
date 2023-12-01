@@ -6,7 +6,9 @@ import java.util.ResourceBundle;
 
 import Models.Argument.Type;
 import Utils.CommandBuilder;
-import Utils.OutputStream;
+import Utils.OutputParameters;
+import Utils.OutputParameters.Format;
+import Utils.OutputParameters.OutputStream;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +26,18 @@ public class OutputSelector implements Initializable {
 
     // region Attributes
 
+    /** Value used to choose the stream as stdout */
+    private final String str4stdout = "stdout";
+
+    /** Value used to choose the stream as stderr */
+    private final String str4sterr = "stderr";
+
+    /** Value used to choose the format as path */
+    private final String str4path = "Path to file";
+
+    /** Value used to choose the format as path */
+    private final String str4content = "File's content";
+
     /** The anchor pane, used to retreive the Stage */
     @FXML
     public AnchorPane anchorPane;
@@ -39,6 +53,10 @@ public class OutputSelector implements Initializable {
     /** ChoiceBox to choose the desired stream for the chosen command's output */
     @FXML
     public ChoiceBox<String> streamBox;
+
+    /** ChoiceBox to choose the desired format for the chosen command's output */
+    @FXML
+    public ChoiceBox<String> formatBox;
 
     /** CheckBox to display the full selected command */
     @FXML
@@ -57,7 +75,7 @@ public class OutputSelector implements Initializable {
 
             StringBuilder strbuidler = new StringBuilder(String.valueOf(cmd.getPosition())).append(" - ");
             if (cmd.getName().length() > 20) {
-                strbuidler.append(cmd.getName().substring(0, 20));
+                strbuidler.append(cmd.getName().substring(0, 20)).append("...");
             } else {
                 strbuidler.append(cmd.getName());
             }
@@ -67,21 +85,16 @@ public class OutputSelector implements Initializable {
         // Set default value to the previous step
         commandBox.setValue(commandBox.getItems().get(Business.Command.getCommandReiceivingArgument() - 2));
         commandBox.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == null) {
-                commandBox.setValue(oldValue);
-            }
             if (newValue != oldValue) {
                 dispCmd();
             }
         });
 
-        streamBox.getItems().addAll("stdout", "stderr");
-        streamBox.setValue("stdout");
-        streamBox.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == null) {
-                streamBox.setValue(oldValue);
-            }
-        });
+        streamBox.getItems().addAll(str4stdout, str4sterr);
+        streamBox.setValue(str4stdout);
+
+        formatBox.getItems().addAll(str4path, str4content);
+        formatBox.setValue(str4path);
     }
 
     /**
@@ -94,10 +107,14 @@ public class OutputSelector implements Initializable {
         if (displayCheckbox.isSelected()) {
             int indexOfSelected = cmdBoxItems.indexOf(commandBox.getValue());
             if (indexOfSelected == -1) {
-                cmdText.setText("error");
+                cmdText.setText("<error>");
             } else {
-                cmdText.setText(
-                        CommandBuilder.getCommand(Business.Command.getCommands().get(indexOfSelected), true).get(0));
+                String command = CommandBuilder.getCommand(Business.Command.getCommands().get(indexOfSelected), true)
+                        .get(0);
+                if (command.length() >= 60) {
+                    command = command.substring(0, 60) + "...";
+                }
+                cmdText.setText(command);
             }
         } else {
             cmdText.setText("");
@@ -123,11 +140,12 @@ public class OutputSelector implements Initializable {
     public void done(MouseEvent event) {
         ObservableList<String> cmdBoxItems = commandBox.getItems();
 
-        Business.Argument.setAddedArg(new Models.Argument(Type.OUTPUT,
-                new Object[] {
+        Business.Argument.setAddedArg(new Models.Argument(
+                Type.OUTPUT,
+                new OutputParameters(
                         Integer.valueOf(cmdBoxItems.indexOf(commandBox.getValue()) + 1),
-                        streamBox.getValue() == "stdout" ? OutputStream.OUT : OutputStream.ERR
-                }));
+                        streamBox.getValue() == str4stdout ? OutputStream.OUT : OutputStream.ERR,
+                        formatBox.getValue() == str4path ? Format.PATH : Format.CONTENT)));
 
         ((Stage) anchorPane.getScene().getWindow()).close();
     }
