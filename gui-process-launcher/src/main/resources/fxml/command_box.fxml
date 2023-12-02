@@ -38,7 +38,7 @@
             </ImageView>
             <Text fx:id="step_label" fill="WHITE" layoutX="5.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N" />
             <TextField fx:id="textField" alignment="CENTER" layoutX="64.0" layoutY="15.0" prefHeight="25.0" prefWidth="623.0" promptText="CMD" style="-fx-border-color: white; -fx-background-color: black; -fx-text-fill: white;" />
-            <ScrollPane fx:id="arguments_scrollPane" fitToHeight="true" fitToWidth="true" layoutX="65.0" layoutY="48.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="623.0" style="-fx-border-color: black; -fx-background-color: black;" vbarPolicy="NEVER">
+            <ScrollPane fx:id="arguments_scrollPane" fitToHeight="true" fitToWidth="true" layoutX="65.0" layoutY="48.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="623.0" style="-fx-border-color: black; -fx-background-color: black;" vbarPolicy="NEVER">
                <content>
                   <HBox fx:id="argumentsHbox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="59.0" prefWidth="619.0" style="-fx-background-color: black; -fx-border-color: black;" />
                </content>
