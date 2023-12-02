@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -64,6 +65,9 @@ public class Argument implements Initializable {
     /** Text displayed for the argument */
     @FXML
     public Label text;
+
+    @FXML
+    public Tooltip tooltip;
 
     // endregion
 
@@ -184,8 +188,8 @@ public class Argument implements Initializable {
                 text.setTextFill(Color.RED);
                 text.setText("Invalid ref");
                 break;
-
         }
+        tooltip.setText(text.getText());
     }
 
     @FXML
