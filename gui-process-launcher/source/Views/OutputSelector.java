@@ -16,10 +16,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import javafx.scene.control.ListView;
 
 /** Controller class for the output selector */
 public class OutputSelector implements Initializable {
@@ -69,18 +73,41 @@ public class OutputSelector implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // region Set up for commandBox
         List<Models.Command> cmdList = Business.Command.getCommands();
         for (int i = 0; i < Business.Command.getCommandReiceivingArgument() - 1; i++) {
             Models.Command cmd = cmdList.get(i);
 
-            StringBuilder strbuidler = new StringBuilder(String.valueOf(cmd.getPosition())).append(" - ");
-            if (cmd.getName().length() > 20) {
-                strbuidler.append(cmd.getName().substring(0, 20)).append("...");
-            } else {
-                strbuidler.append(cmd.getName());
-            }
-            commandBox.getItems().add(strbuidler.toString());
+            commandBox.getItems().add(new StringBuilder(String.valueOf(cmd.getPosition())).append(" - ")
+                    .append(cmd.getName()).toString());
         }
+
+        // Add tooltip
+        commandBox.setTooltip(null);
+        commandBox.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (item == null || empty) {
+                            setTooltip(null);
+                        } else {
+                            if (item.length() > 40) {
+                                setText(item.substring(0, 40) + "...");
+                            } else {
+                                setText(item);
+                            }
+                            setTooltip(new Tooltip(item));
+                        }
+                    }
+                };
+            }
+        });
+
+        // endregion
 
         // Set default value to the previous step
         commandBox.setValue(commandBox.getItems().get(Business.Command.getCommandReiceivingArgument() - 2));
