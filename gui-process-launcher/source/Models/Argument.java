@@ -28,6 +28,9 @@ public class Argument {
      */
     private Object objectValue;
 
+    /** Command to which the argument belongs to */
+    private Command motherCommand;
+
     // endregion
 
     // region Constructors
@@ -103,6 +106,14 @@ public class Argument {
 
     public Object getObjectValue() {
         return objectValue;
+    }
+
+    public Command getMotherCommand() {
+        return motherCommand;
+    }
+
+    public void setMotherCommand(Command motherCommand) {
+        this.motherCommand = motherCommand;
     }
 
     // endregion
