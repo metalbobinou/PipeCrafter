@@ -256,6 +256,15 @@ public class Command implements Initializable {
         popupStage.showAndWait();
     }
 
+    /**
+     * Delte an element from the arguments' Hbox
+     * 
+     * @param argNode node of the argument to delete
+     */
+    public void deleteArg(Node argNode) {
+        argumentsHbox.getChildren().remove(argNode);
+    }
+
     /** Update all UI elements of the command based on its model's state */
     public void updateState() {
         switch (commandModel.getState()) {

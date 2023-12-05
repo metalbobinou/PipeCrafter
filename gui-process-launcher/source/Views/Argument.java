@@ -192,7 +192,7 @@ public class Argument implements Initializable {
 
     @FXML
     public void delete(MouseEvent event) {
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+        Business.Argument.deleteArgument(argumentModel, argumentNode);
     }
 
     @FXML

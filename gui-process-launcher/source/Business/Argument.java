@@ -34,12 +34,31 @@ public class Argument {
         return addedArg != null;
     }
 
+    /**
+     * Add an argument to a command
+     * 
+     * @param commandModel model of the command receiving the argument
+     * @param controller   View relating to the command being added
+     * @param node         node of the argument being added
+     */
     public static void addArgument(Models.Command commandModel, Views.Argument controller, Node node) {
         Models.Argument model = popAddedArg();
 
         model.setMotherCommand(commandModel);
         commandModel.getArgumentList().add(model);
         controller.setUp(node, model);
+    }
+
+    /**
+     * Delete an argument from a command
+     * 
+     * @param arg  argument model to delete
+     * @param node node of the argument to delete
+     */
+    public static void deleteArgument(Models.Argument arg, Node node) {
+        Models.Command cmd = arg.getMotherCommand();
+        cmd.getArgumentList().remove(arg);
+        cmd.getCmdView().deleteArg(node);
     }
 
     // endregion
