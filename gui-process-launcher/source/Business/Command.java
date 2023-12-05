@@ -17,7 +17,7 @@ public class Command {
      * Inform on the position of the command to which the user wants to add an
      * argument
      */
-    private static int commandReiceivingArgument = -1;
+    private static Models.Command commandReiceivingArgument = null;
 
     // endregion
 
@@ -123,12 +123,12 @@ public class Command {
         Command.commands = commands;
     }
 
-    public static int getCommandReiceivingArgument() {
+    public static Models.Command getCommandReiceivingArgument() {
         return commandReiceivingArgument;
     }
 
-    public static void setCommandReiceivingArgument(int commandReiceivingArgument) {
-        Command.commandReiceivingArgument = commandReiceivingArgument;
+    public static void setCommandReiceivingArgument(Models.Command command) {
+        Command.commandReiceivingArgument = command;
     }
 
     // endregion
