@@ -26,6 +26,7 @@ public class Settings {
 
     /** Shell to use during execution */
     private static Shell usedShell = Shell.NONE;
+
     // endregion
 
     // region Getters and Setters
