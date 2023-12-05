@@ -1,5 +1,7 @@
 package Business;
 
+import javafx.scene.layout.StackPane;
+
 /** Business class for the app */
 public class App {
 
@@ -7,6 +9,8 @@ public class App {
 
     /** The main screen controller */
     private static Views.Main mainController = null;
+
+    private static StackPane mainNode = null;
 
     /** States if edits are allowed or not */
     private static boolean editModeOn = true;
@@ -101,6 +105,14 @@ public class App {
 
     public static void setExecStartTime(long execStartTime) {
         App.execStartTime = execStartTime;
+    }
+
+    public static StackPane getMainNode() {
+        return mainNode;
+    }
+
+    public static void setMainNode(StackPane mainNode) {
+        App.mainNode = mainNode;
     }
 
     // endregion
