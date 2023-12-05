@@ -58,7 +58,7 @@ public class Command implements Initializable {
      * URL for the fxml file representing a the argument type selector
      * window
      */
-    private URL argumentTypeSelectorURL;
+    private static URL argumentTypeSelectorURL;
 
     /** URL for the fxml file representing an argument */
     private URL argumentURL;
@@ -223,15 +223,9 @@ public class Command implements Initializable {
     @FXML
     public void add_argument(MouseEvent event) throws IOException {
 
-        Business.Command.setCommandReiceivingArgument(commandModel.getPosition());
-        // Show type selector window
-        Parent root = FXMLLoader.load(argumentTypeSelectorURL);
-        Stage popupStage = new Stage();
-        popupStage.setTitle("Choose argument type");
-        // freeze main window
-        popupStage.initModality(Modality.APPLICATION_MODAL);
-        popupStage.setScene(new Scene(root));
-        popupStage.showAndWait();
+        Business.Command.setCommandReiceivingArgument(commandModel);
+
+        showArgumentSelector();
 
         if (!Business.Argument.isAddedArgSet()) {
             // Operation aborted
@@ -245,6 +239,21 @@ public class Command implements Initializable {
 
         Business.Argument.addArgument(commandModel, argumentController, argumentNode);
         argumentsHbox.getChildren().add(argumentNode);
+    }
+
+    /**
+     * Show the argument selector
+     * 
+     * @throws IOException
+     */
+    public static void showArgumentSelector() throws IOException {
+        Parent root = FXMLLoader.load(argumentTypeSelectorURL);
+        Stage popupStage = new Stage();
+        popupStage.setTitle("Choose argument type");
+        // freeze main window
+        popupStage.initModality(Modality.APPLICATION_MODAL);
+        popupStage.setScene(new Scene(root));
+        popupStage.showAndWait();
     }
 
     /** Update all UI elements of the command based on its model's state */
