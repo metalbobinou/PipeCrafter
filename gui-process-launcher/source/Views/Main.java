@@ -5,11 +5,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Utils.Alerts;
+import Utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ButtonType;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -33,6 +36,10 @@ public class Main implements Initializable {
     @FXML
     public Text status_text;
 
+    /** Button to cancel all execution */
+    @FXML
+    public ImageView stopAllButton;
+
     // endregion
 
     // region Methods
@@ -47,23 +54,36 @@ public class Main implements Initializable {
     /** Switch to edit mode */
     public void setEditMode() {
         status_text.setText("Editing");
+
         Node addButton = commandVBox.getChildren().get(commandVBox.getChildren().size() - 1);
         addButton.setVisible(true);
         addButton.setDisable(false);
+
+        stopAllButton.setVisible(false);
+        stopAllButton.setDisable(true);
+
+        Business.Command.resetAll();
     }
 
     /** Switch to execution mode */
     public void setExecMode() {
         status_text.setText((new StringBuilder("Executing step ").append(Business.App.getCurrentStep()).append(" for "))
                 .toString()); // TODO get time ellapsed + refresh every second
+
         Node addButton = commandVBox.getChildren().get(commandVBox.getChildren().size() - 1);
         addButton.setVisible(false);
         addButton.setDisable(true);
+
+        stopAllButton.setVisible(false);
+        stopAllButton.setDisable(true);
     }
 
     /** Switch to paused execution mode */
     public void setPausedExecMode(String statusMessage) {
         status_text.setText(statusMessage);
+
+        stopAllButton.setVisible(true);
+        stopAllButton.setDisable(false);
     }
 
     /**
@@ -97,6 +117,19 @@ public class Main implements Initializable {
         Parent node = loader.load();
 
         Business.App.getMainNode().getChildren().add(node);
+    }
+
+    /**
+     * Cancel all execution
+     * 
+     * @param event
+     */
+    @FXML
+    public void stopAll(MouseEvent event) {
+
+        if (Alerts.getConfirmCancelAllAlert().showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            Business.App.setEditMode();
+        }
     }
 
     /**
