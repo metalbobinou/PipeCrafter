@@ -23,7 +23,7 @@
                   <Image url="@../images/text_input_icon.png" />
                </image>
             </ImageView>
-            <Label fx:id="text" layoutX="38.0" layoutY="8.0" prefHeight="17.0" prefWidth="89.0" text="Label" textFill="WHITE">
+            <Label fx:id="text" layoutX="38.0" layoutY="8.0" onMouseClicked="#edit" prefHeight="17.0" prefWidth="89.0" text="Label" textFill="WHITE">
                <tooltip>
                   <Tooltip fx:id="tooltip" wrapText="true" />
                </tooltip></Label>
