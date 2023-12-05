@@ -26,7 +26,7 @@ public class ArgumentTypeSelector implements Initializable {
     // region Attributes
 
     /** URL for the fxml file representing a the output selector window */
-    private URL outputSelectorURL;
+    private static URL outputSelectorURL = null;
 
     /** The anchor pane, used to retreive the Stage */
     @FXML
@@ -42,9 +42,11 @@ public class ArgumentTypeSelector implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        outputSelectorURL = getClass().getResource("/fxml/outputSelector.fxml");
+        if (outputSelectorURL == null) {
+            outputSelectorURL = getClass().getResource("/fxml/outputSelector.fxml");
+        }
 
-        if (Business.Command.getCommandReiceivingArgument() <= 1) {
+        if (Business.Command.getCommandReiceivingArgument().getPosition() <= 1) {
             outputGroup.setVisible(false);
             outputGroup.setMouseTransparent(true);
         }
@@ -60,7 +62,14 @@ public class ArgumentTypeSelector implements Initializable {
         File file = Utils.getFc().showOpenDialog(new Stage());
 
         if (file != null) {
-            Business.Argument.setAddedArg(new Models.Argument(Type.FILE, file));
+            // If already set, the argument is being modified, otherwise it is
+            // being added
+            if (Business.Argument.isAddedArgSet()) {
+                Business.Argument.popAddedArg().setArgument(Type.FILE, file);
+
+            } else {
+                Business.Argument.setAddedArg(new Models.Argument(Type.FILE, file));
+            }
         }
 
         ((Stage) anchorPane.getScene().getWindow()).close();
@@ -81,7 +90,11 @@ public class ArgumentTypeSelector implements Initializable {
         Optional<String> result = dialog.showAndWait();
 
         result.ifPresent(text -> {
-            Business.Argument.setAddedArg(new Models.Argument(Type.TEXT, text));
+            if (Business.Argument.isAddedArgSet()) {
+                Business.Argument.popAddedArg().setArgument(Type.TEXT, text);
+            } else {
+                Business.Argument.setAddedArg(new Models.Argument(Type.TEXT, text));
+            }
         });
 
         ((Stage) anchorPane.getScene().getWindow()).close();

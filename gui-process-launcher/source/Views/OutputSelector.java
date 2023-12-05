@@ -75,7 +75,7 @@ public class OutputSelector implements Initializable {
 
         // region Set up for commandBox
         List<Models.Command> cmdList = Business.Command.getCommands();
-        for (int i = 0; i < Business.Command.getCommandReiceivingArgument() - 1; i++) {
+        for (int i = 0; i < Business.Command.getCommandReiceivingArgument().getPosition() - 1; i++) {
             Models.Command cmd = cmdList.get(i);
 
             commandBox.getItems().add(new StringBuilder(String.valueOf(cmd.getPosition())).append(" - ")
@@ -110,7 +110,8 @@ public class OutputSelector implements Initializable {
         // endregion
 
         // Set default value to the previous step
-        commandBox.setValue(commandBox.getItems().get(Business.Command.getCommandReiceivingArgument() - 2));
+        commandBox
+                .setValue(commandBox.getItems().get(Business.Command.getCommandReiceivingArgument().getPosition() - 2));
         commandBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != oldValue) {
                 dispCmd();
@@ -167,12 +168,16 @@ public class OutputSelector implements Initializable {
     public void done(MouseEvent event) {
         ObservableList<String> cmdBoxItems = commandBox.getItems();
 
-        Business.Argument.setAddedArg(new Models.Argument(
-                Type.OUTPUT,
-                new OutputParameters(
-                        Integer.valueOf(cmdBoxItems.indexOf(commandBox.getValue()) + 1),
-                        streamBox.getValue() == str4stdout ? OutputStream.OUT : OutputStream.ERR,
-                        formatBox.getValue() == str4path ? Format.PATH : Format.CONTENT)));
+        OutputParameters op = new OutputParameters(
+                Integer.valueOf(cmdBoxItems.indexOf(commandBox.getValue()) + 1),
+                streamBox.getValue() == str4stdout ? OutputStream.OUT : OutputStream.ERR,
+                formatBox.getValue() == str4path ? Format.PATH : Format.CONTENT);
+
+        if (Business.Argument.isAddedArgSet()) {
+            Business.Argument.popAddedArg().setArgument(Type.OUTPUT, op);
+        } else {
+            Business.Argument.setAddedArg(new Models.Argument(Type.OUTPUT, op));
+        }
 
         ((Stage) anchorPane.getScene().getWindow()).close();
     }

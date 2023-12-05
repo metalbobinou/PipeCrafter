@@ -1,6 +1,7 @@
 package Views;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,9 +26,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextBoundsType;
 
 /** Controller class for an argument */
 public class Argument implements Initializable {
@@ -49,7 +47,7 @@ public class Argument implements Initializable {
     /** The FX object associated with this controller */
     private Node argumentNode;
 
-    /** Command model object associated with this view */
+    /** Argument model object associated with this view */
     private Models.Argument argumentModel;
 
     /** A key used to set a "type" for dragged elements */
@@ -198,8 +196,15 @@ public class Argument implements Initializable {
     }
 
     @FXML
-    public void edit(MouseEvent event) {
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+    public void edit(MouseEvent event) throws IOException {
+        Business.Command.setCommandReiceivingArgument(argumentModel.getMotherCommand());
+
+        Business.Argument.setAddedArg(argumentModel);
+
+        Views.Command.showArgumentSelector();
+
+        setIcon();
+        setText();
     }
 
     // endregion
