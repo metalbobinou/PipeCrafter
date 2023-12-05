@@ -97,6 +97,20 @@ public class Command {
         thread.start();
     }
 
+    /** Reset all commands to their default state and update the UI */
+    public static void resetAll() {
+        if (commands.size() < 1) {
+            return;
+        }
+        commands.get(0).setState(State.NEXT_TO_RUN);
+        commands.get(0).getCmdView().updateState();
+
+        for (int i = 1; i < commands.size(); i++) {
+            commands.get(i).setState(State.TO_RUN);
+            commands.get(i).getCmdView().updateState();
+        }
+    }
+
     // endregion
 
     // region Getters and Setters
