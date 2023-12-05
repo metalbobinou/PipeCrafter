@@ -2,6 +2,7 @@ package Utils;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 /** Class handling alerts displayed */
 public class Alerts {
@@ -16,6 +17,9 @@ public class Alerts {
 
     /** Alert used when the entered path is invalid */
     private static Alert invalidPathAlert;
+
+    /** Alert used to confirm cancellation of all execution */
+    private static Alert confirmCancelAllAlert;
 
     // endregion
 
@@ -35,6 +39,12 @@ public class Alerts {
         invalidPathAlert.setTitle("Error");
         invalidPathAlert
                 .setContentText("The requested directory does not exist, or does not have the right permissions");
+
+        confirmCancelAllAlert = new Alert(AlertType.CONFIRMATION);
+        confirmCancelAllAlert.setTitle("Warning");
+        confirmCancelAllAlert
+                .setContentText("Are you sure you want to cancel all operations and go back to free edit mode?");
+        confirmCancelAllAlert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
     }
 
     // endregion
@@ -45,24 +55,16 @@ public class Alerts {
         return maxCharAlert;
     }
 
-    public static void setMaxCharAlert(Alert maxCharAlert) {
-        Alerts.maxCharAlert = maxCharAlert;
-    }
-
     public static Alert getFailedReadingOutputFileAlert() {
         return failedReadingOutputFileAlert;
-    }
-
-    public static void setFailedReadingOutputFileAlert(Alert failedReadingFileAlert) {
-        Alerts.failedReadingOutputFileAlert = failedReadingFileAlert;
     }
 
     public static Alert getInvalidPathAlert() {
         return invalidPathAlert;
     }
 
-    public static void setInvalidPathAlert(Alert invalidPathAlert) {
-        Alerts.invalidPathAlert = invalidPathAlert;
+    public static Alert getConfirmCancelAllAlert() {
+        return confirmCancelAllAlert;
     }
 
     // endregion
