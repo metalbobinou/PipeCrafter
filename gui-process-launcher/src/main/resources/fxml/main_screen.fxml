@@ -4,48 +4,55 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="500.0" prefHeight="765.0" prefWidth="1352.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Main">
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Main">
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="-3.0" layoutY="191.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="573.0" prefWidth="1358.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="191.0">
-         <content>
-            <VBox fx:id="commandVBox" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="521.0" prefWidth="1356.0" style="-fx-background-color: black;">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#add_command" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/add_icon.png" />
-                     </image>
-                  </ImageView>
-               </children></VBox>
-         </content>
-      </ScrollPane>
-      <ImageView fitHeight="79.0" fitWidth="105.0" layoutX="49.0" layoutY="26.0" onMouseClicked="#open_settings" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="26.0">
-         <image>
-            <Image url="@../images/settings_icon.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="162.0" layoutY="20.0" onMouseClicked="#load" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="162.0" AnchorPane.topAnchor="20.0">
-         <image>
-            <Image url="@../images/download_icon.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="99.0" fitWidth="144.0" layoutX="279.0" layoutY="16.0" onMouseClicked="#save" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="279.0" AnchorPane.topAnchor="16.0">
-         <image>
-            <Image url="@../images/save_icon.png" />
-         </image>
-      </ImageView>
-      <Text fill="WHITE" layoutX="56.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" wrappingWidth="100.36488342285156" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="126.841796875">
-         <font>
-            <Font name="Arial" size="30.0" />
-         </font>
-      </Text>
-      <Text fx:id="status_text" fill="WHITE" layoutX="162.0" layoutY="155.00390625" strokeType="OUTSIDE" strokeWidth="0.0" text="Editing" wrappingWidth="1114.6210670471191" AnchorPane.leftAnchor="162.0" AnchorPane.topAnchor="126.0">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Text>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="500.0" prefHeight="765.0" prefWidth="1352.0" style="-fx-background-color: black;">
+         <children>
+            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="-3.0" layoutY="191.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="573.0" prefWidth="1358.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="191.0">
+               <content>
+                  <VBox fx:id="commandVBox" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="521.0" prefWidth="1356.0" style="-fx-background-color: black;">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#add_command" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/add_icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <ImageView fitHeight="79.0" fitWidth="105.0" layoutX="49.0" layoutY="26.0" onMouseClicked="#open_settings" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="26.0">
+               <image>
+                  <Image url="@../images/settings_icon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="162.0" layoutY="20.0" onMouseClicked="#load" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="162.0" AnchorPane.topAnchor="20.0">
+               <image>
+                  <Image url="@../images/download_icon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="99.0" fitWidth="144.0" layoutX="279.0" layoutY="16.0" onMouseClicked="#save" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="279.0" AnchorPane.topAnchor="16.0">
+               <image>
+                  <Image url="@../images/save_icon.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="56.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" wrappingWidth="100.36488342285156" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="126.841796875">
+               <font>
+                  <Font name="Arial" size="30.0" />
+               </font>
+            </Text>
+            <Text fx:id="status_text" fill="WHITE" layoutX="162.0" layoutY="155.00390625" strokeType="OUTSIDE" strokeWidth="0.0" text="Editing" wrappingWidth="1114.6210670471191" AnchorPane.leftAnchor="162.0" AnchorPane.topAnchor="126.0">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

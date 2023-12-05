@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Utils.Alerts;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +22,9 @@ public class Main implements Initializable {
     /** URL for the fxml file representing a command */
     private URL cmdBoxURL;
 
+    /** URL for the fxml file representing the command page */
+    private URL settingsURL;
+
     /** The Vboc containing the commands */
     @FXML
     public VBox commandVBox;
@@ -35,7 +39,9 @@ public class Main implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Alerts.init();
         cmdBoxURL = getClass().getResource("/fxml/command_box.fxml");
+        settingsURL = Settings.class.getResource("/fxml/settings.fxml");
     }
 
     /** Switch to edit mode */
@@ -79,12 +85,18 @@ public class Main implements Initializable {
     }
 
     /**
+     * Show the settings page
      * 
      * @param event
+     * @throws IOException
      */
     @FXML
-    public void load(MouseEvent event) {
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+    public void open_settings(MouseEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(settingsURL);
+        Parent node = loader.load();
+
+        Business.App.getMainNode().getChildren().add(node);
     }
 
     /**
@@ -92,7 +104,7 @@ public class Main implements Initializable {
      * @param event
      */
     @FXML
-    public void open_settings(MouseEvent event) {
+    public void load(MouseEvent event) {
         throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 

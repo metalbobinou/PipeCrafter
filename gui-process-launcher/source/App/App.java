@@ -3,12 +3,12 @@ package App;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 
 import Utils.Utils;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
 
 /** Entry point for the application */
 public class App extends Application {
@@ -20,8 +20,9 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_screen.fxml"));
+        StackPane mainNode = loader.load();
 
-        Parent mainNode = loader.load();
+        Business.App.setMainNode(mainNode);
         Business.App.setMainController(loader.getController());
 
         stage.setTitle("Execution Pipeline Builder");
@@ -29,12 +30,13 @@ public class App extends Application {
         stage.setScene(new Scene(mainNode));
         // stage.sizeToScene();
         stage.show();
-        stage.setMinWidth(stage.getMinWidth()); // !!! set to "main" anchor pane min sizes
+        stage.setMinWidth(stage.getMinWidth()); // !!! TODO set to "main" anchor pane min sizes
         stage.setMinHeight(stage.getMinHeight());
     }
 
     public static void main(String[] args) {
 
+        // TODO setup properly when loading?
         // Region temp until settings implemented then call settings setup
         // Default values tho ??
         Business.Settings.setExecutionDirectory(
@@ -44,8 +46,7 @@ public class App extends Application {
 
         // endregion
 
-        Utils.initFC();
-
+        Utils.initFcAndDc();
         Execution.ProcessManager.init();
         launch();
     }
