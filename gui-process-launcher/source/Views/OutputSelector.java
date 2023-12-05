@@ -42,7 +42,7 @@ public class OutputSelector implements Initializable {
     /** Value used to choose the format as path */
     private final String str4content = "File's content";
 
-    /** The anchor pane, used to retreive the Stage */
+    /** The anchor pane used to retreive the Stage */
     @FXML
     public AnchorPane anchorPane;
 
