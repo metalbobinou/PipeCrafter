@@ -25,6 +25,8 @@ public class App extends Application {
         Business.App.setMainNode(mainNode);
         Business.App.setMainController(loader.getController());
 
+        Business.App.setEditMode();
+
         stage.setTitle("Execution Pipeline Builder");
 
         stage.setScene(new Scene(mainNode));

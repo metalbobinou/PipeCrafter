@@ -19,7 +19,7 @@ public class App {
     private static int currentStep = 1;
 
     /**
-     * States if s step is being executed or if execution is paused/edit mode
+     * States if a step is being executed or if execution is paused/edit mode
      * is on
      */
     private static boolean isExecuting = false;
@@ -30,6 +30,14 @@ public class App {
     // endregion
 
     // region Methods
+
+    /** Set the edit mode */
+    public static void setEditMode() {
+        currentStep = 1;
+        editModeOn = true;
+        isExecuting = false;
+        mainController.setEditMode();
+    }
 
     /**
      * Update app business variables when executing a command
