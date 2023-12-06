@@ -12,20 +12,23 @@ public class App {
 
     private static StackPane mainNode = null;
 
-    /** States if edits are allowed or not */
+    /** State if edits are allowed or not */
     private static boolean editModeOn = true;
 
     /** The step being executed or the step to execute next */
     private static int currentStep = 1;
 
     /**
-     * States if a step is being executed or if execution is paused/edit mode
+     * State if a step is being executed or if execution is paused/edit mode
      * is on
      */
     private static boolean isExecuting = false;
 
     /** Time at which execution began */
     private static long execStartTime;
+
+    /** State whether the execution was interupted */
+    private static boolean execWasInterrupted = false;
 
     // endregion
 
@@ -57,14 +60,36 @@ public class App {
      * 
      * @param isOver true if all commands have been executed
      */
-    public static void endRun(boolean isOver) {
+    public static void endRun(boolean isOver, boolean goToNext) {
         if (isOver) {
-            currentStep = 0;
+            currentStep = 1;
+        } else if (goToNext) {
+            currentStep++;
         }
-        currentStep++;
         isExecuting = false;
         mainController
                 .setPausedExecMode(isOver ? "Done, all commands executed" : "Execution paused at step " + currentStep);
+    }
+
+    /**
+     * Return the index in the Business.Command.commands list of the command
+     * being executed or the next to be
+     * 
+     * @return the index as an int
+     */
+    public static int getCurrentCommandIndex() {
+        return currentStep - 1;
+    }
+
+    /**
+     * Get execWasInterrupted and reset it to false
+     * 
+     * @return execWasInterrupted
+     */
+    public static boolean getAndResetExecWasInterrupted() {
+        boolean res = execWasInterrupted;
+        execWasInterrupted = false;
+        return res;
     }
 
     // endregion
@@ -121,6 +146,10 @@ public class App {
 
     public static void setMainNode(StackPane mainNode) {
         App.mainNode = mainNode;
+    }
+
+    public static void setExecWasInterrupted(boolean execWasInterrupted) {
+        App.execWasInterrupted = execWasInterrupted;
     }
 
     // endregion
