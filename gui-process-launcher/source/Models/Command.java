@@ -58,6 +58,20 @@ public class Command {
 
     // endregion
 
+    // region Methods
+
+    /**
+     * Update the state of a command and make the UI match the change
+     * 
+     * @param state the new state for the command
+     */
+    public void updateState(State state) {
+        this.state = state;
+        cmdView.updateState();
+    }
+
+    // endregion
+
     // region Getters and Setters
 
     public String getName() {
