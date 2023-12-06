@@ -301,7 +301,6 @@ public class Command implements Initializable {
     @FXML
     public void run(MouseEvent event) {
         Business.Command.decideExec(commandModel);
-        updateState();
     }
 
     // endregion

@@ -2,8 +2,12 @@ package Business;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Execution.ProcessManager;
 import Models.Command.State;
+import Utils.Alerts;
 import javafx.scene.Node;
+import javafx.scene.control.ButtonType;
 
 /** Business class for commands */
 public class Command {
@@ -44,14 +48,17 @@ public class Command {
      * @param command command from which the "run" button was clicked
      */
     public static void decideExec(Models.Command command) {
+        Models.Command.State initialState = command.getState();
+
         if (Business.App.isExecuting()) {
-            // TODO send prompt "Step X is being executed. Proceeding will abort it. Do you
-            // want to continue?". If command.getState() == RUNNING then return (stop
-            // called)
+
+            if (Alerts.getExecutionOnGoingAlert().showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+
+                ProcessManager.kill();
+            }
         }
 
-        // If continue:
-        switch (command.getState()) {
+        switch (initialState) {
             case ALREADY_RUN:
                 // TODO restart prompt (ask if needed) then call run
                 break;
@@ -59,7 +66,7 @@ public class Command {
                 run(command);
                 break;
             case RUNNING:
-                // error
+                // Process was just stopped
                 break;
             case TO_RUN:
                 // TODO check if dependancies okay
@@ -73,26 +80,28 @@ public class Command {
      * @param command the command to launch execution for
      */
     private static void run(Models.Command command) {
-        command.setState(State.RUNNING);
+        command.updateState(State.RUNNING);
         Business.App.setRun(command);
         Thread thread = new Thread(() -> {
             Execution.ProcessManager.execute(command);
 
             // Post execution updates:
-            // For executed command
-            command.setState(State.ALREADY_RUN);
-            command.getCmdView().updateState();
+            if (Business.App.getAndResetExecWasInterrupted()) {
+                command.updateState(State.NEXT_TO_RUN);
+                Business.App.endRun(false, false);
 
-            // For next command in line
-            boolean isOver = commands.size() == Business.App.getCurrentStep();
-            if (!isOver) {
-                Models.Command nextCmd = commands.get(Business.App.getCurrentStep());
-                nextCmd.setState(State.NEXT_TO_RUN);
-                nextCmd.getCmdView().updateState();
+            } else {
+                // For executed command
+                command.updateState(State.ALREADY_RUN);
+
+                // For next command in line
+                boolean isOver = commands.size() == Business.App.getCurrentStep();
+                if (!isOver) {
+                    commands.get(Business.App.getCurrentCommandIndex() + 1).updateState(State.NEXT_TO_RUN);
+                }
+
+                Business.App.endRun(isOver, true);
             }
-
-            // App variables
-            Business.App.endRun(isOver);
         });
         thread.start();
     }
@@ -102,12 +111,10 @@ public class Command {
         if (commands.size() < 1) {
             return;
         }
-        commands.get(0).setState(State.NEXT_TO_RUN);
-        commands.get(0).getCmdView().updateState();
+        commands.get(0).updateState(State.NEXT_TO_RUN);
 
         for (int i = 1; i < commands.size(); i++) {
-            commands.get(i).setState(State.TO_RUN);
-            commands.get(i).getCmdView().updateState();
+            commands.get(i).updateState(State.TO_RUN);
         }
     }
 
