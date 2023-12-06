@@ -17,6 +17,9 @@ public class ProcessManager {
     /** The unique ProcessBuilder reference */
     private static ProcessBuilder processBuilder = null;
 
+    /** A reference to the started process */
+    private static Process process = null;
+
     // endregion
 
     // region Methods
@@ -72,7 +75,7 @@ public class ProcessManager {
         setRedirection(command.getPosition());
         processBuilder.command(cmdList);
         try {
-            Process process = processBuilder.start();
+            process = processBuilder.start();
             command.setExitCode(process.waitFor());
 
         } catch (IOException | InterruptedException e) {
@@ -84,7 +87,15 @@ public class ProcessManager {
                         + ": " + e.getMessage());
             }
         }
+        process = null;
+    }
 
+    /** Kill the started process */
+    public static void kill() {
+        if (process != null) {
+            Business.App.setExecWasInterrupted(true);
+            process.destroy();
+        }
     }
 
     // endregion
