@@ -33,16 +33,16 @@ public class Argument implements Initializable {
     // region Attributes
 
     /** Image representing the file icon */
-    private Image file_iconImage;
+    private static Image file_iconImage = null;
 
     /** Image representing the output icon */
-    private Image output_iconImage;
+    private static Image output_iconImage = null;
 
     /** Image representing the text icon */
-    private Image textImage;
+    private static Image textImage = null;
 
     /** Image representing the red output icon */
-    private Image red_output_iconImage;
+    private static Image red_output_iconImage = null;
 
     /** The FX object associated with this controller */
     private Node argumentNode;
@@ -73,10 +73,12 @@ public class Argument implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        file_iconImage = new Image(getClass().getResource("/images/file_icon.png").toString());
-        output_iconImage = new Image(getClass().getResource("/images/output_icon.png").toString());
-        textImage = new Image(getClass().getResource("/images/text_input_icon.png").toString());
-        red_output_iconImage = new Image(getClass().getResource("/images/red_output_icon.png").toString());
+        if (file_iconImage == null) {
+            file_iconImage = new Image(getClass().getResource("/images/file_icon.png").toString());
+            output_iconImage = new Image(getClass().getResource("/images/output_icon.png").toString());
+            textImage = new Image(getClass().getResource("/images/text_input_icon.png").toString());
+            red_output_iconImage = new Image(getClass().getResource("/images/red_output_icon.png").toString());
+        }
     }
 
     /**

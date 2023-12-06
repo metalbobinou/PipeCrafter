@@ -52,28 +52,28 @@ public class Command implements Initializable {
     private ObjectProperty<Node> draggingTab = new SimpleObjectProperty<Node>();
 
     /** String representing the CSS styling of the scroll bar */
-    private String scrollBarStyleCSS;
+    private static String scrollBarStyleCSS = null;
 
     /**
      * URL for the fxml file representing a the argument type selector
      * window
      */
-    private static URL argumentTypeSelectorURL;
+    private static URL argumentTypeSelectorURL = null;
 
     /** URL for the fxml file representing an argument */
-    private URL argumentURL;
+    private static URL argumentURL = null;
 
     /** Image representing the restart icon */
-    private Image restart_icon;
+    private static Image restart_icon = null;
 
     /** Image representing the start icon */
-    private Image start_icon;
+    private static Image start_icon = null;
 
     /** Image representing the stop icon */
-    private Image stop_icon;
+    private static Image stop_icon = null;
 
     /** Image representing the start from icon */
-    private Image start_from_icon;
+    private static Image start_from_icon = null;
 
     /** Text field used by the user to name the command */
     @FXML
@@ -126,20 +126,21 @@ public class Command implements Initializable {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             commandModel.setCmd(newValue);
         });
+        if (scrollBarStyleCSS == null) {
+            scrollBarStyleCSS = getClass().getResource("/css/scrollBarStyle.css").toExternalForm();
 
-        scrollBarStyleCSS = getClass().getResource("/css/scrollBarStyle.css").toExternalForm();
+            argumentTypeSelectorURL = getClass().getResource("/fxml/argumentTypeSelector.fxml");
 
-        argumentTypeSelectorURL = getClass().getResource("/fxml/argumentTypeSelector.fxml");
+            argumentURL = getClass().getResource("/fxml/argument.fxml");
 
-        argumentURL = getClass().getResource("/fxml/argument.fxml");
+            restart_icon = new Image(getClass().getResource("/images/restart_icon.png").toString());
 
-        restart_icon = new Image(getClass().getResource("/images/restart_icon.png").toString());
+            start_icon = new Image(getClass().getResource("/images/start_icon.png").toString());
 
-        start_icon = new Image(getClass().getResource("/images/start_icon.png").toString());
+            stop_icon = new Image(getClass().getResource("/images/stop_icon.png").toString());
 
-        stop_icon = new Image(getClass().getResource("/images/stop_icon.png").toString());
-
-        start_from_icon = new Image(getClass().getResource("/images/start_from_icon.png").toString());
+            start_from_icon = new Image(getClass().getResource("/images/start_from_icon.png").toString());
+        }
     }
 
     /**
