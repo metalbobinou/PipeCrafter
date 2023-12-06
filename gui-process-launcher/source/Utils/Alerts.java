@@ -18,8 +18,11 @@ public class Alerts {
     /** Alert used when the entered path is invalid */
     private static Alert invalidPathAlert;
 
-    /** Alert used to confirm cancellation of all execution */
+    /** Alert used to confirm cancellation of the execution pipeline */
     private static Alert confirmCancelAllAlert;
+
+    /** Alert used to confirm cancellation of the current execution */
+    private static Alert executionOnGoingAlert;
 
     // endregion
 
@@ -45,6 +48,13 @@ public class Alerts {
         confirmCancelAllAlert
                 .setContentText("Are you sure you want to cancel all operations and go back to free edit mode?");
         confirmCancelAllAlert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
+
+        executionOnGoingAlert = new Alert(AlertType.CONFIRMATION);
+        executionOnGoingAlert.setTitle("Warning");
+        executionOnGoingAlert
+                .setContentText("Step " + Business.App.getCurrentStep()
+                        + " is being executed. Proceeding will abort it. Do you want to continue?");
+        executionOnGoingAlert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
     }
 
     // endregion
@@ -65,6 +75,10 @@ public class Alerts {
 
     public static Alert getConfirmCancelAllAlert() {
         return confirmCancelAllAlert;
+    }
+
+    public static Alert getExecutionOnGoingAlert() {
+        return executionOnGoingAlert;
     }
 
     // endregion
