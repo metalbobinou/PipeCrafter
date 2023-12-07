@@ -28,6 +28,9 @@ public class Argument {
      */
     private Object objectValue;
 
+    /** View object associated with this model */
+    private Views.Argument argumentView;
+
     /** Command to which the argument belongs to */
     private Command motherCommand;
 
@@ -118,6 +121,14 @@ public class Argument {
 
     public void setMotherCommand(Command motherCommand) {
         this.motherCommand = motherCommand;
+    }
+
+    public Views.Argument getArgumentView() {
+        return argumentView;
+    }
+
+    public void setArgumentView(Views.Argument argumentView) {
+        this.argumentView = argumentView;
     }
 
     // endregion
