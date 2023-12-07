@@ -27,8 +27,11 @@ public class Alerts {
     /** Alert used to warn about a reference to a command that has become invalid */
     private static Alert invalidCommandRefAlert;
 
-    /** Alert used to warn teh user that an edit is impossible in this state */
+    /** Alert used to warn the user that an edit is impossible in this state */
     private static Alert restrictedEditAlert;
+
+    /** Alert for when running a command is impossible due to invalid references */
+    private static Alert forbiddenRunAlert;
 
     // endregion
 
@@ -53,35 +56,25 @@ public class Alerts {
         confirmCancelAllAlert.setTitle("Warning");
         confirmCancelAllAlert
                 .setContentText("Are you sure you want to cancel all operations and go back to free edit mode?");
-        confirmCancelAllAlert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
+        confirmCancelAllAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
 
         executionOnGoingAlert = new Alert(AlertType.CONFIRMATION);
         executionOnGoingAlert.setTitle("Warning");
-        executionOnGoingAlert
-                .setContentText("Step " + Business.App.getCurrentStep()
-                        + " is being executed. Proceeding will abort it. Do you want to continue?");
-        executionOnGoingAlert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
+        executionOnGoingAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
 
         invalidCommandRefAlert = new Alert(AlertType.WARNING);
         invalidCommandRefAlert.setTitle("Warning");
-        invalidCommandRefAlert.setContentText("ohoh your action broke some references to commands, see: ");
+        invalidCommandRefAlert.setContentText("Ohoh, your action broke some references to commands...");
 
         restrictedEditAlert = new Alert(AlertType.WARNING);
         restrictedEditAlert.setTitle("Warning");
         restrictedEditAlert.setContentText(
                 "You can't modify a command that is being or has already been run. Please stop all execution or reset the pipeline and try again.");
-    }
 
-    /**
-     * Getter for invalidCommandRefAlert that adds the provided string to the
-     * content text
-     * 
-     * @param commandsBroken text to append to the default content text
-     * @return invalidCommandRefAlert
-     */
-    public static Alert getInvalidCommandRefAlert(String commandsBroken) {
-        invalidCommandRefAlert.setContentText(invalidCommandRefAlert.getContentText() + commandsBroken);
-        return invalidCommandRefAlert;
+        forbiddenRunAlert = new Alert(AlertType.ERROR);
+        forbiddenRunAlert.setTitle("Error");
+        forbiddenRunAlert.setContentText(
+                "This command cannot be executed because it contains invalid references. Delete or replace them before continuing.");
     }
 
     // endregion
@@ -105,11 +98,22 @@ public class Alerts {
     }
 
     public static Alert getExecutionOnGoingAlert() {
+        executionOnGoingAlert
+                .setContentText("Step " + Business.App.getCurrentStep()
+                        + " is being executed. Proceeding will abort it. Do you want to continue?");
         return executionOnGoingAlert;
+    }
+
+    public static Alert getInvalidCommandRefAlert() {
+        return invalidCommandRefAlert;
     }
 
     public static Alert getRestrictedEditAlert() {
         return restrictedEditAlert;
+    }
+
+    public static Alert getForbiddenRunAlert() {
+        return forbiddenRunAlert;
     }
 
     // endregion

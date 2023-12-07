@@ -127,7 +127,7 @@ public class Main implements Initializable {
     @FXML
     public void stopAll(MouseEvent event) {
 
-        if (Alerts.getConfirmCancelAllAlert().showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+        if (Alerts.getConfirmCancelAllAlert().showAndWait().orElse(ButtonType.CANCEL) == ButtonType.YES) {
             Business.App.setEditMode();
         }
     }
