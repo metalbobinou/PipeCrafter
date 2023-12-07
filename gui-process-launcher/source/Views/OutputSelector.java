@@ -169,7 +169,7 @@ public class OutputSelector implements Initializable {
         ObservableList<String> cmdBoxItems = commandBox.getItems();
 
         OutputParameters op = new OutputParameters(
-                Integer.valueOf(cmdBoxItems.indexOf(commandBox.getValue()) + 1),
+                Business.Command.getCommands().get(Integer.valueOf(cmdBoxItems.indexOf(commandBox.getValue()))),
                 streamBox.getValue() == str4stdout ? OutputStream.OUT : OutputStream.ERR,
                 formatBox.getValue() == str4path ? Format.PATH : Format.CONTENT);
 
