@@ -48,8 +48,8 @@ public class OutputParameters {
 
     // region Attributes
 
-    /** Step to use */
-    private int step;
+    /** Command to use */
+    private Models.Command cmdToUse;
 
     /** The stream to use */
     private OutputStream stream;
@@ -61,8 +61,8 @@ public class OutputParameters {
 
     // region Constructors
 
-    public OutputParameters(int step, OutputStream stream, Format format) {
-        this.step = step;
+    public OutputParameters(Models.Command cmdToUse, OutputStream stream, Format format) {
+        this.cmdToUse = cmdToUse;
         this.stream = stream;
         this.format = format;
     }
@@ -73,7 +73,7 @@ public class OutputParameters {
 
     @Override
     public String toString() {
-        String filePath = Utils.getPathForOutputOfStep(step, stream);
+        String filePath = Utils.getPathForOutputOfStep(cmdToUse.getPosition(), stream);
         switch (format) {
             case CONTENT:
                 try {
@@ -90,16 +90,25 @@ public class OutputParameters {
         }
     }
 
+    /**
+     * Get the position of the associated command
+     * 
+     * @return the position of the associated command as an int
+     */
+    public int getPosition() {
+        return cmdToUse.getPosition();
+    }
+
     // endregion
 
     // region Getters and Setters
 
-    public int getStep() {
-        return step;
+    public Models.Command getCmdToUse() {
+        return cmdToUse;
     }
 
-    public void setStep(int step) {
-        this.step = step;
+    public void setCmdToUse(Models.Command cmdToUse) {
+        this.cmdToUse = cmdToUse;
     }
 
     public OutputStream getStream() {
