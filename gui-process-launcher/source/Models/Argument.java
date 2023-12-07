@@ -91,6 +91,10 @@ public class Argument {
                 return ((OutputParameters) objectValue).toString();
             case TEXT:
                 return (String) objectValue;
+            case INVALID:
+                if (objectValue instanceof OutputParameters) {
+                    return ((OutputParameters) objectValue).toString();
+                }
             default:
                 return null;
         }

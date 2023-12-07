@@ -119,12 +119,24 @@ public class Argument implements Initializable {
                     int sourceIndex = parent.getChildren().indexOf(source);
                     int targetIndex = parent.getChildren().indexOf(node);
                     List<Node> nodes = new ArrayList<Node>(parent.getChildren());
+                    if (!argumentModel.getMotherCommand().canEdit()) {
+                        Utils.Alerts.getRestrictedEditAlert().showAndWait();
+                        return;
+                    }
                     if (sourceIndex < targetIndex) {
                         Collections.rotate(
                                 nodes.subList(sourceIndex, targetIndex + 1), -1);
+                        Collections.rotate(
+                                argumentModel.getMotherCommand().getArgumentList().subList(sourceIndex,
+                                        targetIndex + 1),
+                                -1);
                     } else {
                         Collections.rotate(
                                 nodes.subList(targetIndex, sourceIndex + 1), 1);
+                        Collections.rotate(
+                                argumentModel.getMotherCommand().getArgumentList().subList(targetIndex,
+                                        sourceIndex + 1),
+                                1);
                     }
                     parent.getChildren().clear();
                     parent.getChildren().addAll(nodes);
@@ -178,15 +190,19 @@ public class Argument implements Initializable {
             case OUTPUT:
                 OutputParameters params = (OutputParameters) argumentModel.getObjectValue();
 
-                text.setText(String.valueOf(params.getStep()) + params.getStream().getExtension()
+                text.setText(String.valueOf(params.getPosition()) + params.getStream().getExtension()
                         + params.getFormat().getString());
                 break;
             case TEXT:
                 text.setText(argumentModel.toString());
                 break;
             default:
+                String txt = "Invalid ref";
+                if (argumentModel.getObjectValue() instanceof OutputParameters) {
+                    txt = txt + " to " + ((OutputParameters) argumentModel.getObjectValue()).getPosition();
+                }
                 text.setTextFill(Color.RED);
-                text.setText("Invalid ref");
+                text.setText(txt);
                 break;
         }
         tooltip.setText(text.getText());
@@ -194,11 +210,19 @@ public class Argument implements Initializable {
 
     @FXML
     public void delete(MouseEvent event) {
+        if (!argumentModel.getMotherCommand().canEdit()) {
+            Utils.Alerts.getRestrictedEditAlert().showAndWait();
+            return;
+        }
         Business.Argument.deleteArgument(argumentModel, argumentNode);
     }
 
     @FXML
     public void edit(MouseEvent event) throws IOException {
+        if (!argumentModel.getMotherCommand().canEdit()) {
+            Utils.Alerts.getRestrictedEditAlert().showAndWait();
+            return;
+        }
         Business.Command.setCommandReiceivingArgument(argumentModel.getMotherCommand());
 
         Business.Argument.setAddedArg(argumentModel);
