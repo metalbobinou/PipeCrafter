@@ -70,6 +70,28 @@ public class Command {
         cmdView.updateState();
     }
 
+    /**
+     * Update the position of a command and make the UI match the change
+     * 
+     * @param position the new position for the command
+     */
+    public void updatePosition(int position) {
+        if (position < 1) {
+            throw new IllegalArgumentException();
+        }
+        this.position = position;
+        cmdView.updatePosition();
+    }
+
+    /**
+     * State if a command is in a state where it can be edtited
+     * 
+     * @return true if it can be, false otherwise
+     */
+    public boolean canEdit() {
+        return state != State.ALREADY_RUN && state != State.RUNNING;
+    }
+
     // endregion
 
     // region Getters and Setters
@@ -94,13 +116,6 @@ public class Command {
         return position;
     }
 
-    public void setPosition(int position) {
-        if (position < 1) {
-            throw new IllegalArgumentException();
-        }
-        this.position = position;
-    }
-
     public String getCmd() {
         return cmd;
     }
@@ -123,10 +138,6 @@ public class Command {
 
     public State getState() {
         return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
     }
 
     // endregion
