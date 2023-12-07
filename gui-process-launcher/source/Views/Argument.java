@@ -91,8 +91,7 @@ public class Argument implements Initializable {
     public void setUp(Node node, Models.Argument model) {
         this.argumentNode = node;
         this.argumentModel = model;
-        setIcon();
-        setText();
+        refresh();
 
         // region Drag and Drop Imple
 
@@ -208,6 +207,12 @@ public class Argument implements Initializable {
         tooltip.setText(text.getText());
     }
 
+    /** Refresh the argument's UI */
+    public void refresh() {
+        setIcon();
+        setText();
+    }
+
     @FXML
     public void delete(MouseEvent event) {
         if (!argumentModel.getMotherCommand().canEdit()) {
@@ -229,8 +234,7 @@ public class Argument implements Initializable {
 
         Views.Command.showArgumentSelector();
 
-        setIcon();
-        setText();
+        refresh();
     }
 
     // endregion
