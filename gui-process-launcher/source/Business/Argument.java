@@ -1,5 +1,7 @@
 package Business;
 
+import Models.Argument.Type;
+import Utils.OutputParameters;
 import javafx.scene.Node;
 
 /** Business class for arguments */
@@ -59,6 +61,35 @@ public class Argument {
         Models.Command cmd = arg.getMotherCommand();
         cmd.getArgumentList().remove(arg);
         cmd.getCmdView().deleteArg(node);
+    }
+
+    /**
+     * Verify that all commands within the provided range do not reference
+     * commands that will be executed after them.
+     * Display a warning if needed.
+     * 
+     * @param fromIndex begining index of the range
+     * @param toIndex   final index of the range (included)
+     */
+    public static void checkOutputsOrder(int fromIndex, int toIndex) {
+        StringBuilder brokenCommands = new StringBuilder("");
+
+        for (int i = fromIndex; i <= toIndex; i++) {
+            Models.Command cmd = Command.getCommands().get(i);
+
+            for (Models.Argument arg : cmd.getArgumentList()) {
+                if (arg.getType() == Type.OUTPUT) {
+                    int referencedPosition = ((OutputParameters) arg.getObjectValue()).getCmdToUse().getPosition();
+                    if (referencedPosition >= cmd.getPosition()) {
+                        arg.setArgument(Type.INVALID, arg.getObjectValue());
+                        brokenCommands.append(cmd.getPosition()).append("->").append(referencedPosition).append(" ");
+                    }
+                }
+            }
+        }
+        if (brokenCommands.length() != 0) {
+            Utils.Alerts.getInvalidCommandRefAlert(brokenCommands.toString()).showAndWait();
+        }
     }
 
     // endregion
