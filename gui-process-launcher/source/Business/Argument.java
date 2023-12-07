@@ -45,7 +45,7 @@ public class Argument {
      */
     public static void addArgument(Models.Command commandModel, Views.Argument controller, Node node) {
         Models.Argument model = popAddedArg();
-
+        model.setArgumentView(controller);
         model.setMotherCommand(commandModel);
         commandModel.getArgumentList().add(model);
         controller.setUp(node, model);
@@ -67,29 +67,40 @@ public class Argument {
      * Verify that all commands within the provided range do not reference
      * commands that will be executed after them.
      * Display a warning if needed.
-     * 
-     * @param fromIndex begining index of the range
-     * @param toIndex   final index of the range (included)
      */
-    public static void checkOutputsOrder(int fromIndex, int toIndex) {
-        StringBuilder brokenCommands = new StringBuilder("");
-
-        for (int i = fromIndex; i <= toIndex; i++) {
-            Models.Command cmd = Command.getCommands().get(i);
-
+    public static void checkOutputsOrder() {
+        boolean broke = false;
+        for (Models.Command cmd : Command.getCommands()) {
             for (Models.Argument arg : cmd.getArgumentList()) {
+
                 if (arg.getType() == Type.OUTPUT) {
                     int referencedPosition = ((OutputParameters) arg.getObjectValue()).getCmdToUse().getPosition();
                     if (referencedPosition >= cmd.getPosition()) {
+                        broke = true;
                         arg.setArgument(Type.INVALID, arg.getObjectValue());
-                        brokenCommands.append(cmd.getPosition()).append("->").append(referencedPosition).append(" ");
                     }
+                    arg.getArgumentView().refresh();
                 }
             }
         }
-        if (brokenCommands.length() != 0) {
-            Utils.Alerts.getInvalidCommandRefAlert(brokenCommands.toString()).showAndWait();
+        if (broke) {
+            Utils.Alerts.getInvalidCommandRefAlert().show();
         }
+    }
+
+    /**
+     * Check the arguments of a command and say if any is invalid
+     * 
+     * @param cmd the command which arguments should be checked
+     * @return true if any argument is invalid, false if none is
+     */
+    public static boolean cmdHasInvalidArg(Models.Command cmd) {
+        for (Models.Argument arg : cmd.getArgumentList()) {
+            if (arg.getType() == Type.INVALID) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // endregion
