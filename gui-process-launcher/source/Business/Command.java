@@ -1,6 +1,7 @@
 package Business;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import Execution.ProcessManager;
@@ -8,6 +9,7 @@ import Models.Command.State;
 import Utils.Alerts;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Pane;
 
 /** Business class for commands */
 public class Command {
@@ -116,6 +118,63 @@ public class Command {
         for (int i = 1; i < commands.size(); i++) {
             commands.get(i).updateState(State.TO_RUN);
         }
+    }
+
+    /**
+     * Rotate a command, update the UI accordingly and check for incoherences
+     * 
+     * @param parent      Pane where the drag and drop is happening
+     * @param sourceIndex index of the object being dragged
+     * @param targetIndex index where the object is being dropped
+     */
+    public static void rotate(Pane parent, int sourceIndex, int targetIndex) {
+        Models.Command sourceCmd = commands.get(sourceIndex);
+        Models.Command targetCmd = commands.get(targetIndex);
+
+        // Prevent change if target or source command is running or already run
+        if (sourceCmd.getState() == State.ALREADY_RUN || targetCmd.getState() == State.ALREADY_RUN
+                || sourceCmd.getState() == State.RUNNING || targetCmd.getState() == State.RUNNING) {
+            Utils.Alerts.getRestrictedEditAlert().showAndWait();
+            return;
+        }
+
+        if (sourceCmd.getState() == State.NEXT_TO_RUN) {
+            targetCmd.updateState(State.NEXT_TO_RUN);
+            sourceCmd.updateState(State.TO_RUN);
+        } else if (targetCmd.getState() == State.NEXT_TO_RUN) {
+            sourceCmd.updateState(State.NEXT_TO_RUN);
+            targetCmd.updateState(State.TO_RUN);
+        }
+
+        List<Node> nodes = new ArrayList<Node>(parent.getChildren());
+
+        int start, end;
+
+        if (sourceIndex < targetIndex) {
+            Collections.rotate(
+                    nodes.subList(sourceIndex, targetIndex + 1), -1);
+            Collections.rotate(
+                    commands.subList(sourceIndex, targetIndex + 1), -1);
+            start = sourceIndex;
+            end = targetIndex;
+        } else {
+            Collections.rotate(
+                    nodes.subList(targetIndex, sourceIndex + 1), 1);
+            Collections.rotate(
+                    commands.subList(targetIndex, sourceIndex + 1), 1);
+            start = targetIndex;
+            end = sourceIndex;
+        }
+
+        for (int i = start; i <= end; i++) {
+            Models.Command cmd = commands.get(i);
+            cmd.updatePosition(i + 1);
+        }
+
+        Argument.checkOutputsOrder(sourceIndex < targetIndex ? sourceIndex : targetIndex, targetIndex);
+
+        parent.getChildren().clear();
+        parent.getChildren().addAll(nodes);
     }
 
     // endregion
