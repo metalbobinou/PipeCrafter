@@ -54,7 +54,7 @@ public class Command {
 
         if (Business.App.isExecuting()) {
 
-            if (Alerts.getExecutionOnGoingAlert().showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            if (Alerts.getExecutionOnGoingAlert().showAndWait().orElse(ButtonType.CANCEL) == ButtonType.YES) {
 
                 ProcessManager.kill();
             }
@@ -82,6 +82,10 @@ public class Command {
      * @param command the command to launch execution for
      */
     private static void run(Models.Command command) {
+        if (Argument.cmdHasInvalidArg(command)) {
+            Utils.Alerts.getForbiddenRunAlert().showAndWait();
+            return;
+        }
         command.updateState(State.RUNNING);
         Business.App.setRun(command);
         Thread thread = new Thread(() -> {
@@ -171,7 +175,7 @@ public class Command {
             cmd.updatePosition(i + 1);
         }
 
-        Argument.checkOutputsOrder(sourceIndex < targetIndex ? sourceIndex : targetIndex, targetIndex);
+        Argument.checkOutputsOrder();
 
         parent.getChildren().clear();
         parent.getChildren().addAll(nodes);
