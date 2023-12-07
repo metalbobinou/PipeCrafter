@@ -99,9 +99,9 @@ public class Command implements Initializable {
     @FXML
     public ImageView run_button;
 
-    /** Text used to state the step of this command */
+    /** Text used to state the position of this command */
     @FXML
-    public Text step_label;
+    public Text postion_label;
 
     /** Text field used by the user to enter their command */
     @FXML
@@ -124,6 +124,11 @@ public class Command implements Initializable {
         });
 
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!commandModel.canEdit()) {
+                Utils.Alerts.getRestrictedEditAlert().showAndWait();
+                textField.setText(oldValue);
+                return;
+            }
             commandModel.setCmd(newValue);
         });
         if (scrollBarStyleCSS == null) {
@@ -154,8 +159,7 @@ public class Command implements Initializable {
     public void setUp(Node node, Models.Command model) {
         this.commandNode = node;
         this.commandModel = model;
-        step_label.setText(String.valueOf(model.getPosition()));
-
+        updatePosition();
         updateState();
 
         arguments_scrollPane.getStylesheets()
@@ -184,16 +188,7 @@ public class Command implements Initializable {
                     Object source = event.getGestureSource();
                     int sourceIndex = parent.getChildren().indexOf(source);
                     int targetIndex = parent.getChildren().indexOf(node);
-                    List<Node> nodes = new ArrayList<Node>(parent.getChildren());
-                    if (sourceIndex < targetIndex) {
-                        Collections.rotate(
-                                nodes.subList(sourceIndex, targetIndex + 1), -1);
-                    } else {
-                        Collections.rotate(
-                                nodes.subList(targetIndex, sourceIndex + 1), 1);
-                    }
-                    parent.getChildren().clear();
-                    parent.getChildren().addAll(nodes);
+                    Business.Command.rotate(parent, sourceIndex, targetIndex);
                     success = true;
                 }
                 event.setDropCompleted(success);
@@ -223,6 +218,11 @@ public class Command implements Initializable {
      */
     @FXML
     public void add_argument(MouseEvent event) throws IOException {
+
+        if (!commandModel.canEdit()) {
+            Utils.Alerts.getRestrictedEditAlert().showAndWait();
+            return;
+        }
 
         Business.Command.setCommandReiceivingArgument(commandModel);
 
@@ -289,8 +289,17 @@ public class Command implements Initializable {
         }
     }
 
+    /** Update the text showing the commands's position */
+    public void updatePosition() {
+        postion_label.setText(String.valueOf(commandModel.getPosition()));
+    }
+
     @FXML
     public void delete(MouseEvent event) {
+        if (!commandModel.canEdit()) {
+            Utils.Alerts.getRestrictedEditAlert().showAndWait();
+            return;
+        }
         throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
