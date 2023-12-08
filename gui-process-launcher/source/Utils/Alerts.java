@@ -42,6 +42,12 @@ public class Alerts {
     /** Alert for when skipping a command is impossible as it is referenced later */
     private static Alert forbiddenSkipAlert;
 
+    /**
+     * Alert for the user to confirm they want to delete a command that is
+     * referenced by others
+     */
+    private static Alert confirmDeleteReferencedCmdAlert;
+
     // endregion
 
     // region Methods
@@ -97,6 +103,13 @@ public class Alerts {
         forbiddenSkipAlert.setContentText(
                 "Jumping to this command will result in unusable commands down the line as they reference commands that would be skipped. Do you want to continue?");
         forbiddenSkipAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
+
+        confirmDeleteReferencedCmdAlert = new Alert(AlertType.CONFIRMATION);
+        confirmDeleteReferencedCmdAlert.setTitle("Warning");
+        confirmDeleteReferencedCmdAlert
+                .setContentText(
+                        "This command is referenced by others, deleting it will break these. Do you want to continue?");
+        confirmDeleteReferencedCmdAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
     }
 
     // endregion
@@ -144,6 +157,10 @@ public class Alerts {
 
     public static Alert getForbiddenSkipAlert() {
         return forbiddenSkipAlert;
+    }
+
+    public static Alert getConfirmDeleteReferencedCmdAlert() {
+        return confirmDeleteReferencedCmdAlert;
     }
 
     // endregion
