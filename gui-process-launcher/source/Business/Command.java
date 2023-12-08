@@ -161,6 +161,28 @@ public class Command {
     }
 
     /**
+     * Adapt state and position of commands following a deletion
+     * 
+     * @param from index of the deleted command
+     */
+    public static void resetForDelete(int from) {
+        if (commands.size() <= from) {
+            return;
+        }
+        Models.Command cmd = commands.get(from);
+        if (App.getCurrentCommandIndex() == from) {
+            cmd.updateState(State.NEXT_TO_RUN);
+        }
+        cmd.updatePosition(from + 1);
+
+        for (int i = ++from; i < commands.size(); i++) {
+            cmd = commands.get(i);
+            cmd.updateState(State.TO_RUN);
+            cmd.updatePosition(i + 1);
+        }
+    }
+
+    /**
      * Skip all commands within the given range
      * 
      * @param from index at which the skip must begin
@@ -230,6 +252,20 @@ public class Command {
 
         parent.getChildren().clear();
         parent.getChildren().addAll(nodes);
+    }
+
+    /**
+     * Delete a command
+     * 
+     * @param cmd  command model to delete
+     * @param node node of the command to delete
+     */
+    public static void deleteCommand(Models.Command cmd, Node node) {
+
+        cmd.makeReferringArgsInvalid();
+        commands.remove(cmd);
+        App.getMainController().deleteCmd(node);
+        resetForDelete(cmd.getIndex());
     }
 
     // endregion
