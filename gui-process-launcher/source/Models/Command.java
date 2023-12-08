@@ -11,8 +11,9 @@ public class Command {
 
     public enum State {
         ALREADY_RUN,
-        NEXT_TO_RUN,
+        SKIPPED,
         RUNNING,
+        NEXT_TO_RUN,
         TO_RUN;
     }
 
@@ -41,6 +42,9 @@ public class Command {
     /** List of all arguments for this command */
     private List<Argument> argumentList;
 
+    /** List of all arguments referring to this command */
+    private List<Argument> referrinAgrgumentList;
+
     /** Exit code returned after execution of the command */
     private Integer exitCode;
 
@@ -53,6 +57,7 @@ public class Command {
         this.state = state;
         this.cmdView = cmdView;
         argumentList = new ArrayList<>();
+        referrinAgrgumentList = new ArrayList<>();
         exitCode = null;
     }
 
@@ -66,7 +71,14 @@ public class Command {
      * @param state the new state for the command
      */
     public void updateState(State state) {
+        State old = this.state;
         this.state = state;
+
+        // If the sate went from SKIPPED to something else or vice versa,
+        // refresh the referring arguments' views
+        if (old == State.SKIPPED || state == State.SKIPPED) {
+            refreshReferringArgs();
+        }
         cmdView.updateState();
     }
 
@@ -81,6 +93,14 @@ public class Command {
         }
         this.position = position;
         cmdView.updatePosition();
+        refreshReferringArgs();
+    }
+
+    /** Refresh the view of all args referring to the command */
+    public void refreshReferringArgs() {
+        for (Argument argument : referrinAgrgumentList) {
+            argument.getArgumentView().refresh();
+        }
     }
 
     /**
@@ -89,7 +109,7 @@ public class Command {
      * @return true if it can be, false otherwise
      */
     public boolean canEdit() {
-        return state != State.ALREADY_RUN && state != State.RUNNING;
+        return state == State.TO_RUN || state == State.NEXT_TO_RUN;
     }
 
     // endregion
@@ -116,6 +136,10 @@ public class Command {
         return position;
     }
 
+    public int getIndex() {
+        return position - 1;
+    }
+
     public String getCmd() {
         return cmd;
     }
@@ -126,6 +150,10 @@ public class Command {
 
     public List<Argument> getArgumentList() {
         return argumentList;
+    }
+
+    public List<Argument> getReferringArgumentList() {
+        return referrinAgrgumentList;
     }
 
     public Integer getExitCode() {
