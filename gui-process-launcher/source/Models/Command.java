@@ -43,7 +43,7 @@ public class Command {
     private List<Argument> argumentList;
 
     /** List of all arguments referring to this command */
-    private List<Argument> referrinAgrgumentList;
+    private List<Argument> referringArgumentList;
 
     /** Exit code returned after execution of the command */
     private Integer exitCode;
@@ -57,7 +57,7 @@ public class Command {
         this.state = state;
         this.cmdView = cmdView;
         argumentList = new ArrayList<>();
-        referrinAgrgumentList = new ArrayList<>();
+        referringArgumentList = new ArrayList<>();
         exitCode = null;
     }
 
@@ -98,7 +98,7 @@ public class Command {
 
     /** Refresh the view of all args referring to the command */
     public void refreshReferringArgs() {
-        for (Argument argument : referrinAgrgumentList) {
+        for (Argument argument : referringArgumentList) {
             argument.getArgumentView().refresh();
         }
     }
@@ -153,7 +153,7 @@ public class Command {
     }
 
     public List<Argument> getReferringArgumentList() {
-        return referrinAgrgumentList;
+        return referringArgumentList;
     }
 
     public Integer getExitCode() {
