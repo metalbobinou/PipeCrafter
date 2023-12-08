@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import Models.Command.State;
 import Utils.OutputParameters;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -40,6 +41,9 @@ public class Argument implements Initializable {
 
     /** Image representing the text icon */
     private static Image textImage = null;
+
+    /** Image representing the yellow output icon */
+    private static Image yellow_output_iconImage = null;
 
     /** Image representing the red output icon */
     private static Image red_output_iconImage = null;
@@ -77,6 +81,7 @@ public class Argument implements Initializable {
             file_iconImage = new Image(getClass().getResource("/images/file_icon.png").toString());
             output_iconImage = new Image(getClass().getResource("/images/output_icon.png").toString());
             textImage = new Image(getClass().getResource("/images/text_input_icon.png").toString());
+            yellow_output_iconImage = new Image(getClass().getResource("/images/yellow_output_icon.png").toString());
             red_output_iconImage = new Image(getClass().getResource("/images/red_output_icon.png").toString());
         }
     }
@@ -167,7 +172,11 @@ public class Argument implements Initializable {
                 icon.setImage(file_iconImage);
                 break;
             case OUTPUT:
-                icon.setImage(output_iconImage);
+                if (argumentModel.getOutputParameter().getCmdToUse().getState() == State.SKIPPED) {
+                    icon.setImage(yellow_output_iconImage);
+                } else {
+                    icon.setImage(output_iconImage);
+                }
                 break;
             case TEXT:
                 icon.setImage(textImage);
@@ -187,7 +196,7 @@ public class Argument implements Initializable {
                 text.setText(((File) argumentModel.getObjectValue()).getName());
                 break;
             case OUTPUT:
-                OutputParameters params = (OutputParameters) argumentModel.getObjectValue();
+                OutputParameters params = argumentModel.getOutputParameter();
 
                 text.setText(String.valueOf(params.getPosition()) + params.getStream().getExtension()
                         + params.getFormat().getString());
@@ -198,7 +207,7 @@ public class Argument implements Initializable {
             default:
                 String txt = "Invalid ref";
                 if (argumentModel.getObjectValue() instanceof OutputParameters) {
-                    txt = txt + " to " + ((OutputParameters) argumentModel.getObjectValue()).getPosition();
+                    txt = txt + " to " + argumentModel.getOutputParameter().getPosition();
                 }
                 text.setTextFill(Color.RED);
                 text.setText(txt);
