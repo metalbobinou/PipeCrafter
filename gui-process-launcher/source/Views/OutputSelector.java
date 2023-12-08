@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import Models.Argument.Type;
+import Models.Command.State;
 import Utils.CommandBuilder;
 import Utils.OutputParameters;
 import Utils.OutputParameters.Format;
@@ -74,12 +75,17 @@ public class OutputSelector implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // region Set up for commandBox
-        List<Models.Command> cmdList = Business.Command.getCommands();
-        for (int i = 0; i < Business.Command.getCommandReiceivingArgument().getPosition() - 1; i++) {
-            Models.Command cmd = cmdList.get(i);
 
-            commandBox.getItems().add(new StringBuilder(String.valueOf(cmd.getPosition())).append(" - ")
+        for (int i = 0; i < Business.Command.getCommandReiceivingArgument().getIndex(); i++) {
+            Models.Command cmd = Business.Command.getCommands().get(i);
+            StringBuilder sb = new StringBuilder();
+
+            if (cmd.getState() == State.SKIPPED) {
+                sb.append("<SKIPPED> ");
+            }
+            commandBox.getItems().add(sb.append(String.valueOf(cmd.getPosition())).append(" - ")
                     .append(cmd.getName()).toString());
+
         }
 
         // Add tooltip
@@ -111,7 +117,7 @@ public class OutputSelector implements Initializable {
 
         // Set default value to the previous step
         commandBox
-                .setValue(commandBox.getItems().get(Business.Command.getCommandReiceivingArgument().getPosition() - 2));
+                .setValue(commandBox.getItems().get(Business.Command.getCommandReiceivingArgument().getIndex() - 1));
         commandBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != oldValue) {
                 dispCmd();
@@ -168,15 +174,22 @@ public class OutputSelector implements Initializable {
     public void done(MouseEvent event) {
         ObservableList<String> cmdBoxItems = commandBox.getItems();
 
+        Models.Command cmd = Business.Command.getCommands()
+                .get(Integer.valueOf(cmdBoxItems.indexOf(commandBox.getValue())));
+
         OutputParameters op = new OutputParameters(
-                Business.Command.getCommands().get(Integer.valueOf(cmdBoxItems.indexOf(commandBox.getValue()))),
+                cmd,
                 streamBox.getValue() == str4stdout ? OutputStream.OUT : OutputStream.ERR,
                 formatBox.getValue() == str4path ? Format.PATH : Format.CONTENT);
 
         if (Business.Argument.isAddedArgSet()) {
-            Business.Argument.popAddedArg().setArgument(Type.OUTPUT, op);
+            Models.Argument arg = Business.Argument.popAddedArg();
+            cmd.getReferringArgumentList().add(arg);
+            arg.setArgument(Type.OUTPUT, op);
         } else {
-            Business.Argument.setAddedArg(new Models.Argument(Type.OUTPUT, op));
+            Models.Argument arg = new Models.Argument(Type.OUTPUT, op);
+            cmd.getReferringArgumentList().add(arg);
+            Business.Argument.setAddedArg(arg);
         }
 
         ((Stage) anchorPane.getScene().getWindow()).close();
