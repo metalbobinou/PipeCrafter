@@ -33,6 +33,12 @@ public class Alerts {
     /** Alert for when running a command is impossible due to invalid references */
     private static Alert forbiddenRunAlert;
 
+    /**
+     * Alert for the user to confirm they want to restart execution from a
+     * previous step
+     */
+    private static Alert confirmRestartFromAlert;
+
     // endregion
 
     // region Methods
@@ -75,6 +81,13 @@ public class Alerts {
         forbiddenRunAlert.setTitle("Error");
         forbiddenRunAlert.setContentText(
                 "This command cannot be executed because it contains invalid references. Delete or replace them before continuing.");
+
+        confirmRestartFromAlert = new Alert(AlertType.CONFIRMATION);
+        confirmRestartFromAlert.setTitle("Warning");
+        confirmRestartFromAlert
+                .setContentText(
+                        "Are you sure you want to restart execution from this command? All outputs generated from this point will be lost.");
+        confirmRestartFromAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
     }
 
     // endregion
@@ -114,6 +127,10 @@ public class Alerts {
 
     public static Alert getForbiddenRunAlert() {
         return forbiddenRunAlert;
+    }
+
+    public static Alert getConfirmRestartFromAlert() {
+        return confirmRestartFromAlert;
     }
 
     // endregion
