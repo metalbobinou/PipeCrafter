@@ -64,9 +64,7 @@ public class App {
      * @param isOver true if all commands have been executed
      */
     public static void endRun(boolean isOver, boolean goToNext) {
-        if (isOver) {
-            currentStep = 1;
-        } else if (goToNext) {
+        if (goToNext && !isOver) {
             currentStep++;
         }
         isExecuting = false;
