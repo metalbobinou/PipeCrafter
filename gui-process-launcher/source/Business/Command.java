@@ -54,26 +54,36 @@ public class Command {
 
         if (Business.App.isExecuting()) {
 
-            if (Alerts.getExecutionOnGoingAlert().showAndWait().orElse(ButtonType.CANCEL) == ButtonType.YES) {
+            if (Alerts.getExecutionOnGoingAlert().showAndWait().orElse(null) == ButtonType.YES) {
 
                 ProcessManager.kill();
+            } else {
+                return;
             }
         }
 
         switch (initialState) {
-            case ALREADY_RUN:
-                // TODO restart prompt (ask if needed) then call run
-                break;
-            case NEXT_TO_RUN:
-                run(command);
-                break;
             case RUNNING:
                 // Process was just stopped
+                return;
+            case NEXT_TO_RUN:
+                // Nothing to do prior to run
                 break;
+
+            case ALREADY_RUN:
+                if (Alerts.getConfirmRestartFromAlert().showAndWait().orElse(null) != ButtonType.YES) {
+                    return;
+                }
+                resetAll(command.getPosition() - 1, App.getCurrentStep());
+                App.restartFrom(command.getPosition());
+                break;
+
             case TO_RUN:
                 // TODO check if dependancies okay
                 break;
         }
+
+        run(command);
     }
 
     /**
@@ -112,14 +122,20 @@ public class Command {
         thread.start();
     }
 
-    /** Reset all commands to their default state and update the UI */
-    public static void resetAll() {
+    /**
+     * Reset all commands in the given range to their default state
+     * and update the UI
+     * 
+     * @param from index at which the reset must begin
+     * @param to   index at which the reset must end
+     */
+    public static void resetAll(int from, int to) {
         if (commands.size() < 1) {
             return;
         }
-        commands.get(0).updateState(State.NEXT_TO_RUN);
+        commands.get(from).updateState(State.NEXT_TO_RUN);
 
-        for (int i = 1; i < commands.size(); i++) {
+        for (int i = ++from; i < to; i++) {
             commands.get(i).updateState(State.TO_RUN);
         }
     }

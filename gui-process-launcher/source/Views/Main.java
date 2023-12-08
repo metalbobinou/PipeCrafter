@@ -62,7 +62,7 @@ public class Main implements Initializable {
         stopAllButton.setVisible(false);
         stopAllButton.setDisable(true);
 
-        Business.Command.resetAll();
+        Business.Command.resetAll(0, Business.Command.getCommands().size());
     }
 
     /** Switch to execution mode */
