@@ -1,6 +1,7 @@
 package Business;
 
 import Models.Argument.Type;
+import Models.Command.State;
 import Utils.OutputParameters;
 import javafx.scene.Node;
 
@@ -58,45 +59,85 @@ public class Argument {
      * @param node node of the argument to delete
      */
     public static void deleteArgument(Models.Argument arg, Node node) {
+        if (arg.getType() == Type.OUTPUT) {
+            arg.getOutputParameter().getCmdToUse().getReferringArgumentList().remove(arg);
+        }
+
         Models.Command cmd = arg.getMotherCommand();
+
         cmd.getArgumentList().remove(arg);
         cmd.getCmdView().deleteArg(node);
     }
 
     /**
-     * Verify that all commands within the provided range do not reference
-     * commands that will be executed after them.
-     * Display a warning if needed.
+     * Update all the arguments referring to the given command after it was
+     * moved
+     * 
+     * @param cmd the moved command
      */
-    public static void checkOutputsOrder() {
+    public static void updateCmdRefsOnMove(Models.Command cmd) {
         boolean broke = false;
-        for (Models.Command cmd : Command.getCommands()) {
-            for (Models.Argument arg : cmd.getArgumentList()) {
 
-                if (arg.getType() == Type.OUTPUT) {
-                    int referencedPosition = ((OutputParameters) arg.getObjectValue()).getCmdToUse().getPosition();
-                    if (referencedPosition >= cmd.getPosition()) {
-                        broke = true;
-                        arg.setArgument(Type.INVALID, arg.getObjectValue());
-                    }
-                    arg.getArgumentView().refresh();
+        // Check arguments referring to the moved command
+        for (Models.Argument argReferringToCmd : cmd.getReferringArgumentList()) {
+
+            // Currently is a valid reference to a command
+            if (argReferringToCmd.getType() == Type.OUTPUT) {
+                // Check if ref was broken by move
+                if (argReferringToCmd.getMotherCommand().getPosition() <= cmd.getPosition()) {
+                    broke = true;
+                    argReferringToCmd.makeInvalid();
+                }
+                // Currently is an invalid reference to an existing command
+            } else if (argReferringToCmd.getType() == Type.INVALID
+                    && argReferringToCmd.getObjectValue() instanceof OutputParameters) {
+
+                // Check if ref was fixed by move
+                if (argReferringToCmd.getMotherCommand().getPosition() > cmd.getPosition()) {
+                    argReferringToCmd.makeValidOutput();
                 }
             }
+            argReferringToCmd.getArgumentView().refresh();
         }
+
+        // Check arguments the moved command refers to
+        for (Models.Argument arg : cmd.getArgumentList()) {
+
+            // Currently is a valid reference to a command
+            if (arg.getType() == Type.OUTPUT) {
+                // Check if ref was broken by move
+                if (arg.getOutputParameter().getCmdToUse().getPosition() >= cmd.getPosition()) {
+                    broke = true;
+                    arg.makeInvalid();
+                }
+
+                // Currently is an invalid reference to an existing command
+            } else if (arg.getType() == Type.INVALID
+                    && arg.getObjectValue() instanceof OutputParameters) {
+
+                // Check if ref was fixed by move
+                if (arg.getOutputParameter().getCmdToUse().getPosition() < cmd.getPosition()) {
+                    arg.makeValidOutput();
+                }
+            }
+            arg.getArgumentView().refresh();
+        }
+
         if (broke) {
             Utils.Alerts.getInvalidCommandRefAlert().show();
         }
     }
 
     /**
-     * Check the arguments of a command and say if any is invalid
+     * Check the arguments of a command and say if any is invalid or skipped
      * 
      * @param cmd the command which arguments should be checked
-     * @return true if any argument is invalid, false if none is
+     * @return true if any argument is invalid/skipped, false if none is
      */
     public static boolean cmdHasInvalidArg(Models.Command cmd) {
         for (Models.Argument arg : cmd.getArgumentList()) {
-            if (arg.getType() == Type.INVALID) {
+            if (arg.getType() == Type.INVALID
+                    || arg.getOutputParameter().getCmdToUse().getState() == State.SKIPPED) {
                 return true;
             }
         }
