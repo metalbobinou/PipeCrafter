@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import Models.Argument.Type;
+
 /** Internal representation of command related data */
 public class Command {
 
@@ -99,6 +101,17 @@ public class Command {
     /** Refresh the view of all args referring to the command */
     public void refreshReferringArgs() {
         for (Argument argument : referringArgumentList) {
+            argument.getArgumentView().refresh();
+        }
+    }
+
+    /** Make all referring arguments invalid with a null value and refresh view */
+    public void makeReferringArgsInvalid() {
+        // No need to increase i as by setting the argument as invalid it will
+        // be removed from the reference list
+        for (int i = 0; i < referringArgumentList.size();) {
+            Argument argument = referringArgumentList.get(i);
+            argument.setArgument(Type.INVALID, null);
             argument.getArgumentView().refresh();
         }
     }
