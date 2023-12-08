@@ -125,11 +125,11 @@ public class Command implements Initializable {
 
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!commandModel.canEdit()) {
-                Utils.Alerts.getRestrictedEditAlert().showAndWait();
-                textField.setText(oldValue);
-                return;
+                Utils.Alerts.getRestrictedEditAlert().show();
+                textField.setText(commandModel.getCmd());
+            } else {
+                commandModel.setCmd(newValue);
             }
-            commandModel.setCmd(newValue);
         });
         if (scrollBarStyleCSS == null) {
             scrollBarStyleCSS = getClass().getResource("/css/scrollBarStyle.css").toExternalForm();
@@ -277,14 +277,17 @@ public class Command implements Initializable {
             case NEXT_TO_RUN:
                 run_button.setImage(start_icon);
                 boxBorders.setStroke(Color.BLUE);
+                exitCode_label.setText("");
                 break;
             case RUNNING:
                 run_button.setImage(stop_icon);
                 boxBorders.setStroke(Color.VIOLET);
+                exitCode_label.setText("");
                 break;
             case TO_RUN:
                 run_button.setImage(start_from_icon);
                 boxBorders.setStroke(Color.WHITE);
+                exitCode_label.setText("");
                 break;
         }
     }
