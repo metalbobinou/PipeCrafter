@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Utils.Alerts;
-import Utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -84,6 +83,15 @@ public class Main implements Initializable {
 
         stopAllButton.setVisible(true);
         stopAllButton.setDisable(false);
+    }
+
+    /**
+     * Delte an element from the command's Vbox
+     * 
+     * @param cmdNode node of the command to delete
+     */
+    public void deleteCmd(Node cmdNode) {
+        commandVBox.getChildren().remove(cmdNode);
     }
 
     /**
