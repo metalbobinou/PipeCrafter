@@ -274,6 +274,11 @@ public class Command implements Initializable {
                 boxBorders.setStroke(Color.GRAY);
                 exitCode_label.setText("Exit code: " + commandModel.getExitCode());
                 break;
+            case SKIPPED:
+                run_button.setImage(restart_icon);
+                boxBorders.setStroke(Color.BLACK);
+                exitCode_label.setText("--- Skipped ---");
+                break;
             case NEXT_TO_RUN:
                 run_button.setImage(start_icon);
                 boxBorders.setStroke(Color.BLUE);
