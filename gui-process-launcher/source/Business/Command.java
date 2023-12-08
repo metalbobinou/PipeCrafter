@@ -70,16 +70,36 @@ public class Command {
                 // Nothing to do prior to run
                 break;
 
+            case SKIPPED:
             case ALREADY_RUN:
                 if (Alerts.getConfirmRestartFromAlert().showAndWait().orElse(null) != ButtonType.YES) {
                     return;
                 }
-                resetAll(command.getPosition() - 1, App.getCurrentStep());
+                resetAll(command.getIndex(), App.getCurrentStep());
                 App.restartFrom(command.getPosition());
                 break;
 
             case TO_RUN:
-                // TODO check if dependancies okay
+                // Check if any command at or after the one to jump to
+                // references a command that is going to be skipped
+                for (int i = App.getCurrentCommandIndex(); i < command.getIndex(); i++) {
+
+                    for (Models.Argument arg : commands.get(i).getReferringArgumentList()) {
+
+                        if (arg.getMotherCommand().getPosition() >= command.getPosition()) {
+
+                            if (Alerts.getForbiddenSkipAlert().showAndWait().orElse(null) == ButtonType.YES) {
+
+                                i = command.getIndex(); // force 1st loop exit
+                                break;
+                            } else {
+                                return;
+                            }
+                        }
+                    }
+                }
+                skipAll(App.getCurrentCommandIndex(), command.getIndex());
+                App.restartFrom(command.getPosition());
                 break;
         }
 
@@ -141,6 +161,21 @@ public class Command {
     }
 
     /**
+     * Skip all commands within the given range
+     * 
+     * @param from index at which the skip must begin
+     * @param to   index at which the skip must end (excluded)
+     */
+    public static void skipAll(int from, int to) {
+
+        for (int i = from; i < to; i++) {
+            commands.get(i).updateState(State.SKIPPED);
+        }
+
+        commands.get(to).updateState(State.NEXT_TO_RUN);
+    }
+
+    /**
      * Rotate a command, update the UI accordingly and check for incoherences
      * 
      * @param parent      Pane where the drag and drop is happening
@@ -151,19 +186,11 @@ public class Command {
         Models.Command sourceCmd = commands.get(sourceIndex);
         Models.Command targetCmd = commands.get(targetIndex);
 
-        // Prevent change if target or source command is running or already run
-        if (sourceCmd.getState() == State.ALREADY_RUN || targetCmd.getState() == State.ALREADY_RUN
-                || sourceCmd.getState() == State.RUNNING || targetCmd.getState() == State.RUNNING) {
+        // Prevent change if target or source command is not (next) to run
+        if (sourceCmd.getState() != State.TO_RUN && targetCmd.getState() != State.NEXT_TO_RUN
+                && sourceCmd.getState() != State.NEXT_TO_RUN && targetCmd.getState() != State.TO_RUN) {
             Utils.Alerts.getRestrictedEditAlert().showAndWait();
             return;
-        }
-
-        if (sourceCmd.getState() == State.NEXT_TO_RUN) {
-            targetCmd.updateState(State.NEXT_TO_RUN);
-            sourceCmd.updateState(State.TO_RUN);
-        } else if (targetCmd.getState() == State.NEXT_TO_RUN) {
-            sourceCmd.updateState(State.NEXT_TO_RUN);
-            targetCmd.updateState(State.TO_RUN);
         }
 
         List<Node> nodes = new ArrayList<Node>(parent.getChildren());
@@ -175,6 +202,7 @@ public class Command {
                     nodes.subList(sourceIndex, targetIndex + 1), -1);
             Collections.rotate(
                     commands.subList(sourceIndex, targetIndex + 1), -1);
+
             start = sourceIndex;
             end = targetIndex;
         } else {
@@ -186,12 +214,19 @@ public class Command {
             end = sourceIndex;
         }
 
-        for (int i = start; i <= end; i++) {
-            Models.Command cmd = commands.get(i);
-            cmd.updatePosition(i + 1);
+        if (sourceCmd.getState() == State.NEXT_TO_RUN) {
+            commands.get(App.getCurrentCommandIndex()).updateState(State.NEXT_TO_RUN);
+            sourceCmd.updateState(State.TO_RUN);
+        } else if (targetCmd.getState() == State.NEXT_TO_RUN) {
+            sourceCmd.updateState(State.NEXT_TO_RUN);
+            targetCmd.updateState(State.TO_RUN);
         }
 
-        Argument.checkOutputsOrder();
+        for (int i = start; i <= end; i++) {
+            commands.get(i).updatePosition(i + 1);
+        }
+
+        Argument.updateCmdRefsOnMove(sourceCmd);
 
         parent.getChildren().clear();
         parent.getChildren().addAll(nodes);
