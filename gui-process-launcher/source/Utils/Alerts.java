@@ -39,6 +39,9 @@ public class Alerts {
      */
     private static Alert confirmRestartFromAlert;
 
+    /** Alert for when skipping a command is impossible as it is referenced later */
+    private static Alert forbiddenSkipAlert;
+
     // endregion
 
     // region Methods
@@ -80,7 +83,7 @@ public class Alerts {
         forbiddenRunAlert = new Alert(AlertType.ERROR);
         forbiddenRunAlert.setTitle("Error");
         forbiddenRunAlert.setContentText(
-                "This command cannot be executed because it contains invalid references. Delete or replace them before continuing.");
+                "This command cannot be executed because it contains invalid references or references to command that were skipped. Delete, replace, move or execute them to continue.");
 
         confirmRestartFromAlert = new Alert(AlertType.CONFIRMATION);
         confirmRestartFromAlert.setTitle("Warning");
@@ -88,6 +91,12 @@ public class Alerts {
                 .setContentText(
                         "Are you sure you want to restart execution from this command? All outputs generated from this point will be lost.");
         confirmRestartFromAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
+
+        forbiddenSkipAlert = new Alert(AlertType.CONFIRMATION);
+        forbiddenSkipAlert.setTitle("Warning");
+        forbiddenSkipAlert.setContentText(
+                "Jumping to this command will result in unusable commands down the line as they reference commands that would be skipped. Do you want to continue?");
+        forbiddenSkipAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
     }
 
     // endregion
@@ -131,6 +140,10 @@ public class Alerts {
 
     public static Alert getConfirmRestartFromAlert() {
         return confirmRestartFromAlert;
+    }
+
+    public static Alert getForbiddenSkipAlert() {
+        return forbiddenSkipAlert;
     }
 
     // endregion
