@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -308,7 +309,12 @@ public class Command implements Initializable {
             Utils.Alerts.getRestrictedEditAlert().showAndWait();
             return;
         }
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+        if (!commandModel.getReferringArgumentList().isEmpty()) {
+            if (Alerts.getConfirmDeleteReferencedCmdAlert().showAndWait().orElse(null) != ButtonType.YES) {
+                return;
+            }
+        }
+        Business.Command.deleteCommand(commandModel, commandNode);
     }
 
     /**
