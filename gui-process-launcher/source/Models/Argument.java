@@ -20,7 +20,7 @@ public class Argument {
     // region Attributes
 
     /** Type of the argument */
-    private Type type;
+    private Type type = Type.INVALID;
 
     /**
      * Abstract Object holding the value of the argument to be converted
@@ -77,8 +77,23 @@ public class Argument {
         if (!checkTypeValueMatch(type, objectValue)) {
             throw new IllegalArgumentException();
         }
+        // If argument was already set as a reference to a command, update the
+        // reference to the arg in the command's reffering list
+        if (this.type == Type.OUTPUT) {
+            getOutputParameter().getCmdToUse().getReferringArgumentList().remove(this);
+        }
         this.type = type;
         this.objectValue = objectValue;
+    }
+
+    /** Make an argument invalid */
+    public void makeInvalid() {
+        type = Type.INVALID;
+    }
+
+    /** Make an argument valid */
+    public void makeValidOutput() {
+        type = Type.OUTPUT;
     }
 
     /**
@@ -91,12 +106,12 @@ public class Argument {
             case FILE:
                 return ((File) objectValue).getAbsolutePath();
             case OUTPUT:
-                return ((OutputParameters) objectValue).toString();
+                return getOutputParameter().toString();
             case TEXT:
                 return (String) objectValue;
             case INVALID:
                 if (objectValue instanceof OutputParameters) {
-                    return ((OutputParameters) objectValue).toString();
+                    return getOutputParameter().toString();
                 }
             default:
                 return null;
@@ -129,6 +144,13 @@ public class Argument {
 
     public void setArgumentView(Views.Argument argumentView) {
         this.argumentView = argumentView;
+    }
+
+    public OutputParameters getOutputParameter() {
+        if (!(objectValue instanceof OutputParameters)) {
+            throw new IllegalArgumentException("Wrong type of argument");
+        }
+        return (OutputParameters) objectValue;
     }
 
     // endregion
