@@ -30,6 +30,9 @@ public class App {
     /** State whether the execution was interupted */
     private static boolean execWasInterrupted = false;
 
+    /** Message displayed when the execution is paused */
+    private static final String pauseExecMessage = "Execution paused at step ";
+
     // endregion
 
     // region Methods
@@ -68,7 +71,17 @@ public class App {
         }
         isExecuting = false;
         mainController
-                .setPausedExecMode(isOver ? "Done, all commands executed" : "Execution paused at step " + currentStep);
+                .setPausedExecMode(isOver ? "Done, all commands executed" : pauseExecMessage + currentStep);
+    }
+
+    /**
+     * Update app variales when restarting from a given command
+     * 
+     * @param position position of the command that is restarted
+     */
+    public static void restartFrom(int position) {
+        currentStep = position;
+        mainController.setPausedExecMode(pauseExecMessage + currentStep);
     }
 
     /**
