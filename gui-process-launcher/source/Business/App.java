@@ -1,6 +1,11 @@
 package Business;
 
+import java.time.Instant;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.layout.StackPane;
+import java.time.Duration;
 
 /** Business class for the app */
 public class App {
@@ -25,7 +30,12 @@ public class App {
     private static boolean isExecuting = false;
 
     /** Time at which execution began */
-    private static long execStartTime;
+    private static Instant execStartTime;
+
+    /** Timeline object to update timer */
+    private static Timeline timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(1), e -> {
+        updateTimer();
+    }));
 
     /** State whether the execution was interupted */
     private static boolean execWasInterrupted = false;
@@ -53,7 +63,7 @@ public class App {
     public static void setRun(Models.Command command) {
         currentStep = command.getPosition();
         editModeOn = false;
-        execStartTime = System.currentTimeMillis();
+        execStartTime = Instant.now();
         isExecuting = true;
         mainController.setExecMode();
     }
@@ -64,6 +74,7 @@ public class App {
      * @param isOver true if all commands have been executed
      */
     public static void endRun(boolean isOver, boolean goToNext) {
+        timeline.stop();
         if (goToNext && !isOver) {
             currentStep++;
         }
@@ -101,6 +112,18 @@ public class App {
         boolean res = execWasInterrupted;
         execWasInterrupted = false;
         return res;
+    }
+
+    public static void updateTimer() {
+        if (isExecuting) {
+            Duration duration = Duration.between(execStartTime, Instant.now());
+            mainController.status_text
+                    .setText(new StringBuilder("Executing step ").append(currentStep).append(" for ")
+                            .append(duration.toDays()).append(" d ").append(duration.toHoursPart()).append(" h ")
+                            .append(duration.toMinutesPart()).append(" m ").append(duration.toSecondsPart())
+                            .append(" s")
+                            .toString());
+        }
     }
 
     // endregion
@@ -143,11 +166,11 @@ public class App {
         App.isExecuting = isExecuting;
     }
 
-    public static long getExecStartTime() {
+    public static Instant getExecStartTime() {
         return execStartTime;
     }
 
-    public static void setExecStartTime(long execStartTime) {
+    public static void setExecStartTime(Instant execStartTime) {
         App.execStartTime = execStartTime;
     }
 
@@ -161,6 +184,10 @@ public class App {
 
     public static void setExecWasInterrupted(boolean execWasInterrupted) {
         App.execWasInterrupted = execWasInterrupted;
+    }
+
+    public static Timeline getTimeline() {
+        return timeline;
     }
 
     // endregion
