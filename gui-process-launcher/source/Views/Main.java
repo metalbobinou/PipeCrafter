@@ -66,9 +66,6 @@ public class Main implements Initializable {
 
     /** Switch to execution mode */
     public void setExecMode() {
-        status_text.setText((new StringBuilder("Executing step ").append(Business.App.getCurrentStep()).append(" for "))
-                .toString()); // TODO get time ellapsed + refresh every second
-
         Node addButton = commandVBox.getChildren().get(commandVBox.getChildren().size() - 1);
         addButton.setVisible(false);
         addButton.setDisable(true);

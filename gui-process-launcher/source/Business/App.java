@@ -2,6 +2,7 @@ package Business;
 
 import java.time.Instant;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.layout.StackPane;
@@ -66,6 +67,9 @@ public class App {
         execStartTime = Instant.now();
         isExecuting = true;
         mainController.setExecMode();
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+        updateTimer();
     }
 
     /**
