@@ -137,7 +137,8 @@ public class Argument {
     public static boolean cmdHasInvalidArg(Models.Command cmd) {
         for (Models.Argument arg : cmd.getArgumentList()) {
             if (arg.getType() == Type.INVALID
-                    || arg.getOutputParameter().getCmdToUse().getState() == State.SKIPPED) {
+                    || (arg.getType() == Type.OUTPUT
+                            && arg.getOutputParameter().getCmdToUse().getState() == State.SKIPPED)) {
                 return true;
             }
         }
