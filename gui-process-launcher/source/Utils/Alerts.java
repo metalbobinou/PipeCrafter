@@ -48,6 +48,24 @@ public class Alerts {
      */
     private static Alert confirmDeleteReferencedCmdAlert;
 
+    /** Alert the user that there was an error saving the pipeline */
+    private static Alert errorSavingPipelineAlert;
+
+    /** Alert the user that there was an error saving the state */
+    private static Alert errorSavingStateAlert;
+
+    /** Alert the user that there was an error loading a pipeline file */
+    private static Alert errorLoadingPipelineAlert;
+
+    /** Alert the user that there was an error loading a state file */
+    private static Alert errorLoadingStateAlert;
+
+    /**
+     * Alert to let the user confirm they want to load and overwrite the
+     * existing pipeline
+     */
+    private static Alert confirmLoadingAlert;
+
     // endregion
 
     // region Methods
@@ -110,6 +128,32 @@ public class Alerts {
                 .setContentText(
                         "This command is referenced by others, deleting it will break these. Do you want to continue?");
         confirmDeleteReferencedCmdAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
+
+        errorSavingPipelineAlert = new Alert(AlertType.ERROR);
+        errorSavingPipelineAlert.setTitle("Error");
+        errorSavingPipelineAlert.setContentText(
+                "Error saving the pipeline to the given file.");
+
+        errorSavingStateAlert = new Alert(AlertType.ERROR);
+        errorSavingStateAlert.setTitle("Error");
+        errorSavingStateAlert.setContentText(
+                "Error saving the state to the given file.");
+
+        errorLoadingPipelineAlert = new Alert(AlertType.ERROR);
+        errorLoadingPipelineAlert.setTitle("Error");
+        errorLoadingPipelineAlert.setContentText(
+                "Error loading the pipeline from the chosen file.");
+
+        errorLoadingStateAlert = new Alert(AlertType.ERROR);
+        errorLoadingStateAlert.setTitle("Error");
+        errorLoadingStateAlert.setContentText(
+                "Error loading the state from the chosen file.");
+
+        confirmLoadingAlert = new Alert(AlertType.CONFIRMATION);
+        confirmLoadingAlert.setTitle("Warning");
+        confirmLoadingAlert.setContentText(
+                "Loading another pipeline will overwrite the existing one. Do you want to continue?");
+        confirmLoadingAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
     }
 
     // endregion
@@ -161,6 +205,26 @@ public class Alerts {
 
     public static Alert getConfirmDeleteReferencedCmdAlert() {
         return confirmDeleteReferencedCmdAlert;
+    }
+
+    public static Alert getErrorSavingPipelineAlert() {
+        return errorSavingPipelineAlert;
+    }
+
+    public static Alert getErrorSavingStateAlert() {
+        return errorSavingStateAlert;
+    }
+
+    public static Alert getErrorLoadingPipelineAlert() {
+        return errorLoadingPipelineAlert;
+    }
+
+    public static Alert getErrorLoadingStateAlert() {
+        return errorLoadingStateAlert;
+    }
+
+    public static Alert getConfirmLoadingAlert() {
+        return confirmLoadingAlert;
     }
 
     // endregion
