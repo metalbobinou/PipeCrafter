@@ -81,7 +81,7 @@ public class OutputParameters {
 
                 } catch (IOException e) {
                     Alerts.getFailedReadingOutputFileAlert().showAndWait();
-                    return "Error reading ourput file";
+                    return "Error reading output file";
                 }
             case PATH:
                 return filePath;
