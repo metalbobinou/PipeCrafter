@@ -1,7 +1,5 @@
 package Utils;
 
-import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ public class Save {
     public static class State {
         public int currentCmdIndex;
         public boolean isOver;
-        public List<Models.Command.State> states;
+        public ArrayList<Tuple<Models.Command.State, Integer>> states;
 
         public State() {
             this.currentCmdIndex = Business.App.getCurrentCommandIndex();
@@ -25,7 +23,7 @@ public class Save {
 
             this.states = new ArrayList<>();
             for (Models.Command cmd : Business.Command.getCommands()) {
-                states.add(cmd.getState());
+                states.add(new Tuple<>(cmd.getState(), cmd.getExitCode()));
             }
         }
     }
