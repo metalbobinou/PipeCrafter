@@ -23,9 +23,6 @@ public class Command {
 
     // region Attributes
 
-    /** A unique id */
-    public final UUID id = UUID.randomUUID();
-
     /** Name used by the user for this command */
     private String name = "";
 
