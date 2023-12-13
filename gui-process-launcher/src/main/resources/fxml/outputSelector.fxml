@@ -4,6 +4,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -27,6 +28,6 @@
       <Button layoutX="200.0" layoutY="277.0" mnemonicParsing="false" onMouseClicked="#done" text="Done" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.5" AnchorPane.topAnchor="277.0" />
       <CheckBox fx:id="displayCheckbox" layoutX="161.0" layoutY="234.0" mnemonicParsing="false" onAction="#dispCmd" text="Dispay commands" textFill="WHITE" AnchorPane.bottomAnchor="65.5" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="161.5" AnchorPane.topAnchor="234.0" />
       <ChoiceBox fx:id="formatBox" layoutX="148.0" layoutY="184.0" prefWidth="150.0" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="184.0" />
-      <Text fx:id="cmdText" fill="WHITE" layoutX="20.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="406.14744567871094" AnchorPane.bottomAnchor="237.2578125" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.852554321289062" AnchorPane.topAnchor="64.431640625" />
+      <Label fx:id="cmdText" alignment="CENTER" layoutX="19.0" layoutY="64.0" prefHeight="17.0" prefWidth="415.0" textFill="WHITE" AnchorPane.bottomAnchor="236.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="64.0" />
    </children>
 </AnchorPane>

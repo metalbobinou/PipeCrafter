@@ -1,7 +1,6 @@
 package Views;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import Models.Argument.Type;
@@ -17,11 +16,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.scene.control.ListView;
@@ -49,7 +48,7 @@ public class OutputSelector implements Initializable {
 
     /** Text used to display the full selected command */
     @FXML
-    public Text cmdText;
+    public Label cmdText;
 
     /** ComboBox to pick a command */
     @FXML
@@ -143,14 +142,12 @@ public class OutputSelector implements Initializable {
             if (indexOfSelected == -1) {
                 cmdText.setText("<error>");
             } else {
-                String command = CommandBuilder.getCommand(Business.Command.getCommands().get(indexOfSelected), true)
-                        .get(0);
-                if (command.length() >= 60) {
-                    command = command.substring(0, 60) + "...";
-                }
-                cmdText.setText(command);
+                cmdText.setText(CommandBuilder.getCommand(Business.Command.getCommands().get(indexOfSelected), true)
+                        .get(0));
             }
+            cmdText.setTooltip(new Tooltip(cmdText.getText()));
         } else {
+            cmdText.setTooltip(null);
             cmdText.setText("");
         }
     }
