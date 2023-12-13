@@ -10,6 +10,7 @@ CLASSES=                     \
 		 Load.java			 \
          OutputStream.java   \
 		 Save.java			 \
+		 Tuple.java			 \
 		 CommandBuilder.java \
 		 Utils.java
 
