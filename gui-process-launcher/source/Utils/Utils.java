@@ -29,6 +29,7 @@ public class Utils {
     private static Gson gson = new GsonBuilder()
             .registerTypeAdapter(Models.Command.class, new Adapters.CommandAdapter())
             .registerTypeAdapter(Models.Argument.class, new Adapters.ArgumentAdapter())
+            .registerTypeAdapter(Tuple.class, new Adapters.TupleAdapter())
             .setPrettyPrinting()
             .serializeNulls()
             .create();
