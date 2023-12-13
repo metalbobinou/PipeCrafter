@@ -9,4 +9,7 @@ module fr.epita.gpl.guiprocesslauncher {
     exports Models;
     exports Utils;
     exports Views;
+
+    opens Models to com.google.gson;
+    opens Utils to com.google.gson;
 }
