@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /** Controller class for the main view/screen */
 public class Main implements Initializable {
@@ -152,7 +153,7 @@ public class Main implements Initializable {
      */
     @FXML
     public void save(MouseEvent event) {
-        Utils.Save.save();
+        Utils.Save.save(Utils.Utils.getFcWithFilter().showSaveDialog(new Stage()));
     }
 
     // endregion

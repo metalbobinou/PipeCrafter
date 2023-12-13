@@ -54,7 +54,6 @@ public class Utils {
         if (fc == null) {
             fc = new FileChooser();
             fc.setInitialFileName("gui_config.json");
-            fc.setInitialDirectory(Business.Settings.getExecutionDirectory());
         }
         if (dc == null) {
             dc = new DirectoryChooser();
@@ -83,11 +82,19 @@ public class Utils {
     // region Getters and Setters
 
     public static FileChooser getFc() {
+        fc.setInitialDirectory(Business.Settings.getExecutionDirectory());
         fc.setSelectedExtensionFilter(null);
         return fc;
     }
 
     public static FileChooser getFcWithFilter() {
+        File directory = Save.getLastUsedSaveFile();
+        if (directory == null) {
+            directory = Business.Settings.getExecutionDirectory();
+        } else {
+            directory = directory.getParentFile();
+        }
+        fc.setInitialDirectory(directory);
         fc.setSelectedExtensionFilter(ef);
         return fc;
     }

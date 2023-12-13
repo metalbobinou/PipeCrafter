@@ -34,7 +34,11 @@ public class Save {
 
     // region Attributes
 
+    /** The file used to save states */
     private static File stateSaveFile = null;
+
+    /** The last file used to save a configuration */
+    private static File lastUsedSaveFile = null;
 
     /** Path to the execution directory */
     public String executionDirectoryPath;
@@ -67,18 +71,20 @@ public class Save {
      * Save the current configuration, pipeline and its state in the selected
      * file
      */
-    public static void save() {
-        File file = Utils.getFcWithFilter().showSaveDialog(new Stage());
+    public static void save(File file) {
+        if (file != null) {
+            lastUsedSaveFile = file;
+        }
 
-        if (file == null) {
+        if (lastUsedSaveFile == null) {
             return;
         }
         try {
-            try (FileWriter fileWriter = new FileWriter(file)) {
+            try (FileWriter fileWriter = new FileWriter(lastUsedSaveFile)) {
                 Utils.getGson().toJson(new Save(), fileWriter);
             }
 
-            stateSaveFile = new File(Utils.getFilePathNoExtension(file) + ".state.json");
+            stateSaveFile = new File(Utils.getFilePathNoExtension(lastUsedSaveFile) + ".state.json");
             try (FileWriter fileWriter = new FileWriter(stateSaveFile)) {
                 Utils.getGson().toJson(new State(), fileWriter);
             }
@@ -88,6 +94,17 @@ public class Save {
             e.printStackTrace();
         }
 
+    }
+
+    /** Update the state save file */
+    public static void updateState() {
+        try {
+            try (FileWriter fileWriter = new FileWriter(stateSaveFile)) {
+                Utils.getGson().toJson(new State(), fileWriter);
+            }
+        } catch (Exception e) {
+            Alerts.getErrorSavingStateAlert().show();
+        }
     }
 
     // endregion
@@ -100,6 +117,10 @@ public class Save {
 
     public static void setStateSaveFile(File stateSaveFile) {
         Save.stateSaveFile = stateSaveFile;
+    }
+
+    public static File getLastUsedSaveFile() {
+        return lastUsedSaveFile;
     }
 
     // endregion
