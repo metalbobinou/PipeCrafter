@@ -27,6 +27,8 @@ public class Utils {
 
     /** The Gson object used to save and access data saved as JSON */
     private static Gson gson = new GsonBuilder()
+            .registerTypeAdapter(Models.Command.class, new Adapters.CommandAdapter())
+            .registerTypeAdapter(Models.Argument.class, new Adapters.ArgumentAdapter())
             .setPrettyPrinting()
             .serializeNulls()
             .create();

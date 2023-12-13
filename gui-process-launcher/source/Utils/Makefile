@@ -5,8 +5,11 @@ TARGET=Models
 
 # Files to compile in this package
 CLASSES=                     \
+		 Adapters.java		 \
 		 Alerts.java         \
+		 Load.java			 \
          OutputStream.java   \
+		 Save.java			 \
 		 CommandBuilder.java \
 		 Utils.java
 
