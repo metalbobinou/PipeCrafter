@@ -40,7 +40,6 @@ public class Adapters {
                 argArray.add(context.serialize(arg));
             }
             obj.add("argumentList", argArray);
-            obj.addProperty("exitCode", src.getExitCode());
             return obj;
         }
 
@@ -81,5 +80,34 @@ public class Adapters {
             }
             return obj;
         }
+    }
+
+    public static class TupleAdapter implements JsonSerializer<Tuple>, JsonDeserializer<Tuple> {
+
+        @Override
+        public Tuple deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'deserialize'");
+        }
+
+        @Override
+        public JsonElement serialize(Tuple src, Type typeOfSrc, JsonSerializationContext context) {
+
+            JsonObject obj = new JsonObject();
+            if (src.first != null) {
+                obj.addProperty("state", src.first.toString());
+            } else {
+                obj.addProperty("state", (String) null);
+            }
+            if (src.second != null) {
+                obj.addProperty("exitCode", src.second.toString());
+            } else {
+                obj.addProperty("exitCode", (String) null);
+            }
+
+            return obj;
+        }
+
     }
 }
