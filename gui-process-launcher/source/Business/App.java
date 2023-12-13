@@ -24,6 +24,9 @@ public class App {
     /** The step being executed or the step to execute next */
     private static int currentStep = 1;
 
+    /** State if the execution was completed or not */
+    private static boolean isOver = false;
+
     /**
      * State if a step is being executed or if execution is paused/edit mode
      * is on
@@ -54,6 +57,7 @@ public class App {
         editModeOn = true;
         isExecuting = false;
         mainController.setEditMode();
+        isOver = false;
     }
 
     /**
@@ -66,6 +70,7 @@ public class App {
         editModeOn = false;
         execStartTime = Instant.now();
         isExecuting = true;
+        isOver = false;
         mainController.setExecMode();
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
@@ -79,6 +84,7 @@ public class App {
      */
     public static void endRun(boolean isOver, boolean goToNext) {
         timeline.stop();
+        App.isOver = isOver;
         if (goToNext && !isOver) {
             currentStep++;
         }
@@ -192,6 +198,10 @@ public class App {
 
     public static Timeline getTimeline() {
         return timeline;
+    }
+
+    public static boolean isOver() {
+        return isOver;
     }
 
     // endregion
