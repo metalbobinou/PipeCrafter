@@ -70,6 +70,9 @@ public class Save {
     /**
      * Save the current configuration, pipeline and its state in the selected
      * file
+     * 
+     * @param file the file to use as a save file, null if lastUsedSaveFile
+     *             should be used
      */
     public static void save(File file) {
         if (file != null) {
@@ -84,7 +87,11 @@ public class Save {
                 Utils.getGson().toJson(new Save(), fileWriter);
             }
 
-            stateSaveFile = new File(Utils.getFilePathNoExtension(lastUsedSaveFile) + ".state.json");
+            // If not null, stateSaveFile has to be changed to the match new
+            // provided file
+            if (file != null) {
+                stateSaveFile = new File(Utils.getFilePathNoExtension(lastUsedSaveFile) + ".state.json");
+            }
             try (FileWriter fileWriter = new FileWriter(stateSaveFile)) {
                 Utils.getGson().toJson(new State(), fileWriter);
             }
@@ -98,6 +105,9 @@ public class Save {
 
     /** Update the state save file */
     public static void updateState() {
+        if (stateSaveFile == null) {
+            return;
+        }
         try {
             try (FileWriter fileWriter = new FileWriter(stateSaveFile)) {
                 Utils.getGson().toJson(new State(), fileWriter);

@@ -91,6 +91,7 @@ public class App {
         isExecuting = false;
         mainController
                 .setPausedExecMode(isOver ? "Done, all commands executed" : pauseExecMessage + currentStep);
+        Utils.Save.updateState();
     }
 
     /**
