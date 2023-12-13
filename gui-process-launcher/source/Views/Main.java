@@ -143,7 +143,7 @@ public class Main implements Initializable {
      */
     @FXML
     public void load(MouseEvent event) {
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+        Utils.Load.load();
     }
 
     /**
@@ -152,7 +152,7 @@ public class Main implements Initializable {
      */
     @FXML
     public void save(MouseEvent event) {
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+        Utils.Save.save();
     }
 
     // endregion
