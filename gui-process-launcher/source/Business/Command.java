@@ -33,14 +33,19 @@ public class Command {
      * Add a command to the list and set up its controller
      * 
      * @param controller controller for which to create a command model
-     * @param node       FX object representing the command
+     * @param cmdModel   the command to add, null if it must be created
      */
-    public static void addCommand(Views.Command controller, Node node) {
+    public static void addCommand(Views.Command controller, Models.Command cmdModel) {
 
-        Models.Command model = new Models.Command(commands.size() + 1,
-                commands.size() == 0 ? State.NEXT_TO_RUN : State.TO_RUN, controller);
-        commands.add(model);
-        controller.setUp(node, model);
+        if (cmdModel == null) {
+            cmdModel = new Models.Command();
+        }
+        cmdModel.setPosition(commands.size() + 1);
+        cmdModel.setCmdView(controller);
+        cmdModel.setState(commands.size() == 0 ? State.NEXT_TO_RUN : State.TO_RUN);
+
+        commands.add(cmdModel);
+        controller.setUp(cmdModel);
     }
 
     /**
@@ -263,9 +268,19 @@ public class Command {
     public static void deleteCommand(Models.Command cmd, Node node) {
 
         cmd.makeReferringArgsInvalid();
+        for (int i = 0; i < cmd.getArgumentList().size();) {
+            Argument.deleteArgument(cmd.getArgumentList().get(i));
+        }
         commands.remove(cmd);
         App.getMainController().deleteCmd(node);
         resetForDelete(cmd.getIndex());
+    }
+
+    /** Delete all commands */
+    public static void deleteAllCmd() {
+        for (Models.Command command : commands) {
+            deleteCommand(command, command.getCmdView().getCommandNode());
+        }
     }
 
     // endregion
