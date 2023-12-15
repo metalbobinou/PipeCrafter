@@ -14,12 +14,13 @@ public class Save {
     public static class State {
         public int currentCmdIndex;
         public boolean isOver;
+        public boolean editModeOn;
         public ArrayList<Tuple<Models.Command.State, Integer>> states;
 
         public State() {
             this.currentCmdIndex = Business.App.getCurrentCommandIndex();
-
             this.isOver = Business.App.isOver();
+            this.editModeOn = Business.App.isEditModeOn();
 
             this.states = new ArrayList<>();
             for (Models.Command cmd : Business.Command.getCommands()) {
@@ -59,6 +60,10 @@ public class Save {
         this.outputSavingDirectoryPath = Business.Settings.getOutputSavingDirectory().getAbsolutePath();
         this.usedShell = Business.Settings.getUsedShell();
         this.commands = Business.Command.getCommands();
+    }
+
+    public Save(Object smth) {
+        // Constructor used when loading a save and setting all fields by hand
     }
 
     // endregion
