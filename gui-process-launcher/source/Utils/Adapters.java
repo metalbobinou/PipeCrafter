@@ -1,8 +1,8 @@
 package Utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Type;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -14,17 +14,98 @@ import com.google.gson.JsonSerializer;
 
 import Models.Argument;
 import Models.Command;
+import Utils.OutputParameters.Format;
+import Utils.OutputParameters.OutputStream;
 
 /** Class containing adapter classes */
 public class Adapters {
 
+    public static class SaveAdapter implements JsonSerializer<Save>, JsonDeserializer<Save> {
+
+        @Override
+        public Save deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+
+            JsonObject jsonObject = json.getAsJsonObject();
+
+            Save save = new Save(null);
+
+            save.executionDirectoryPath = jsonObject.get("executionDirectoryPath").getAsString();
+
+            save.outputSavingDirectoryPath = jsonObject.get("outputSavingDirectoryPath").getAsString();
+
+            save.usedShell = Business.Settings.Shell.valueOf(jsonObject.get("usedShell").getAsString());
+
+            JsonArray jsonArray = jsonObject.getAsJsonArray("commands");
+
+            for (JsonElement element : jsonArray) {
+                try {
+                    Views.Command cmdView = Business.App.getMainController().newCommandView();
+                    CommandAdapter.viewOfCurrentCmd = cmdView;
+                    Business.Command.addCommand(cmdView,
+                            context.deserialize(element, Models.Command.class));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    throw new JsonParseException(
+                            "Error when building a command");
+                }
+
+            }
+
+            return save;
+        }
+
+        @Override
+        public JsonElement serialize(Save src, Type typeOfSrc, JsonSerializationContext context) {
+
+            JsonObject obj = new JsonObject();
+            obj.addProperty("executionDirectoryPath", src.executionDirectoryPath);
+            obj.addProperty("outputSavingDirectoryPath", src.outputSavingDirectoryPath);
+            obj.addProperty("usedShell", src.usedShell.toString());
+
+            JsonArray cmdArray = new JsonArray();
+            for (Command cmd : src.commands) {
+                cmdArray.add(context.serialize(cmd));
+            }
+            obj.add("commands", cmdArray);
+            return obj;
+        }
+
+    }
+
     public static class CommandAdapter implements JsonSerializer<Command>, JsonDeserializer<Command> {
+
+        /** Used to pass a view as a parameter for the deserialization of a command */
+        public static Views.Command viewOfCurrentCmd = null;
 
         @Override
         public Command deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
                 throws JsonParseException {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'deserialize'");
+
+            JsonObject jsonObject = json.getAsJsonObject();
+
+            Models.Command commandModel = new Command();
+
+            commandModel.setName(jsonObject.get("name").getAsString());
+            commandModel.setCmd(jsonObject.get("cmd").getAsString());
+
+            JsonArray jsonArray = jsonObject.getAsJsonArray("argumentList");
+
+            for (JsonElement element : jsonArray) {
+
+                Business.Argument.setAddedArg(context.deserialize(element, Models.Argument.class));
+
+                try {
+                    Business.Argument.addArgument(viewOfCurrentCmd.newArgumentView(), commandModel);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    throw new JsonParseException(
+                            "Error when building an argument for command: " + commandModel.getName());
+                }
+
+            }
+
+            return commandModel;
         }
 
         @Override
@@ -50,8 +131,28 @@ public class Adapters {
         @Override
         public Argument deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
                 throws JsonParseException {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'deserialize'");
+
+            JsonObject jsonObject = json.getAsJsonObject();
+
+            Models.Argument.Type type = Models.Argument.Type.valueOf(jsonObject.get("type").getAsString());
+
+            switch (type) {
+                case TEXT:
+                    return new Argument(type, jsonObject.get("objectValue").getAsString());
+                case FILE:
+                    return new Argument(type, new File(jsonObject.get("objectValue").getAsString()));
+                case INVALID:
+                case OUTPUT:
+
+                    JsonElement objectValue = jsonObject.get("objectValue");
+                    if (objectValue.isJsonNull()) {
+                        return new Argument(type, null);
+                    }
+                    Argument arg = new Argument(type, context.deserialize(objectValue, OutputParameters.class));
+                    arg.getOutputParameter().getCmdToUse().getReferringArgumentList().add(arg);
+                    return arg;
+            }
+            return null;
         }
 
         @Override
@@ -82,13 +183,48 @@ public class Adapters {
         }
     }
 
+    public static class OutputParametersAdapter
+            implements JsonSerializer<OutputParameters>, JsonDeserializer<OutputParameters> {
+
+        @Override
+        public OutputParameters deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+
+            JsonObject jsonObject = json.getAsJsonObject();
+
+            Command cmdToUse = Business.Command.getCommands().get(jsonObject.get("cmdToUsesIndex").getAsInt());
+
+            OutputStream stream = OutputStream.valueOf(jsonObject.get("stream").getAsString());
+
+            Format format = Format.valueOf(jsonObject.get("format").getAsString());
+
+            return new OutputParameters(cmdToUse, stream, format);
+        }
+
+        @Override
+        public JsonElement serialize(OutputParameters src, Type typeOfSrc, JsonSerializationContext context) {
+
+            JsonObject obj = new JsonObject();
+
+            obj.addProperty("cmdToUsesIndex", src.getCmdToUse().getIndex());
+            obj.addProperty("stream", src.getStream().toString());
+            obj.addProperty("format", src.getFormat().toString());
+
+            return obj;
+        }
+
+    }
+
     public static class TupleAdapter implements JsonSerializer<Tuple>, JsonDeserializer<Tuple> {
 
         @Override
         public Tuple deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
                 throws JsonParseException {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'deserialize'");
+            JsonObject jsonObject = json.getAsJsonObject();
+
+            return new Tuple<Models.Command.State, Integer>(
+                    Models.Command.State.valueOf(jsonObject.get("state").getAsString()),
+                    jsonObject.get("exitCode").getAsInt());
         }
 
         @Override
