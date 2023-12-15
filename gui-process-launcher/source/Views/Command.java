@@ -2,9 +2,6 @@ package Views;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import Utils.Alerts;
@@ -154,12 +151,13 @@ public class Command implements Initializable {
      * with model's information and for
      * drag and drop
      * 
-     * @param node  the controller's node
-     * @param model the controller's model
+     * @param commandNode the controller's node
+     * @param model       the controller's model
      */
-    public void setUp(Node node, Models.Command model) {
-        this.commandNode = node;
+    public void setUp(Models.Command model) {
         this.commandModel = model;
+        textField.setText(commandModel.getCmd());
+        nameField.setText(commandModel.getName());
         updatePosition();
         updateState();
 
@@ -167,7 +165,7 @@ public class Command implements Initializable {
                 .add(scrollBarStyleCSS);
 
         // region drag and drop implementation
-        node.setOnDragOver(new EventHandler<DragEvent>() {
+        commandNode.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
                 final Dragboard dragboard = event.getDragboard();
@@ -180,15 +178,15 @@ public class Command implements Initializable {
             }
         });
 
-        node.setOnDragDropped(new EventHandler<DragEvent>() {
+        commandNode.setOnDragDropped(new EventHandler<DragEvent>() {
             public void handle(final DragEvent event) {
                 Dragboard db = event.getDragboard();
                 boolean success = false;
                 if (db.hasString()) {
-                    Pane parent = (Pane) node.getParent();
+                    Pane parent = (Pane) commandNode.getParent();
                     Object source = event.getGestureSource();
                     int sourceIndex = parent.getChildren().indexOf(source);
-                    int targetIndex = parent.getChildren().indexOf(node);
+                    int targetIndex = parent.getChildren().indexOf(commandNode);
                     Business.Command.rotate(parent, sourceIndex, targetIndex);
                     success = true;
                 }
@@ -197,18 +195,37 @@ public class Command implements Initializable {
             }
         });
 
-        node.setOnDragDetected(new EventHandler<MouseEvent>() {
+        commandNode.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Dragboard dragboard = node.startDragAndDrop(TransferMode.MOVE);
+                Dragboard dragboard = commandNode.startDragAndDrop(TransferMode.MOVE);
                 ClipboardContent clipboardContent = new ClipboardContent();
                 clipboardContent.putString(TAB_DRAG_KEY);
                 dragboard.setContent(clipboardContent);
-                draggingTab.set(node);
+                draggingTab.set(commandNode);
                 event.consume();
             }
         });
         // endregion
+    }
+
+    /**
+     * Generate a new view for an argument
+     * 
+     * @return the generated view
+     * @throws IOException
+     */
+    public Views.Argument newArgumentView() throws IOException {
+        FXMLLoader loader = new FXMLLoader(argumentURL);
+
+        Parent argumentNode = loader.load();
+        Argument argumentController = loader.getController();
+
+        argumentController.setArgumentNode(argumentNode);
+
+        argumentsHbox.getChildren().add(argumentNode);
+
+        return argumentController;
     }
 
     /**
@@ -234,13 +251,7 @@ public class Command implements Initializable {
             return;
         }
 
-        FXMLLoader loader = new FXMLLoader(argumentURL);
-
-        Parent argumentNode = loader.load();
-        Argument argumentController = loader.getController();
-
-        Business.Argument.addArgument(commandModel, argumentController, argumentNode);
-        argumentsHbox.getChildren().add(argumentNode);
+        Business.Argument.addArgument(newArgumentView(), commandModel);
     }
 
     /**
