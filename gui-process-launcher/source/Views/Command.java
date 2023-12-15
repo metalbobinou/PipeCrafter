@@ -187,7 +187,9 @@ public class Command implements Initializable {
                     Object source = event.getGestureSource();
                     int sourceIndex = parent.getChildren().indexOf(source);
                     int targetIndex = parent.getChildren().indexOf(commandNode);
-                    Business.Command.rotate(parent, sourceIndex, targetIndex);
+                    if (sourceIndex != targetIndex) {
+                        Business.Command.rotate(parent, sourceIndex, targetIndex);
+                    }
                     success = true;
                 }
                 event.setDropCompleted(success);
