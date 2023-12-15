@@ -2,6 +2,7 @@ package Business;
 
 import java.time.Instant;
 
+import Utils.Save;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -105,6 +106,33 @@ public class App {
     }
 
     /**
+     * Reset the app to its default state: delete all commands, set edit mode
+     * and reset the state save file
+     */
+    public static void resetAll() {
+        Save.setStateSaveFile(null);
+        Business.Command.deleteAllCmd();
+        setEditMode();
+    }
+
+    /**
+     * Set the app's state and global settings based on the given state
+     * 
+     * @param state the loaded state to use
+     */
+    public static void setState(Utils.Save.State state) {
+        currentStep = state.currentCmdIndex + 1;
+        isOver = state.isOver;
+        editModeOn = state.editModeOn;
+        if (!editModeOn) {
+            mainController.setExecMode();
+            mainController
+                    .setPausedExecMode(isOver ? "Done, all commands executed" : pauseExecMessage + currentStep);
+
+        }
+    }
+
+    /**
      * Return the index in the Business.Command.commands list of the command
      * being executed or the next to be
      * 
@@ -125,6 +153,7 @@ public class App {
         return res;
     }
 
+    /** Method to update the text displaying the timer on run */
     public static void updateTimer() {
         if (isExecuting) {
             Duration duration = Duration.between(execStartTime, Instant.now());
