@@ -40,25 +40,23 @@ public class Argument {
     /**
      * Add an argument to a command
      * 
+     * @param controller   view relating to the command being added
      * @param commandModel model of the command receiving the argument
-     * @param controller   View relating to the command being added
-     * @param node         node of the argument being added
      */
-    public static void addArgument(Models.Command commandModel, Views.Argument controller, Node node) {
-        Models.Argument model = popAddedArg();
-        model.setArgumentView(controller);
-        model.setMotherCommand(commandModel);
-        commandModel.getArgumentList().add(model);
-        controller.setUp(node, model);
+    public static void addArgument(Views.Argument controller, Models.Command commandModel) {
+        Models.Argument argModel = popAddedArg();
+        argModel.setArgumentView(controller);
+        argModel.setMotherCommand(commandModel);
+        commandModel.getArgumentList().add(argModel);
+        controller.setUp(argModel);
     }
 
     /**
      * Delete an argument from a command
      * 
-     * @param arg  argument model to delete
-     * @param node node of the argument to delete
+     * @param arg argument model to delete
      */
-    public static void deleteArgument(Models.Argument arg, Node node) {
+    public static void deleteArgument(Models.Argument arg) {
         if (arg.getType() == Type.OUTPUT) {
             arg.getOutputParameter().getCmdToUse().getReferringArgumentList().remove(arg);
         }
@@ -66,7 +64,7 @@ public class Argument {
         Models.Command cmd = arg.getMotherCommand();
 
         cmd.getArgumentList().remove(arg);
-        cmd.getCmdView().deleteArg(node);
+        cmd.getCmdView().deleteArg(arg.getArgumentView().getArgumentNode());
     }
 
     /**
