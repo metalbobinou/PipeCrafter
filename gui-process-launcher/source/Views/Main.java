@@ -1,5 +1,6 @@
 package Views;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -93,6 +94,25 @@ public class Main implements Initializable {
     }
 
     /**
+     * Generate a new command view
+     * 
+     * @return the generated command view
+     * @throws IOException
+     */
+    public Views.Command newCommandView() throws IOException {
+        FXMLLoader loader = new FXMLLoader(cmdBoxURL);
+
+        Parent commandNode = loader.load();
+        Views.Command commandController = loader.getController();
+
+        commandController.setCommandNode(commandNode);
+
+        commandVBox.getChildren().add(commandVBox.getChildren().size() - 1, commandNode);
+
+        return commandController;
+    }
+
+    /**
      * Add a new command box to the command list
      * 
      * @param event triggering mouse event
@@ -101,13 +121,7 @@ public class Main implements Initializable {
     @FXML
     public void add_command(MouseEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(cmdBoxURL);
-
-        Parent commandNode = loader.load();
-        Views.Command commandController = loader.getController();
-
-        Business.Command.addCommand(commandController, commandNode);
-        commandVBox.getChildren().add(commandVBox.getChildren().size() - 1, commandNode);
+        Business.Command.addCommand(newCommandView(), null);
     }
 
     /**
@@ -144,7 +158,15 @@ public class Main implements Initializable {
      */
     @FXML
     public void load(MouseEvent event) {
-        Utils.Load.load();
+        if (Alerts.getConfirmLoadingAlert().showAndWait().orElse(null) != ButtonType.YES) {
+            return;
+        }
+
+        File file = Utils.Utils.getFcWithFilter().showOpenDialog(new Stage());
+        if (file == null) {
+            return;
+        }
+        Utils.Load.load(file);
     }
 
     /**
@@ -153,7 +175,11 @@ public class Main implements Initializable {
      */
     @FXML
     public void save(MouseEvent event) {
-        Utils.Save.save(Utils.Utils.getFcWithFilter().showSaveDialog(new Stage()));
+        File file = Utils.Utils.getFcWithFilter().showSaveDialog(new Stage());
+        if (file == null) {
+            return;
+        }
+        Utils.Save.save(file);
     }
 
     // endregion
