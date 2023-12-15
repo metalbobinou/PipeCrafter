@@ -87,20 +87,18 @@ public class Argument implements Initializable {
     }
 
     /**
-     * Associate the controller with its node and model, and set FX objects for
+     * Associate the controller with its model, and set FX objects for
      * drag and drop
      * 
-     * @param node  the controller's node
      * @param model the controller's model
      */
-    public void setUp(Node node, Models.Argument model) {
-        this.argumentNode = node;
+    public void setUp(Models.Argument model) {
         this.argumentModel = model;
         refresh();
 
         // region Drag and Drop Imple
 
-        node.setOnDragOver(new EventHandler<DragEvent>() {
+        argumentNode.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
                 final Dragboard dragboard = event.getDragboard();
@@ -113,15 +111,15 @@ public class Argument implements Initializable {
             }
         });
 
-        node.setOnDragDropped(new EventHandler<DragEvent>() {
+        argumentNode.setOnDragDropped(new EventHandler<DragEvent>() {
             public void handle(final DragEvent event) {
                 Dragboard db = event.getDragboard();
                 boolean success = false;
                 if (db.hasString()) {
-                    Pane parent = (Pane) node.getParent();
+                    Pane parent = (Pane) argumentNode.getParent();
                     Object source = event.getGestureSource();
                     int sourceIndex = parent.getChildren().indexOf(source);
-                    int targetIndex = parent.getChildren().indexOf(node);
+                    int targetIndex = parent.getChildren().indexOf(argumentNode);
                     List<Node> nodes = new ArrayList<Node>(parent.getChildren());
                     if (!argumentModel.getMotherCommand().canEdit()) {
                         Utils.Alerts.getRestrictedEditAlert().showAndWait();
@@ -151,14 +149,14 @@ public class Argument implements Initializable {
             }
         });
 
-        node.setOnDragDetected(new EventHandler<MouseEvent>() {
+        argumentNode.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Dragboard dragboard = node.startDragAndDrop(TransferMode.MOVE);
+                Dragboard dragboard = argumentNode.startDragAndDrop(TransferMode.MOVE);
                 ClipboardContent clipboardContent = new ClipboardContent();
                 clipboardContent.putString(TAB_DRAG_KEY);
                 dragboard.setContent(clipboardContent);
-                draggingTab.set(node);
+                draggingTab.set(argumentNode);
                 event.consume();
             }
         });
@@ -228,7 +226,7 @@ public class Argument implements Initializable {
             Utils.Alerts.getRestrictedEditAlert().showAndWait();
             return;
         }
-        Business.Argument.deleteArgument(argumentModel, argumentNode);
+        Business.Argument.deleteArgument(argumentModel);
     }
 
     @FXML
@@ -244,6 +242,18 @@ public class Argument implements Initializable {
         Views.Command.showArgumentSelector();
 
         refresh();
+    }
+
+    // endregion
+
+    // region Getters and Setters
+
+    public void setArgumentNode(Node argumentNode) {
+        this.argumentNode = argumentNode;
+    }
+
+    public Node getArgumentNode() {
+        return argumentNode;
     }
 
     // endregion
