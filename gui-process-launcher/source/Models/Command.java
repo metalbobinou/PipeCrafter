@@ -2,8 +2,6 @@ package Models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
 import Models.Argument.Type;
 
 /** Internal representation of command related data */
@@ -51,10 +49,7 @@ public class Command {
 
     // region Constructors
 
-    public Command(int position, State state, Views.Command cmdView) {
-        this.position = position;
-        this.state = state;
-        this.cmdView = cmdView;
+    public Command() {
         argumentList = new ArrayList<>();
         referringArgumentList = new ArrayList<>();
         exitCode = null;
@@ -176,6 +171,14 @@ public class Command {
 
     public State getState() {
         return state;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     // endregion
