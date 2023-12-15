@@ -125,24 +125,26 @@ public class Argument implements Initializable {
                         Utils.Alerts.getRestrictedEditAlert().showAndWait();
                         return;
                     }
-                    if (sourceIndex < targetIndex) {
-                        Collections.rotate(
-                                nodes.subList(sourceIndex, targetIndex + 1), -1);
-                        Collections.rotate(
-                                argumentModel.getMotherCommand().getArgumentList().subList(sourceIndex,
-                                        targetIndex + 1),
-                                -1);
-                    } else {
-                        Collections.rotate(
-                                nodes.subList(targetIndex, sourceIndex + 1), 1);
-                        Collections.rotate(
-                                argumentModel.getMotherCommand().getArgumentList().subList(targetIndex,
-                                        sourceIndex + 1),
-                                1);
+                    if (sourceIndex != targetIndex) {
+                        if (sourceIndex < targetIndex) {
+                            Collections.rotate(
+                                    nodes.subList(sourceIndex, targetIndex + 1), -1);
+                            Collections.rotate(
+                                    argumentModel.getMotherCommand().getArgumentList().subList(sourceIndex,
+                                            targetIndex + 1),
+                                    -1);
+                        } else {
+                            Collections.rotate(
+                                    nodes.subList(targetIndex, sourceIndex + 1), 1);
+                            Collections.rotate(
+                                    argumentModel.getMotherCommand().getArgumentList().subList(targetIndex,
+                                            sourceIndex + 1),
+                                    1);
+                        }
+                        parent.getChildren().clear();
+                        parent.getChildren().addAll(nodes);
+                        success = true;
                     }
-                    parent.getChildren().clear();
-                    parent.getChildren().addAll(nodes);
-                    success = true;
                 }
                 event.setDropCompleted(success);
                 event.consume();
