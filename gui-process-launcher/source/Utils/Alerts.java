@@ -66,6 +66,9 @@ public class Alerts {
      */
     private static Alert confirmLoadingAlert;
 
+    /** Ask the user if they want to load a state file */
+    private static Alert loadStatePromptAlert;
+
     // endregion
 
     // region Methods
@@ -99,7 +102,7 @@ public class Alerts {
         invalidCommandRefAlert.setTitle("Warning");
         invalidCommandRefAlert.setContentText("Ohoh, your action broke some references to commands...");
 
-        restrictedEditAlert = new Alert(AlertType.WARNING);
+        restrictedEditAlert = new Alert(AlertType.ERROR);
         restrictedEditAlert.setTitle("Warning");
         restrictedEditAlert.setContentText(
                 "You can't modify a command that is being or has already been run. Please stop all execution or reset the pipeline and try again.");
@@ -152,8 +155,14 @@ public class Alerts {
         confirmLoadingAlert = new Alert(AlertType.CONFIRMATION);
         confirmLoadingAlert.setTitle("Warning");
         confirmLoadingAlert.setContentText(
-                "Loading another pipeline will overwrite the existing one. Do you want to continue?");
+                "Loading another pipeline will overwrite the existing one and the app's settings. Do you want to continue?");
         confirmLoadingAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
+
+        loadStatePromptAlert = new Alert(AlertType.CONFIRMATION);
+        loadStatePromptAlert.setTitle("Load state?");
+        loadStatePromptAlert.setContentText(
+                "Do you want to also load a state file?");
+        loadStatePromptAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
     }
 
     // endregion
@@ -225,6 +234,10 @@ public class Alerts {
 
     public static Alert getConfirmLoadingAlert() {
         return confirmLoadingAlert;
+    }
+
+    public static Alert getLoadStatePromptAlert() {
+        return loadStatePromptAlert;
     }
 
     // endregion
