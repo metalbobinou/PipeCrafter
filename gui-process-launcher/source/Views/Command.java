@@ -47,7 +47,7 @@ public class Command implements Initializable {
     private static final String TAB_DRAG_KEY = "command";
 
     /** Object used to handle drag and drop */
-    private ObjectProperty<Node> draggingTab = new SimpleObjectProperty<Node>();
+    private static ObjectProperty<Node> draggingTab = new SimpleObjectProperty<Node>();
 
     /** String representing the CSS styling of the scroll bar */
     private static String scrollBarStyleCSS = null;
@@ -155,6 +155,7 @@ public class Command implements Initializable {
      * @param model       the controller's model
      */
     public void setUp(Models.Command model) {
+
         this.commandModel = model;
         textField.setText(commandModel.getCmd());
         nameField.setText(commandModel.getName());
@@ -187,7 +188,7 @@ public class Command implements Initializable {
                     Object source = event.getGestureSource();
                     int sourceIndex = parent.getChildren().indexOf(source);
                     int targetIndex = parent.getChildren().indexOf(commandNode);
-                    if (sourceIndex != targetIndex) {
+                    if (sourceIndex != targetIndex && sourceIndex != -1 && targetIndex != -1) {
                         Business.Command.rotate(parent, sourceIndex, targetIndex);
                     }
                     success = true;

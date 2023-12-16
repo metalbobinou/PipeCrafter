@@ -58,7 +58,7 @@ public class Argument implements Initializable {
     private static final String TAB_DRAG_KEY = "argument";
 
     /** Object used to handle drag and drop */
-    private ObjectProperty<Node> draggingTab = new SimpleObjectProperty<Node>();
+    private static ObjectProperty<Node> draggingTab = new SimpleObjectProperty<Node>();
 
     /** Icon for the argument type */
     @FXML
@@ -120,6 +120,9 @@ public class Argument implements Initializable {
                     Object source = event.getGestureSource();
                     int sourceIndex = parent.getChildren().indexOf(source);
                     int targetIndex = parent.getChildren().indexOf(argumentNode);
+                    if (sourceIndex == -1 || targetIndex == -1) {
+                        return;
+                    }
                     List<Node> nodes = new ArrayList<Node>(parent.getChildren());
                     if (!argumentModel.getMotherCommand().canEdit()) {
                         Utils.Alerts.getRestrictedEditAlert().showAndWait();
