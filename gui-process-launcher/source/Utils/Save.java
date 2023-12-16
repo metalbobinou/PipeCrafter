@@ -24,7 +24,11 @@ public class Save {
 
             this.states = new ArrayList<>();
             for (Models.Command cmd : Business.Command.getCommands()) {
-                states.add(new Tuple<>(cmd.getState(), cmd.getExitCode()));
+                Models.Command.State state = cmd.getState();
+                if (state == Models.Command.State.RUNNING) {
+                    state = Models.Command.State.NEXT_TO_RUN;
+                }
+                states.add(new Tuple<>(state, cmd.getExitCode()));
             }
         }
     }
