@@ -17,7 +17,7 @@ public class Command {
     // region Attributes
 
     /** List of all commands */
-    private static List<Models.Command> commands = new ArrayList<>();
+    private static final List<Models.Command> commands = new ArrayList<>();
 
     /**
      * Inform on the position of the command to which the user wants to add an
@@ -289,10 +289,6 @@ public class Command {
 
     public static List<Models.Command> getCommands() {
         return commands;
-    }
-
-    public static void setCommands(List<Models.Command> commands) {
-        Command.commands = commands;
     }
 
     public static Models.Command getCommandReiceivingArgument() {

@@ -20,13 +20,13 @@ public class Utils {
     private static FileChooser fc = null;
 
     /** The extension filter used to filter json files */
-    private static ExtensionFilter ef = new ExtensionFilter("JSON", "*.json");
+    private static final ExtensionFilter ef = new ExtensionFilter("JSON", "*.json");
 
     /** A single refrence to a directory chooser */
     private static DirectoryChooser dc = null;
 
     /** The Gson object used to save and access data saved as JSON */
-    private static Gson gson = new GsonBuilder()
+    private static final Gson gson = new GsonBuilder()
             .registerTypeAdapter(Save.class, new Adapters.SaveAdapter())
             .registerTypeAdapter(Models.Command.class, new Adapters.CommandAdapter())
             .registerTypeAdapter(Models.Argument.class, new Adapters.ArgumentAdapter())
