@@ -6,9 +6,12 @@ import java.util.ResourceBundle;
 
 import Utils.Alerts;
 import Utils.Utils;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -26,6 +29,10 @@ public class Settings implements Initializable {
     @FXML
     public TextField outputFolderField;
 
+    /** ChoiceBox to choose the desired shell to use with commands */
+    @FXML
+    public ChoiceBox<String> shellBox;
+
     // endregion
 
     // region Methods
@@ -34,6 +41,19 @@ public class Settings implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         execFolderField.setText(Business.Settings.getExecutionDirectory().getAbsolutePath());
         outputFolderField.setText(Business.Settings.getOutputSavingDirectory().getAbsolutePath());
+
+        for (Business.Settings.Shell shell : Business.Settings.Shell.values()) {
+            shellBox.getItems().add(shell.toString());
+        }
+
+        shellBox.setValue(Business.Settings.getUsedShell().toString());
+
+        shellBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                Business.Settings.setUsedShell(Business.Settings.Shell.valueOf(newValue));
+            }
+        });
     }
 
     /**

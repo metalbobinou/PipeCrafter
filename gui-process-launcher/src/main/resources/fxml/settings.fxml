@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,7 +9,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Settings">
    <children>
@@ -28,42 +28,52 @@
                   </Text>
                </children>
             </Group>
-            <Group layoutX="58.0" layoutY="264.0" AnchorPane.bottomAnchor="405.65234375" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="232.65234375">
+            <Group layoutX="58.0" layoutY="219.0" AnchorPane.bottomAnchor="446.0" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="541.0" AnchorPane.topAnchor="165.826171875">
                <children>
-                  <Text fill="WHITE" layoutY="68.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Execution folder">
+                  <Text fill="WHITE" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Execution folder">
                      <font>
                         <Font size="55.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="execFolderField" layoutX="430.0" layoutY="26.0" onAction="#fillExecFolder" prefHeight="3.0" prefWidth="628.0">
+                  <TextField fx:id="execFolderField" layoutX="4.0" layoutY="24.0" onAction="#fillExecFolder" prefHeight="3.0" prefWidth="628.0">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </TextField>
-                  <ImageView fitHeight="117.0" fitWidth="95.0" layoutX="1084.0" layoutY="7.0" onMouseClicked="#getPathExecFolder" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="117.0" fitWidth="95.0" layoutX="658.0" layoutY="5.0" onMouseClicked="#getPathExecFolder" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/download_icon.png" />
                      </image>
                   </ImageView>
                </children>
             </Group>
-            <Group layoutX="58.0" layoutY="361.0">
+            <Group layoutX="47.0" layoutY="347.0" AnchorPane.bottomAnchor="272.826171875" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="548.0" AnchorPane.topAnchor="344.826171875">
                <children>
-                  <Text fill="WHITE" layoutY="68.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Output folder">
+                  <Text fill="WHITE" layoutX="6.0" layoutY="51.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Output folder">
                      <font>
                         <Font size="55.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="outputFolderField" layoutX="430.0" layoutY="26.0" onAction="#fillOutputFolder" prefHeight="3.0" prefWidth="628.0">
+                  <TextField fx:id="outputFolderField" layoutX="8.0" layoutY="69.173828125" onAction="#fillOutputFolder" prefHeight="3.0" prefWidth="628.0">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </TextField>
-                  <ImageView fitHeight="117.0" fitWidth="95.0" layoutX="1084.0" layoutY="7.0" onMouseClicked="#getPathOutputFolder" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="117.0" fitWidth="95.0" layoutX="662.0" layoutY="50.173828125" onMouseClicked="#getPathOutputFolder" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/download_icon.png" />
                      </image>
                   </ImageView>
+               </children>
+            </Group>
+            <Group layoutX="74.0" layoutY="512.0" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="790.7999877929688" AnchorPane.topAnchor="528.826171875">
+               <children>
+                  <Text fill="WHITE" layoutX="-21.0" layoutY="70.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Shell">
+                     <font>
+                        <Font size="55.0" />
+                     </font>
+                  </Text>
+                  <ChoiceBox fx:id="shellBox" layoutX="-24.0" layoutY="86.0" prefHeight="52.0" prefWidth="192.0" />
                </children>
             </Group>
          </children>
