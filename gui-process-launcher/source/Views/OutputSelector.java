@@ -28,7 +28,7 @@ import javafx.scene.control.ListView;
 /** Controller class for the output selector */
 public class OutputSelector implements Initializable {
 
-    // region Attributes
+    // #region Attributes
 
     /** Value used to choose the stream as stdout */
     private final String str4stdout = "stdout";
@@ -66,14 +66,14 @@ public class OutputSelector implements Initializable {
     @FXML
     public CheckBox displayCheckbox;
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // region Set up for commandBox
+        // #region Set up for commandBox
 
         for (int i = 0; i < Business.Command.getCommandReiceivingArgument().getIndex(); i++) {
             Models.Command cmd = Business.Command.getCommands().get(i);
@@ -112,7 +112,7 @@ public class OutputSelector implements Initializable {
             }
         });
 
-        // endregion
+        // #endregion
 
         streamBox.getItems().addAll(str4stdout, str4sterr);
         formatBox.getItems().addAll(str4path, str4content);
@@ -215,6 +215,6 @@ public class OutputSelector implements Initializable {
         ((Stage) anchorPane.getScene().getWindow()).close();
     }
 
-    // endregion
+    // #endregion
 
 }

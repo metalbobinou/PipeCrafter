@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 /** Controller class for the argument type selector */
 public class ArgumentTypeSelector implements Initializable {
 
-    // region Attributes
+    // #region Attributes
 
     /** URL for the fxml file representing a the output selector window */
     private static URL outputSelectorURL = null;
@@ -36,9 +36,9 @@ public class ArgumentTypeSelector implements Initializable {
     @FXML
     public Group outputGroup;
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -137,6 +137,6 @@ public class ArgumentTypeSelector implements Initializable {
         ((Stage) anchorPane.getScene().getWindow()).close();
     }
 
-    // endregion
+    // #endregion
 
 }

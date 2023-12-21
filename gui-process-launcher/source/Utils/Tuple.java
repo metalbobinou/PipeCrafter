@@ -3,7 +3,7 @@ package Utils;
 /** A tuple class */
 public class Tuple<A, B> {
 
-    // region Attributes
+    // #region Attributes
 
     /** The first element of the tuple */
     public A first;
@@ -11,15 +11,15 @@ public class Tuple<A, B> {
     /** The second element of the tuple */
     public B second;
 
-    // endregion
+    // #endregion
 
-    // region Constructor
+    // #region Constructor
 
     public Tuple(A first, B second) {
         this.first = first;
         this.second = second;
     }
 
-    // endregion
+    // #endregion
 
 }

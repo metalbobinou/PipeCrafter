@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 /** Controller class for the main view/screen */
 public class Main implements Initializable {
 
-    // region Attributes
+    // #region Attributes
 
     /** URL for the fxml file representing a command */
     private URL cmdBoxURL;
@@ -41,9 +41,9 @@ public class Main implements Initializable {
     @FXML
     public ImageView stopAllButton;
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -182,5 +182,5 @@ public class Main implements Initializable {
         Utils.Save.save(file);
     }
 
-    // endregion
+    // #endregion
 }

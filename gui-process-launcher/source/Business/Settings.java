@@ -5,7 +5,7 @@ import java.io.File;
 /** Business class for app settings */
 public class Settings {
 
-    // region Nested types
+    // #region Nested types
 
     public enum Shell {
         NONE,
@@ -14,9 +14,9 @@ public class Settings {
         POWERSHELL,
         WSL,
     }
-    // endregion
+    // #endregion
 
-    // region Attributes
+    // #region Attributes
 
     /** Represents the directory where commands should be executed */
     private static File executionDirectory = new File(System.getProperty("user.dir"));
@@ -27,9 +27,9 @@ public class Settings {
     /** Shell to use during execution */
     private static Shell usedShell = Shell.NONE;
 
-    // endregion
+    // #endregion
 
-    // region Getters and Setters
+    // #region Getters and Setters
 
     public static File getExecutionDirectory() {
         return executionDirectory;
@@ -71,5 +71,5 @@ public class Settings {
         Settings.usedShell = usedShell;
     }
 
-    // endregion
+    // #endregion
 }

@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 /** Entry point for the application */
 public class App extends Application {
 
-    // region Methods
+    // #region Methods
 
     /** Open and set the main window/view */
     @Override
@@ -43,7 +43,7 @@ public class App extends Application {
         launch();
     }
 
-    // endregion
+    // #endregion
 }
 
 /** Launcher class to avoid needing a module.info file */

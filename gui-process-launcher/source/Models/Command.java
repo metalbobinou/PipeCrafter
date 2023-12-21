@@ -7,7 +7,7 @@ import Models.Argument.Type;
 /** Internal representation of command related data */
 public class Command {
 
-    // region Nested Types
+    // #region Nested Types
 
     public enum State {
         ALREADY_RUN,
@@ -17,9 +17,9 @@ public class Command {
         TO_RUN;
     }
 
-    // endregion
+    // #endregion
 
-    // region Attributes
+    // #region Attributes
 
     /** Name used by the user for this command */
     private String name = "";
@@ -45,9 +45,9 @@ public class Command {
     /** Exit code returned after execution of the command */
     private Integer exitCode;
 
-    // endregion
+    // #endregion
 
-    // region Constructors
+    // #region Constructors
 
     public Command() {
         argumentList = new ArrayList<>();
@@ -55,9 +55,9 @@ public class Command {
         exitCode = null;
     }
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     /**
      * Update the state of a command and make the UI match the change
@@ -117,9 +117,9 @@ public class Command {
         return state == State.TO_RUN || state == State.NEXT_TO_RUN;
     }
 
-    // endregion
+    // #endregion
 
-    // region Getters and Setters
+    // #region Getters and Setters
 
     public String getName() {
         return name;
@@ -181,5 +181,5 @@ public class Command {
         this.state = state;
     }
 
-    // endregion
+    // #endregion
 }

@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 
 /** Class holding all details for arguments of type output */
 public class OutputParameters {
-    // region Nested Types
+    // #region Nested Types
 
     /**
      * Enum representing the stream used and providing a string representing the
@@ -44,9 +44,9 @@ public class OutputParameters {
         }
     }
 
-    // endregion
+    // #endregion
 
-    // region Attributes
+    // #region Attributes
 
     /** Command to use */
     private Models.Command cmdToUse;
@@ -57,9 +57,9 @@ public class OutputParameters {
     /** Format of the argument */
     private Format format;
 
-    // endregion
+    // #endregion
 
-    // region Constructors
+    // #region Constructors
 
     public OutputParameters(Models.Command cmdToUse, OutputStream stream, Format format) {
         this.cmdToUse = cmdToUse;
@@ -67,9 +67,9 @@ public class OutputParameters {
         this.format = format;
     }
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     @Override
     public String toString() {
@@ -99,9 +99,9 @@ public class OutputParameters {
         return cmdToUse.getPosition();
     }
 
-    // endregion
+    // #endregion
 
-    // region Getters and Setters
+    // #region Getters and Setters
 
     public Models.Command getCmdToUse() {
         return cmdToUse;
@@ -127,5 +127,5 @@ public class OutputParameters {
         this.format = format;
     }
 
-    // endregion
+    // #endregion
 }

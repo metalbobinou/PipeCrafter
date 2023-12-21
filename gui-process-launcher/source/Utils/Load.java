@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 /** Class handling loading of data from JSON */
 public class Load {
 
-    // region Methods
+    // #region Methods
 
     /** Load a save file */
     public static void load(File file) {
@@ -81,5 +81,5 @@ public class Load {
         }
     }
 
-    // endregion
+    // #endregion
 }

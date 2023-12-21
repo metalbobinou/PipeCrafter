@@ -8,7 +8,7 @@ import java.util.List;
 /** Class defining the saving model and handling saving of data to JSON */
 public class Save {
 
-    // region Nested Types
+    // #region Nested Types
 
     /** The model used to save state related data */
     public static class State {
@@ -33,9 +33,9 @@ public class Save {
         }
     }
 
-    // endregion
+    // #endregion
 
-    // region Attributes
+    // #region Attributes
 
     /** The file used to save states */
     private static File stateSaveFile = null;
@@ -55,9 +55,9 @@ public class Save {
     /** The list of commands built */
     public List<Models.Command> commands;
 
-    // endregion
+    // #endregion
 
-    // region Constructors
+    // #region Constructors
 
     public Save() {
         this.executionDirectoryPath = Business.Settings.getExecutionDirectory().getAbsolutePath();
@@ -70,9 +70,9 @@ public class Save {
         // Constructor used when loading a save and setting all fields by hand
     }
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     /**
      * Save the current configuration, pipeline and its state in the selected
@@ -124,9 +124,9 @@ public class Save {
         }
     }
 
-    // endregion
+    // #endregion
 
-    // region Getters And Setters
+    // #region Getters And Setters
 
     public static File getStateSaveFile() {
         return stateSaveFile;
@@ -140,6 +140,6 @@ public class Save {
         return lastUsedSaveFile;
     }
 
-    // endregion
+    // #endregion
 
 }

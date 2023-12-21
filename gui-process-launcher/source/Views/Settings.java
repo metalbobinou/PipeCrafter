@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 /** Controller class for the settings page */
 public class Settings implements Initializable {
 
-    // region Attributes
+    // #region Attributes
 
     /** The textfield used to specify the execution directory */
     @FXML
@@ -33,9 +33,9 @@ public class Settings implements Initializable {
     @FXML
     public ChoiceBox<String> shellBox;
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -137,5 +137,5 @@ public class Settings implements Initializable {
         }
     }
 
-    // endregion
+    // #endregion
 }

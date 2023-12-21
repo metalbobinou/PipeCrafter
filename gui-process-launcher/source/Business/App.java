@@ -12,7 +12,7 @@ import java.time.Duration;
 /** Business class for the app */
 public class App {
 
-    // region Attributes
+    // #region Attributes
 
     /** The main screen controller */
     private static Views.Main mainController = null;
@@ -48,9 +48,9 @@ public class App {
     /** Message displayed when the execution is paused */
     private static final String pauseExecMessage = "Execution paused at step ";
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     /** Set the edit mode */
     public static void setEditMode() {
@@ -166,9 +166,9 @@ public class App {
         }
     }
 
-    // endregion
+    // #endregion
 
-    // region Getters and Setters
+    // #region Getters and Setters
 
     public static Views.Main getMainController() {
         return mainController;
@@ -234,5 +234,5 @@ public class App {
         return isOver;
     }
 
-    // endregion
+    // #endregion
 }

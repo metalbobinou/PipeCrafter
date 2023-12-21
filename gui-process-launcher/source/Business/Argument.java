@@ -3,19 +3,18 @@ package Business;
 import Models.Argument.Type;
 import Models.Command.State;
 import Utils.OutputParameters;
-import javafx.scene.Node;
 
 /** Business class for arguments */
 public class Argument {
 
-    // region Attributes
+    // #region Attributes
 
     /** Used to save the argument being added, null when un/reset */
     private static Models.Argument addedArg = null;
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     /**
      * Retreive addedArg variable and reset it to null
@@ -167,14 +166,14 @@ public class Argument {
         return false;
     }
 
-    // endregion
+    // #endregion
 
-    // region Getters and Setters
+    // #region Getters and Setters
 
     public static void setAddedArg(Models.Argument addedArg) {
         Argument.addedArg = addedArg;
     }
 
-    // endregion
+    // #endregion
 
 }

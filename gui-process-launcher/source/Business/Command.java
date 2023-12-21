@@ -14,7 +14,7 @@ import javafx.scene.layout.Pane;
 /** Business class for commands */
 public class Command {
 
-    // region Attributes
+    // #region Attributes
 
     /** List of all commands */
     private static final List<Models.Command> commands = new ArrayList<>();
@@ -25,9 +25,9 @@ public class Command {
      */
     private static Models.Command commandReiceivingArgument = null;
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     /**
      * Add a command to the list and set up its controller
@@ -283,9 +283,9 @@ public class Command {
         }
     }
 
-    // endregion
+    // #endregion
 
-    // region Getters and Setters
+    // #region Getters and Setters
 
     public static List<Models.Command> getCommands() {
         return commands;
@@ -299,5 +299,5 @@ public class Command {
         Command.commandReiceivingArgument = command;
     }
 
-    // endregion
+    // #endregion
 }

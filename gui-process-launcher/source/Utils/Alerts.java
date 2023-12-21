@@ -7,7 +7,7 @@ import javafx.scene.control.ButtonType;
 /** Class handling alerts displayed */
 public class Alerts {
 
-    // region Attributes
+    // #region Attributes
 
     /** Alert for when the maximum number of characeters has been reached */
     private static Alert maxCharAlert;
@@ -69,9 +69,9 @@ public class Alerts {
     /** Ask the user if they want to load a state file */
     private static Alert loadStatePromptAlert;
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     /** Initialize all used alerts */
     public static void init() {
@@ -165,9 +165,9 @@ public class Alerts {
         loadStatePromptAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
     }
 
-    // endregion
+    // #endregion
 
-    // region Getters and Setters
+    // #region Getters and Setters
 
     public static Alert getMaxCharAlert() {
         return maxCharAlert;
@@ -240,6 +240,6 @@ public class Alerts {
         return loadStatePromptAlert;
     }
 
-    // endregion
+    // #endregion
 
 }

@@ -35,7 +35,7 @@ import javafx.scene.layout.HBox;
 /** Controller class for a command */
 public class Command implements Initializable {
 
-    // region Attributes
+    // #region Attributes
 
     /** The FX object associated with this controller */
     private Node commandNode;
@@ -105,9 +105,9 @@ public class Command implements Initializable {
     @FXML
     public TextField textField;
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -165,7 +165,7 @@ public class Command implements Initializable {
         arguments_scrollPane.getStylesheets()
                 .add(scrollBarStyleCSS);
 
-        // region drag and drop implementation
+        // #region drag and drop implementation
         commandNode.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
@@ -209,7 +209,7 @@ public class Command implements Initializable {
                 event.consume();
             }
         });
-        // endregion
+        // #endregion
     }
 
     /**
@@ -341,9 +341,9 @@ public class Command implements Initializable {
         Business.Command.decideExec(commandModel);
     }
 
-    // endregion
+    // #endregion
 
-    // region Getters and Setters
+    // #region Getters and Setters
 
     public Node getCommandNode() {
         return commandNode;
@@ -353,5 +353,5 @@ public class Command implements Initializable {
         this.commandNode = node;
     }
 
-    // endregion
+    // #endregion
 }

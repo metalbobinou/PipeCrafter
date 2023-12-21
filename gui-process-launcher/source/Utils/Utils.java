@@ -14,7 +14,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 /** Class providing utils methods generally */
 public class Utils {
 
-    // region Attributes
+    // #region Attributes
 
     /** A single refrence to a file chooser */
     private static FileChooser fc = null;
@@ -36,9 +36,9 @@ public class Utils {
             .serializeNulls()
             .create();
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     /**
      * Build and return the path to a saved output
@@ -98,9 +98,9 @@ public class Utils {
         return fc;
     }
 
-    // endregion
+    // #endregion
 
-    // region Getters and Setters
+    // #region Getters and Setters
 
     public static FileChooser getFcWithFilter() {
         File directory = Save.getLastUsedSaveFile();
@@ -130,5 +130,5 @@ public class Utils {
         return gson;
     }
 
-    // endregion
+    // #endregion
 }

@@ -12,7 +12,7 @@ import Utils.OutputParameters.OutputStream;
 /** Handle a unique process object for all executions */
 public class ProcessManager {
 
-    // region Attributes
+    // #region Attributes
 
     /** The unique ProcessBuilder reference */
     private static ProcessBuilder processBuilder = null;
@@ -20,9 +20,9 @@ public class ProcessManager {
     /** A reference to the started process */
     private static Process process = null;
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     /** Initialize the unique ProcessBuilder reference and its directory */
     public static void init() {
@@ -98,13 +98,13 @@ public class ProcessManager {
         }
     }
 
-    // endregion
+    // #endregion
 
-    // region Getters
+    // #region Getters
 
     public static ProcessBuilder getProcessBuilder() {
         return processBuilder;
     }
 
-    // endregion
+    // #endregion
 }

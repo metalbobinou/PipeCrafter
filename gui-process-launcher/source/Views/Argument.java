@@ -31,7 +31,7 @@ import javafx.scene.paint.Color;
 /** Controller class for an argument */
 public class Argument implements Initializable {
 
-    // region Attributes
+    // #region Attributes
 
     /** Image representing the file icon */
     private static Image file_iconImage = null;
@@ -71,9 +71,9 @@ public class Argument implements Initializable {
     @FXML
     public Tooltip tooltip;
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -96,7 +96,7 @@ public class Argument implements Initializable {
         this.argumentModel = model;
         refresh();
 
-        // region Drag and Drop Imple
+        // #region Drag and Drop Imple
 
         argumentNode.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
@@ -165,7 +165,7 @@ public class Argument implements Initializable {
                 event.consume();
             }
         });
-        // endregion
+        // #endregion
     }
 
     /** Set the argument's icon according to its type */
@@ -251,9 +251,9 @@ public class Argument implements Initializable {
         refresh();
     }
 
-    // endregion
+    // #endregion
 
-    // region Getters and Setters
+    // #region Getters and Setters
 
     public void setArgumentNode(Node argumentNode) {
         this.argumentNode = argumentNode;
@@ -263,6 +263,6 @@ public class Argument implements Initializable {
         return argumentNode;
     }
 
-    // endregion
+    // #endregion
 
 }

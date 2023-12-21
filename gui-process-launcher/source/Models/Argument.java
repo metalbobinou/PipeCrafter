@@ -6,7 +6,7 @@ import Utils.OutputParameters;
 /** Internal representation of argument related data */
 public class Argument {
 
-    // region Nested Types
+    // #region Nested Types
 
     /** The types of arguments */
     public enum Type {
@@ -15,9 +15,9 @@ public class Argument {
         TEXT, // represented by a String
         INVALID;
     }
-    // endregion
+    // #endregion
 
-    // region Attributes
+    // #region Attributes
 
     /** Type of the argument */
     private Type type = Type.INVALID;
@@ -34,17 +34,17 @@ public class Argument {
     /** Command to which the argument belongs to */
     private Command motherCommand;
 
-    // endregion
+    // #endregion
 
-    // region Constructors
+    // #region Constructors
 
     public Argument(Type type, Object objectValue) {
         setArgument(type, objectValue);
     }
 
-    // endregion
+    // #endregion
 
-    // region Methods
+    // #region Methods
 
     /**
      * Check that the given value corresponds to the given type
@@ -118,9 +118,9 @@ public class Argument {
         }
     }
 
-    // endregion
+    // #endregion
 
-    // region Getters and Setters
+    // #region Getters and Setters
 
     public Type getType() {
         return type;
@@ -153,5 +153,5 @@ public class Argument {
         return (OutputParameters) objectValue;
     }
 
-    // endregion
+    // #endregion
 }

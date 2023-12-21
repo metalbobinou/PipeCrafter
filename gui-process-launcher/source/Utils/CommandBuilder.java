@@ -9,7 +9,7 @@ import Models.Argument.Type;
 /** Handle command building operations */
 public class CommandBuilder {
 
-    // region Methods
+    // #region Methods
 
     /**
      * Process the given command to be able to use it with the choosen shell
@@ -54,5 +54,5 @@ public class CommandBuilder {
         }
     }
 
-    // endregion
+    // #endregion
 }
