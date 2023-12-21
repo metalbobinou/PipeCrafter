@@ -246,6 +246,8 @@ public class Argument implements Initializable {
 
         Views.Command.showArgumentSelector();
 
+        Business.Argument.popAddedArg();
+
         refresh();
     }
 
