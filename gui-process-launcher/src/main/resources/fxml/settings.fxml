@@ -21,7 +21,7 @@
                         <Image url="@../images/back_arrow.png" />
                      </image>
                   </ImageView>
-                  <Text fill="WHITE" layoutX="91.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
+                  <Text fx:id="settingsLabel" fill="WHITE" layoutX="91.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
                      <font>
                         <Font size="55.0" />
                      </font>
