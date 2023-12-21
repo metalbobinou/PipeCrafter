@@ -38,6 +38,30 @@ public class Argument {
     }
 
     /**
+     * Get the type of the argument being modified
+     * 
+     * @return the type of the argument
+     */
+    public static Models.Argument.Type getAddedArgType() {
+        if (addedArg != null) {
+            return addedArg.getType();
+        }
+        return null;
+    }
+
+    /**
+     * Get the value of the argument being modified
+     * 
+     * @return the value of the argument
+     */
+    public static Object getAddedArgValue() {
+        if (addedArg != null) {
+            return addedArg.getObjectValue();
+        }
+        return null;
+    }
+
+    /**
      * Add an argument to a command
      * 
      * @param controller   view relating to the command being added

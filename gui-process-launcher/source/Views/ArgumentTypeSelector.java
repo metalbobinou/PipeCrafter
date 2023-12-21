@@ -87,6 +87,15 @@ public class ArgumentTypeSelector implements Initializable {
         dialog.setTitle("Text value");
         dialog.setHeaderText("Please enter your value:");
         dialog.setGraphic(null);
+
+        // if the argument is being modified and not added, set default value to current
+        if (Business.Argument.getAddedArgType() == Type.TEXT) {
+            Object value = Business.Argument.getAddedArgValue();
+            if (value != null) {
+                dialog.getEditor().setText((String) value);
+            }
+        }
+
         Optional<String> result = dialog.showAndWait();
 
         result.ifPresent(text -> {
