@@ -34,28 +34,19 @@ public class App extends Application {
         stage.show();
         stage.setMinWidth(stage.getMinWidth()); // !!! TODO set to "main" anchor pane min sizes
         stage.setMinHeight(stage.getMinHeight());
-    }
-
-    public static void main(String[] args) {
-
-        // TODO setup properly when loading?
-        // Region temp until settings implemented then call settings setup
-        // Default values tho ??
-        Business.Settings.setExecutionDirectory(
-                "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/source/test");
-        Business.Settings.setOutputSavingDirectory(
-                "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/source/test/output");
-
-        // endregion
 
         Utils.initFcAndDc();
         Execution.ProcessManager.init();
+    }
+
+    public static void main(String[] args) {
         launch();
     }
 
     // endregion
 }
 
+/** Launcher class to avoid needing a module.info file */
 class Launcher {
     public static void main(String[] args) {
         App.main(args);
