@@ -114,20 +114,43 @@ public class OutputSelector implements Initializable {
 
         // endregion
 
-        // Set default value to the previous step
-        commandBox
-                .setValue(commandBox.getItems().get(Business.Command.getCommandReiceivingArgument().getIndex() - 1));
+        streamBox.getItems().addAll(str4stdout, str4sterr);
+        formatBox.getItems().addAll(str4path, str4content);
+
+        // if the argument is being modified and not added, set default value to current
+        if (Business.Argument.getAddedArgType() == Type.OUTPUT) {
+            Object value = Business.Argument.getAddedArgValue();
+            if (value != null) {
+                OutputParameters op = (OutputParameters) value;
+                commandBox
+                        .setValue(
+                                commandBox.getItems().get(op.getCmdToUse().getIndex()));
+                if (op.getStream() == OutputStream.OUT) {
+                    streamBox.setValue(str4stdout);
+                } else {
+                    streamBox.setValue(str4sterr);
+                }
+
+                if (op.getFormat() == Format.PATH) {
+                    formatBox.setValue(str4path);
+                } else {
+                    formatBox.setValue(str4content);
+                }
+            }
+        } else {
+            // Set default value to the previous step
+            commandBox
+                    .setValue(
+                            commandBox.getItems().get(Business.Command.getCommandReiceivingArgument().getIndex() - 1));
+            streamBox.setValue(str4stdout);
+            formatBox.setValue(str4path);
+        }
+
         commandBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != oldValue) {
                 dispCmd();
             }
         });
-
-        streamBox.getItems().addAll(str4stdout, str4sterr);
-        streamBox.setValue(str4stdout);
-
-        formatBox.getItems().addAll(str4path, str4content);
-        formatBox.setValue(str4path);
     }
 
     /**
