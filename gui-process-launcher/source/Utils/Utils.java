@@ -80,15 +80,27 @@ public class Utils {
         }
     }
 
-    // endregion
+    /**
+     * Getter for the fileChooser
+     * 
+     * @param directoryToOpeOn directory to which set the initial directory,
+     *                         null if it should be the executionDirectory
+     * @return fc with the initial directory set
+     */
+    public static FileChooser getFc(File directoryToOpeOn) {
+        if (directoryToOpeOn == null) {
+            fc.setInitialDirectory(Business.Settings.getExecutionDirectory());
+        } else {
+            fc.setInitialDirectory(directoryToOpeOn);
+        }
 
-    // region Getters and Setters
-
-    public static FileChooser getFc() {
-        fc.setInitialDirectory(Business.Settings.getExecutionDirectory());
         fc.setSelectedExtensionFilter(null);
         return fc;
     }
+
+    // endregion
+
+    // region Getters and Setters
 
     public static FileChooser getFcWithFilter() {
         File directory = Save.getLastUsedSaveFile();
