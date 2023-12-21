@@ -59,7 +59,16 @@ public class ArgumentTypeSelector implements Initializable {
      */
     @FXML
     public void file(MouseEvent event) {
-        File file = Utils.getFc().showOpenDialog(new Stage());
+        File file = null;
+        // if the argument is being modified and not added, set defautl value
+        if (Business.Argument.getAddedArgType() == Type.FILE) {
+            Object value = Business.Argument.getAddedArgValue();
+            if (value != null) {
+                file = Utils.getFc(((File) value).getParentFile()).showOpenDialog(new Stage());
+            }
+        } else {
+            file = Utils.getFc(null).showOpenDialog(new Stage());
+        }
 
         if (file != null) {
             // If already set, the argument is being modified, otherwise it is
