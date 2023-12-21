@@ -47,4 +47,5 @@ Thumbs.db
 *.a
 *.so
 output/
+saved/
 target/
