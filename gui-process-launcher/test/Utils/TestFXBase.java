@@ -62,9 +62,12 @@ public abstract class TestFXBase extends ApplicationTest {
         release(new MouseButton[] {});
 
         // clean generated outputs/saves
-        for (File file : Business.Settings.getOutputSavingDirectory().listFiles())
-            if (!file.isDirectory())
-                file.delete();
+        if (Business.Settings.getOutputSavingDirectory().getName().equals("output")) {
+            for (File file : Business.Settings.getOutputSavingDirectory().listFiles())
+                if (!file.isDirectory())
+                    file.delete();
+        }
+
         for (File file : savedDirectory.listFiles())
             if (!file.isDirectory())
                 file.delete();
