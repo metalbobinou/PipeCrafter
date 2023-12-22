@@ -7,6 +7,12 @@ public class Ids {
     /** The title displayed on the settings page */
     public final static String SETTINGS_TITLE_LABEL = "#settingsLabel";
 
+    /** TextField for the execution folder */
+    public final static String EXEC_FOLDER_FIELD = "#execFolderField";
+
+    /** TextField for the output saving folder */
+    public final static String OUTPUT_FOLDER_FIELD = "#outputFolderField";
+
     // #endregion
 
     // #region Main screen
