@@ -1,34 +1,37 @@
 package SettingsTests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
-import org.testfx.util.WaitForAsyncUtils;
+import static org.testfx.api.FxAssert.verifyThat;
 
+import Utils.Ids;
+import Utils.SettingsPage;
 import Utils.TestFXBase;
-import javafx.scene.text.Text;
+import javafx.scene.control.TextField;
 
 /** Settings related tests class */
 public class SettingsTests extends TestFXBase {
 
-    // #region Attributes
-
-    private final String SETTINGS_BUTTON_ID = "#settingsButton";
-
-    // #endregion
-
     // #region Tests
 
     @Test
-    public void openSettings() {
-        // open settings
-        clickOn(SETTINGS_BUTTON_ID);
-
-        Text settingsText = find("#settingsLabel");
-
-        WaitForAsyncUtils.waitForFxEvents();
-        assertEquals("Settings", settingsText.getText());
+    public void checkOutputDirectory() {
+        new SettingsPage(this);
+        verifyThat(Ids.OUTPUT_FOLDER_FIELD, (TextField tf) -> {
+            return tf.getText().equals(Business.Settings.getOutputSavingDirectory().getAbsolutePath());
+        });
     }
+
+    @Test
+    public void checkExecutionDirectory() {
+        new SettingsPage(this);
+        verifyThat(Ids.EXEC_FOLDER_FIELD, (TextField tf) -> {
+            return tf.getText().equals(Business.Settings.getExecutionDirectory().getAbsolutePath());
+        });
+    }
+
+    // #endregion
+
+    // #region Providers
 
     // #endregion
 }
