@@ -5,9 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.testfx.util.WaitForAsyncUtils;
 
-import Base.TestFXBase;
+import Utils.TestFXBase;
 import javafx.scene.text.Text;
 
+/** Settings related tests class */
 public class SettingsTests extends TestFXBase {
 
     // #region Attributes
