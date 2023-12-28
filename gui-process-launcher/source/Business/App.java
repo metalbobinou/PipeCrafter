@@ -175,11 +175,7 @@ public class App {
     }
 
     public static void setMainController(Views.Main mainController) {
-        if (App.mainController == null) {
-            App.mainController = mainController;
-        } else {
-            System.err.println("Main controller reference not set as it has already been.");
-        }
+        App.mainController = mainController;
     }
 
     public static boolean isEditModeOn() {

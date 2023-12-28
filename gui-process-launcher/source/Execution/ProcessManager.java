@@ -26,9 +26,6 @@ public class ProcessManager {
 
     /** Initialize the unique ProcessBuilder reference and its directory */
     public static void init() {
-        if (processBuilder != null) {
-            throw new IllegalArgumentException("The ProcessBuilder is already initialized.");
-        }
         processBuilder = new ProcessBuilder();
         setExecution();
     }

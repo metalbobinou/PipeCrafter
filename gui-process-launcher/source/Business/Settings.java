@@ -22,7 +22,7 @@ public class Settings {
     private static File executionDirectory = new File(System.getProperty("user.dir"));
 
     /** Represents the directory where output files should be saved */
-    private static File outputSavingDirectory = new File(System.getProperty("user.dir"));;
+    private static File outputSavingDirectory = new File(System.getProperty("user.dir"));
 
     /** Shell to use during execution */
     private static Shell usedShell = Shell.NONE;
