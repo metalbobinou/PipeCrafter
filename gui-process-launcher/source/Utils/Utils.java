@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import Business.Settings.Shell;
 import Utils.OutputParameters.OutputStream;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -54,14 +55,11 @@ public class Utils {
 
     /** Init the single reference to the file chooser if needed */
     public static void initFcAndDc() {
-        if (fc == null) {
-            fc = new FileChooser();
-            fc.setInitialFileName("gui_config.json");
-        }
-        if (dc == null) {
-            dc = new DirectoryChooser();
-            dc.setInitialDirectory(Business.Settings.getExecutionDirectory());
-        }
+        fc = new FileChooser();
+        fc.setInitialFileName("gui_config.json");
+
+        dc = new DirectoryChooser();
+        dc.setInitialDirectory(Business.Settings.getExecutionDirectory());
     }
 
     /**
@@ -96,6 +94,27 @@ public class Utils {
 
         fc.setSelectedExtensionFilter(null);
         return fc;
+    }
+
+    /**
+     * Reset the app to its default state, resetting static fields
+     */
+    public static void resetApp() {
+        Save.setLastUsedSaveFile(null);
+        Save.setStateSaveFile(null);
+
+        Business.App.setExecWasInterrupted(false);
+        Business.App.setMainController(null);
+        Business.App.setMainNode(null);
+
+        Business.Argument.setAddedArg(null);
+
+        Business.Command.setCommandReiceivingArgument(null);
+        Business.Command.getCommands().clear();
+
+        Business.Settings.setUsedShell(Shell.NONE);
+        Business.Settings.setExecutionDirectory(new File(System.getProperty("user.dir")));
+        Business.Settings.setOutputSavingDirectory(new File(System.getProperty("user.dir")));
     }
 
     // #endregion

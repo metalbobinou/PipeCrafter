@@ -47,7 +47,6 @@ public abstract class TestFXBase extends ApplicationTest {
         ApplicationTest.launch(App.App.class);
         Business.Settings.setExecutionDirectory(baseURL + "test/ressources");
         Business.Settings.setOutputSavingDirectory(baseURL + "test/ressources/output");
-
     }
 
     /**
@@ -57,9 +56,11 @@ public abstract class TestFXBase extends ApplicationTest {
      */
     @AfterEach
     public void tearDown() throws Exception {
-        FxToolkit.hideStage();
+        FxToolkit.cleanupStages();
         release(new KeyCode[] {});
         release(new MouseButton[] {});
+
+        Utils.resetApp();
 
         // clean generated outputs/saves
         if (Business.Settings.getOutputSavingDirectory().getName().equals("output")) {
