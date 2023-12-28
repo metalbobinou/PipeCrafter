@@ -140,6 +140,10 @@ public class Save {
         return lastUsedSaveFile;
     }
 
+    public static void setLastUsedSaveFile(File lastUsedSaveFile) {
+        Save.lastUsedSaveFile = lastUsedSaveFile;
+    }
+
     // #endregion
 
 }
