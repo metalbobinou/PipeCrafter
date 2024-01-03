@@ -26,5 +26,20 @@ public class Ids {
     /** The button used to open the settings page */
     public final static String SETTINGS_BUTTON_ID = "#settingsButton";
 
+    /** The load button */
+    public final static String LOAD_BUTTON_ID = "#loadButton";
+
+    /** The save button */
+    public final static String SAVE_BUTTON_ID = "#saveButton";
+
+    /** The stop all button */
+    public final static String MAIN_SWITCH_BUTTON_ID = "#stopAllButton";
+
+    /** The text label displaying the status */
+    public final static String STATUS_LABEL_ID = "#status_text";
+
+    /** The button used to add new commands */
+    public final static String ADD_CMD_BUTTON_ID = "#addCmdButton";
+
     // #endregion
 }

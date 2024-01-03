@@ -17,7 +17,7 @@
                <content>
                   <VBox fx:id="commandVBox" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="521.0" prefWidth="1356.0" style="-fx-background-color: black;">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#add_command" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="addCmdButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#add_command" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/add_icon.png" />
                            </image>
@@ -31,12 +31,12 @@
                   <Image url="@../images/settings_icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="162.0" layoutY="20.0" onMouseClicked="#load" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="162.0" AnchorPane.topAnchor="20.0">
+            <ImageView fx:id="loadButton" fitHeight="90.0" fitWidth="90.0" layoutX="162.0" layoutY="20.0" onMouseClicked="#load" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="162.0" AnchorPane.topAnchor="20.0">
                <image>
                   <Image url="@../images/download_icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="99.0" fitWidth="144.0" layoutX="279.0" layoutY="16.0" onMouseClicked="#save" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="279.0" AnchorPane.topAnchor="16.0">
+            <ImageView fx:id="saveButton" fitHeight="99.0" fitWidth="144.0" layoutX="279.0" layoutY="16.0" onMouseClicked="#save" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="279.0" AnchorPane.topAnchor="16.0">
                <image>
                   <Image url="@../images/save_icon.png" />
                </image>
