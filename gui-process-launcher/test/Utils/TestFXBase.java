@@ -1,11 +1,13 @@
 package Utils;
 
 import java.io.File;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
+import org.testfx.util.WaitForAsyncUtils;
 
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
@@ -18,7 +20,7 @@ public abstract class TestFXBase extends ApplicationTest {
     // #region Attributes
 
     /** The base URL to access locations */
-    protected static String baseURL = "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher/gui-process-launcher/";
+    protected static String baseURL = new File(System.getProperty("user.dir")).getAbsolutePath() + "/";
 
     /** The directory used to load stored saves */
     protected final static File savesToLoadDirectory = new File(
@@ -84,6 +86,19 @@ public abstract class TestFXBase extends ApplicationTest {
      */
     public <T extends Node> T find(final String query) {
         return (T) lookup(query).queryAll().iterator().next();
+    }
+
+    /**
+     * Custom verifyThat method to systematically avoid race conditions when using
+     * verifyThat
+     * 
+     * @param <T>           type provided to the method
+     * @param nodeQuery     provided to the method
+     * @param nodePredicate provided to the method
+     */
+    public <T extends Node> void verifyThat(String nodeQuery, Predicate<T> nodePredicate) {
+        WaitForAsyncUtils.waitForFxEvents();
+        org.testfx.api.FxAssert.verifyThat(nodeQuery, nodePredicate);
     }
 
     // #endregion
