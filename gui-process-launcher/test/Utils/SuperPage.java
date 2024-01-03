@@ -1,5 +1,9 @@
 package Utils;
 
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.input.KeyCode;
 
 /** Parent class for all page classes */
@@ -50,11 +54,19 @@ public abstract class SuperPage {
     public void replaceTextIn(String elementId, String text) {
         drive.clickOn(elementId);
 
-        pressAndRelease(controlKey, KeyCode.A);
+        pressAndRelease(controlKey, KeyCode.A, KeyCode.BACK_SPACE);
 
         drive.write(text);
 
         pressAndRelease(KeyCode.ENTER);
+    }
+
+    /** Check that an alert is displayed and clear it */
+    public void verifyErrorAlertDisplayed() {
+        DialogPane dialogPane = drive.find(".dialog-pane");
+        assumeTrue(dialogPane.getStyleClass().contains("error"));
+
+        drive.clickOn(dialogPane.lookupButton(ButtonType.OK));
     }
 
     // #endregion
