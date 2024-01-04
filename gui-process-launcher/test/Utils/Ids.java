@@ -59,7 +59,7 @@ public class Ids {
 
     // #endregion
 
-    // #region
+    // #region Argument
 
     /** The label displaying an argument's value */
     public final static String ARGUMENT_VALUE_ID = "#text";
