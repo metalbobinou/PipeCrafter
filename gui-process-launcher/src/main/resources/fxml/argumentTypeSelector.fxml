@@ -16,7 +16,7 @@
             <Font size="32.0" />
          </font>
       </Text>
-      <Group layoutX="121.0" layoutY="77.0" onMouseClicked="#file">
+      <Group fx:id="fileGroup" layoutX="121.0" layoutY="77.0" onMouseClicked="#file">
          <children>
             <ImageView fitHeight="48.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -30,7 +30,7 @@
             </Text>
          </children>
       </Group>
-      <Group layoutX="121.0" layoutY="156.0" onMouseClicked="#text">
+      <Group fx:id="textGroup" layoutX="121.0" layoutY="156.0" onMouseClicked="#text">
          <children>
             <ImageView fitHeight="48.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>

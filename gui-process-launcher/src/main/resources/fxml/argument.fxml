@@ -13,7 +13,7 @@
       <Group layoutX="10.0" layoutY="2.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="2.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="34.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="146.0" />
-            <ImageView fitHeight="8.0" fitWidth="9.0" layoutX="136.0" layoutY="2.0" onMouseClicked="#delete" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="deleteArgButton" fitHeight="8.0" fitWidth="9.0" layoutX="136.0" layoutY="2.0" onMouseClicked="#delete" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/close_icon.png" />
                </image>

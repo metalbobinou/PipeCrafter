@@ -26,12 +26,12 @@
       <Group layoutY="74.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="74.0">
          <children>
             <Rectangle fx:id="boxBorders" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="110.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="751.0" />
-            <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="726.0" layoutY="86.0" onMouseClicked="#add_argument" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="addArgButton" fitHeight="21.0" fitWidth="26.0" layoutX="726.0" layoutY="86.0" onMouseClicked="#add_argument" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/add2_icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="43.0" layoutX="724.0" layoutY="2.0" onMouseClicked="#delete" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="deleteButton" fitHeight="25.0" fitWidth="43.0" layoutX="724.0" layoutY="2.0" onMouseClicked="#delete" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/close_icon.png" />
                </image>
