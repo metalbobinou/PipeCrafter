@@ -32,7 +32,7 @@ public class CommandUIManager extends MainPage {
      * @param name                the expected name
      * @param cmdText             the expected given command
      */
-    public void checkCmd(Models.Command cmd, State expectedState, int expectedPosition,
+    public void check(Models.Command cmd, State expectedState, int expectedPosition,
             int expectedCmdListSize, String name, String cmdText) {
         WaitForAsyncUtils.waitForFxEvents();
 
@@ -51,10 +51,10 @@ public class CommandUIManager extends MainPage {
      * @param name optional, name to give the command
      * @param cmd  optional, command to assign
      */
-    public void addCmd(String name, String cmd) {
+    public void add(String name, String cmd) {
         drive.scroll(30, VerticalDirection.UP);
         drive.clickOn(Ids.ADD_CMD_BUTTON_ID);
-        setCmdDetails(Business.Command.getCommands().size() - 1, name, cmd);
+        setDetails(Business.Command.getCommands().size() - 1, name, cmd);
     }
 
     /**
@@ -64,7 +64,7 @@ public class CommandUIManager extends MainPage {
      * @param name     optional, name to give the command
      * @param cmd      optional, command to assign
      */
-    public void setCmdDetails(int cmdIndex, String name, String cmd) {
+    public void setDetails(int cmdIndex, String name, String cmd) {
         if (name != null) {
             TextField nameField = drive.find(Ids.CMD_NAME_TEXTFIELD_ID, cmdIndex);
             drive.clickOn(nameField);
@@ -87,7 +87,7 @@ public class CommandUIManager extends MainPage {
      * @param sourceIndex      index where to drag
      * @param destinationIndex index where to drop
      */
-    public void moveCmd(int sourceIndex, int destinationIndex) {
+    public void move(int sourceIndex, int destinationIndex) {
 
         // TODO scroll to source
 
@@ -97,6 +97,8 @@ public class CommandUIManager extends MainPage {
 
         drive.dropTo((ImageView) drive.find(Ids.CMD_RUN_BUTTON_ID, destinationIndex));
     }
+
+    // public void delete
 
     // #endregion
 }

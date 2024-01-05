@@ -10,7 +10,7 @@ import Utils.TestFXBase;
 public class CmdEditTests extends TestFXBase {
 
     @Test
-    public void add1Cmd() {
+    public void add1() {
         CommandUIManager cm = new CommandUIManager(this);
 
         int nbCmdsBeforeAdd = Business.Command.getCommands().size();
@@ -18,13 +18,13 @@ public class CmdEditTests extends TestFXBase {
         String name = "A command";
         String cmd = "echo";
 
-        cm.addCmd(name, cmd);
+        cm.add(name, cmd);
 
-        cm.checkCmd(Business.Command.getCommands().get(0), State.NEXT_TO_RUN, 1, nbCmdsBeforeAdd + 1, name, cmd);
+        cm.check(Business.Command.getCommands().get(0), State.NEXT_TO_RUN, 1, nbCmdsBeforeAdd + 1, name, cmd);
     }
 
     // @Test
-    // public void add100Cmd() {
+    // public void addMany() {
     // CommandUIManager page = new CommandUIManager(this);
 
     // int nbCmdsToAdd = 20;
@@ -43,38 +43,46 @@ public class CmdEditTests extends TestFXBase {
     // }
 
     @Test
-    void moveCmdMiddle() {
+    void moveMiddle() {
         CommandUIManager cm = new CommandUIManager(this);
-        cm.addCmd("1", null);
-        cm.addCmd("3", null);
-        cm.addCmd("4", null);
-        cm.addCmd("2", null);
+        cm.add("1", null);
+        cm.add("3", null);
+        cm.add("4", null);
+        cm.add("2", null);
 
-        cm.moveCmd(3, 1);
+        cm.move(3, 1);
 
         State expectedState = State.NEXT_TO_RUN;
 
         for (int i = 0; i < Business.Command.getCommands().size(); i++) {
-            cm.checkCmd(Business.Command.getCommands().get(i), expectedState, i + 1, 4, String.valueOf(i + 1), "");
+            cm.check(Business.Command.getCommands().get(i), expectedState, i + 1, 4, String.valueOf(i + 1), "");
             expectedState = State.TO_RUN;
         }
     }
 
     @Test
-    void moveCmdFirstAndLast() {
+    void moveFirstAndLast() {
         CommandUIManager cm = new CommandUIManager(this);
-        cm.addCmd("3", null);
-        cm.addCmd("1", null);
-        cm.addCmd("2", null);
+        cm.add("3", null);
+        cm.add("1", null);
+        cm.add("2", null);
 
-        cm.moveCmd(0, 2);
+        cm.move(0, 2);
 
         State expectedState = State.NEXT_TO_RUN;
 
         for (int i = 0; i < Business.Command.getCommands().size(); i++) {
-            cm.checkCmd(Business.Command.getCommands().get(i), expectedState, i + 1, 3, String.valueOf(i + 1), "");
+            cm.check(Business.Command.getCommands().get(i), expectedState, i + 1, 3, String.valueOf(i + 1), "");
             expectedState = State.TO_RUN;
         }
+    }
+
+    @Test
+    void deleteSimple() {
+        CommandUIManager cm = new CommandUIManager(this);
+        cm.add("0", null);
+        cm.add("1", null);
+        cm.add("1", null);
     }
 
 }

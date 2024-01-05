@@ -33,7 +33,7 @@ public class ArgumentUIManager extends CommandUIManager {
      * @param type                the expected type for the argument
      * @param value               the expected value for the argument
      */
-    public void checkArg(Models.Command cmd, int expectedArgListSize, Models.Argument arg, Models.Argument.Type type,
+    public void check(Models.Command cmd, int expectedArgListSize, Models.Argument arg, Models.Argument.Type type,
             Object value) {
 
         WaitForAsyncUtils.waitForFxEvents();
@@ -74,7 +74,7 @@ public class ArgumentUIManager extends CommandUIManager {
      * 
      * @param cmdIndex the index of the command to add an argument to
      */
-    public void addArg(int cmdIndex) {
+    public void add(int cmdIndex) {
         // TODO scroll to command
         ImageView addArgButton = drive.find(Ids.CMD_ADD_ARG_BUTTON_ID, cmdIndex);
         drive.clickOn(addArgButton);
@@ -90,7 +90,7 @@ public class ArgumentUIManager extends CommandUIManager {
      * @param type     the type of the argument to add
      * @param value    the value of the argument to add
      */
-    public void addArg(int cmdIndex, Models.Argument.Type type, Object value) {
+    public void add(int cmdIndex, Models.Argument.Type type, Object value) {
         // TODO scroll to command
         ImageView addArgButton = drive.find(Ids.CMD_ADD_ARG_BUTTON_ID, cmdIndex);
         drive.clickOn(addArgButton);
@@ -106,7 +106,7 @@ public class ArgumentUIManager extends CommandUIManager {
      * @param type     the new type for the argument
      * @param value    the new value for the argument
      */
-    public void editArg(int cmdIndex, int argIndex, Models.Argument.Type type, Object value) {
+    public void edit(int cmdIndex, int argIndex, Models.Argument.Type type, Object value) {
 
         ScrollPane argCmdScrollPane = drive.find(Ids.CMD_ARG_SCROLLPANE_ID, cmdIndex);
 
@@ -126,7 +126,7 @@ public class ArgumentUIManager extends CommandUIManager {
      * @param sourceIndex      index where to drag
      * @param destinationIndex index where to drop
      */
-    public void moveArg(int cmdIndex, int sourceIndex, int destinationIndex) {
+    public void move(int cmdIndex, int sourceIndex, int destinationIndex) {
 
         // TODO scroll to source
 
