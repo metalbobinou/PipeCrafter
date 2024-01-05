@@ -7,7 +7,8 @@ import org.testfx.api.FxRobotException;
 
 import Models.Argument.Type;
 import Models.Command.State;
-import Utils.MainPage;
+import Utils.ArgumentUIManager;
+import Utils.CommandUIManager;
 import Utils.OutputParameters;
 import Utils.TestFXBase;
 import Utils.OutputParameters.Format;
@@ -18,21 +19,21 @@ public class EditTests extends TestFXBase {
 
     @Test
     public void add1Cmd() {
-        MainPage page = new MainPage(this);
+        CommandUIManager cm = new CommandUIManager(this);
 
         int nbCmdsBeforeAdd = Business.Command.getCommands().size();
 
         String name = "A command";
         String cmd = "echo";
 
-        page.addCmd(name, cmd);
+        cm.addCmd(name, cmd);
 
-        page.checkCmd(Business.Command.getCommands().get(0), State.NEXT_TO_RUN, 1, nbCmdsBeforeAdd + 1, name, cmd);
+        cm.checkCmd(Business.Command.getCommands().get(0), State.NEXT_TO_RUN, 1, nbCmdsBeforeAdd + 1, name, cmd);
     }
 
     // @Test
     // public void add100Cmd() {
-    // MainPage page = new MainPage(this);
+    // CommandUIManager page = new CommandUIManager(this);
 
     // int nbCmdsToAdd = 20;
 
@@ -51,8 +52,8 @@ public class EditTests extends TestFXBase {
 
     @Test
     public void addTextArg() {
-        MainPage page = new MainPage(this);
-        page.addCmd("A", "echo");
+        CommandUIManager cm = new CommandUIManager(this);
+        cm.addCmd("A", "echo");
 
         int cmdIndex = 0;
         Type type = Type.TEXT;
@@ -61,17 +62,18 @@ public class EditTests extends TestFXBase {
         Models.Command targetedCmd = Business.Command.getCommands().get(cmdIndex);
         int nbArgBeforeAdd = targetedCmd.getArgumentList().size();
 
-        page.addArg(cmdIndex, type,
+        ArgumentUIManager am = new ArgumentUIManager(this);
+        am.addArg(cmdIndex, type,
                 value);
 
-        page.checkArg(targetedCmd, nbArgBeforeAdd + 1, targetedCmd.getArgumentList().get(nbArgBeforeAdd), type, value);
+        am.checkArg(targetedCmd, nbArgBeforeAdd + 1, targetedCmd.getArgumentList().get(nbArgBeforeAdd), type, value);
     }
 
     @Test
     public void addOutputArg() {
-        MainPage page = new MainPage(this);
-        page.addCmd("A", "echo");
-        page.addCmd("B", "echo");
+        CommandUIManager cm = new CommandUIManager(this);
+        cm.addCmd("A", "echo");
+        cm.addCmd("B", "echo");
 
         int cmdIndex = 1;
         Type type = Type.OUTPUT;
@@ -80,24 +82,26 @@ public class EditTests extends TestFXBase {
         Models.Command targetedCmd = Business.Command.getCommands().get(cmdIndex);
         int nbArgBeforeAdd = targetedCmd.getArgumentList().size();
 
-        page.addArg(cmdIndex, type,
+        ArgumentUIManager am = new ArgumentUIManager(this);
+        am.addArg(cmdIndex, type,
                 value);
 
-        page.checkArg(targetedCmd, nbArgBeforeAdd + 1, targetedCmd.getArgumentList().get(nbArgBeforeAdd), type, value);
+        am.checkArg(targetedCmd, nbArgBeforeAdd + 1, targetedCmd.getArgumentList().get(nbArgBeforeAdd), type, value);
     }
 
     @Test
     public void addOutputArgToFirstCmd() {
-        MainPage page = new MainPage(this);
-        page.addCmd("A", "echo");
-        page.addCmd("B", "echo");
+        CommandUIManager cm = new CommandUIManager(this);
+        cm.addCmd("A", "echo");
+        cm.addCmd("B", "echo");
 
         int cmdIndex = 0;
         Type type = Type.OUTPUT;
         Object value = new OutputParameters(Business.Command.getCommands().get(0), OutputStream.OUT, Format.CONTENT);
 
+        ArgumentUIManager am = new ArgumentUIManager(this);
         assertThrows(FxRobotException.class, () -> {
-            page.addArg(cmdIndex, type,
+            am.addArg(cmdIndex, type,
                     value);
         });
 
@@ -105,9 +109,9 @@ public class EditTests extends TestFXBase {
 
     @Test
     public void editArg() {
-        MainPage page = new MainPage(this);
-        page.addCmd("A", "echo");
-        page.addCmd("B", "echo");
+        CommandUIManager cm = new CommandUIManager(this);
+        cm.addCmd("A", "echo");
+        cm.addCmd("B", "echo");
 
         int cmdIndex = 1;
         Type type = Type.TEXT;
@@ -115,9 +119,10 @@ public class EditTests extends TestFXBase {
 
         Models.Command targetedCmd = Business.Command.getCommands().get(cmdIndex);
 
-        page.addArg(cmdIndex, type,
+        ArgumentUIManager am = new ArgumentUIManager(this);
+        am.addArg(cmdIndex, type,
                 value);
-        page.addArg(cmdIndex, type,
+        am.addArg(cmdIndex, type,
                 value);
 
         int argIndex = 1;
@@ -125,9 +130,9 @@ public class EditTests extends TestFXBase {
         type = Type.OUTPUT;
         value = new OutputParameters(Business.Command.getCommands().get(0), OutputStream.OUT, Format.CONTENT);
 
-        page.editArg(cmdIndex, argIndex, type, value);
+        am.editArg(cmdIndex, argIndex, type, value);
 
-        page.checkArg(targetedCmd, nbArgBeforeEdit, targetedCmd.getArgumentList().get(argIndex), type, value);
+        am.checkArg(targetedCmd, nbArgBeforeEdit, targetedCmd.getArgumentList().get(argIndex), type, value);
     }
 
 }
