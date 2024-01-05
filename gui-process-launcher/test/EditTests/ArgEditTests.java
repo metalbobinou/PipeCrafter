@@ -1,5 +1,6 @@
 package EditTests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -130,6 +131,22 @@ public class ArgEditTests extends TestFXBase {
         for (int i = 0; i < argList.size(); i++) {
             am.check(cmd, 3, argList.get(i), Type.TEXT, Integer.toString(i));
         }
+    }
+
+    @Test
+    void delete() {
+        new CommandUIManager(this).add(null, null);
+
+        ArgumentUIManager am = new ArgumentUIManager(this);
+        am.add(0, Type.TEXT, "-1");
+        am.add(0, Type.TEXT, "0");
+
+        am.delete(0, 0);
+
+        Models.Command cmd = Business.Command.getCommands().get(0);
+
+        am.check(cmd, 1, cmd.getArgumentList().get(0), Type.TEXT, Integer.toString(0));
+
     }
 
 }

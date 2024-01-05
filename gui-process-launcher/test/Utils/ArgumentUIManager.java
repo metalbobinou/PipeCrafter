@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 
 /** Sub MainPage class to handle interactions with arguments */
-public class ArgumentUIManager extends CommandUIManager {
+public class ArgumentUIManager extends MainPage {
     // #region Constructor
 
     public ArgumentUIManager(TestFXBase drive) {
