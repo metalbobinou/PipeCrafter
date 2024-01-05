@@ -98,7 +98,19 @@ public class CommandUIManager extends MainPage {
         drive.dropTo((ImageView) drive.find(Ids.CMD_RUN_BUTTON_ID, destinationIndex));
     }
 
-    // public void delete
+    /**
+     * Delete a command
+     * 
+     * Note: waiting for the TODO implementation, can only delete on screen cmds
+     * 
+     * @param cmdIndex index of the command to delete
+     */
+    public void delete(int cmdIndex) {
+        // TODO scroll to command
+
+        ImageView deleteButton = drive.find(Ids.CMD_DELETE_BUTTON_ID, cmdIndex);
+        drive.clickOn(deleteButton);
+    }
 
     // #endregion
 }
