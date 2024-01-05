@@ -81,11 +81,11 @@ public class CommandUIManager extends MainPage {
     /**
      * Move one command to another's location
      * 
-     * Note: waiting for the TODO implementation, can move one visible command to
+     * Note: waiting for the TODO implementation, can move 1 visible command to
      * another that is also on screen
      * 
-     * @param sourceIndex
-     * @param destinationIndex
+     * @param sourceIndex      index where to drag
+     * @param destinationIndex index where to drop
      */
     public void moveCmd(int sourceIndex, int destinationIndex) {
 
