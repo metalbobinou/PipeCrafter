@@ -89,6 +89,18 @@ public abstract class TestFXBase extends ApplicationTest {
     }
 
     /**
+     * Helper method to retrieve the nth matching JavaFX components
+     * 
+     * @param <T>   type of the component to retrieve
+     * @param query the string query associated with the wanted component
+     * @param n     the index of the node to return among the matches
+     * @return the requested component
+     */
+    public <T extends Node> T find(final String query, final int n) {
+        return (T) lookup(query).nth(n).query();
+    }
+
+    /**
      * Custom verifyThat method to systematically avoid race conditions when using
      * verifyThat
      * 
