@@ -2,10 +2,14 @@ package EditTests;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobotException;
 
 import Models.Argument.Type;
+import Models.Command.State;
 import Utils.ArgumentUIManager;
 import Utils.CommandUIManager;
 import Utils.OutputParameters;
@@ -99,6 +103,29 @@ public class ArgEditTests extends TestFXBase {
         am.editArg(cmdIndex, argIndex, type, value);
 
         am.checkArg(targetedCmd, nbArgBeforeEdit, targetedCmd.getArgumentList().get(argIndex), type, value);
+    }
+
+    @Test
+    void moveArg() {
+        CommandUIManager cm = new CommandUIManager(this);
+        cm.addCmd(null, null);
+        cm.addCmd(null, null);
+
+        int cmdIndex = 1;
+
+        ArgumentUIManager am = new ArgumentUIManager(this);
+        am.addArg(cmdIndex, Type.TEXT, "1");
+        am.addArg(cmdIndex, Type.TEXT, "2");
+        am.addArg(cmdIndex, Type.TEXT, "0");
+
+        am.moveArg(cmdIndex, 2, 0);
+
+        Models.Command cmd = Business.Command.getCommands().get(cmdIndex);
+        List<Models.Argument> argList = cmd.getArgumentList();
+
+        for (int i = 0; i < argList.size(); i++) {
+            am.checkArg(cmd, 3, argList.get(i), Type.TEXT, Integer.toString(i));
+        }
     }
 
 }
