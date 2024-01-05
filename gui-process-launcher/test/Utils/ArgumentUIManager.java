@@ -10,6 +10,7 @@ import org.testfx.util.WaitForAsyncUtils;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 
 /** Sub MainPage class to handle interactions with arguments */
 public class ArgumentUIManager extends CommandUIManager {
@@ -22,38 +23,6 @@ public class ArgumentUIManager extends CommandUIManager {
     // #endregion
 
     // #region Methods
-
-    /**
-     * Start adding an argument to the Nth command without selecting a type
-     * 
-     * Note: waiting for the TODO implementation, can only add an argument to
-     * the commands visible on screen when the function is called
-     * 
-     * @param cmdIndex the index of the command to add an argument to
-     */
-    public void addArg(int cmdIndex) {
-        // TODO scroll to command
-        ImageView addArgButton = drive.lookup(Ids.CMD_ADD_ARG_BUTTON_ID).nth(cmdIndex).query();
-        drive.clickOn(addArgButton);
-    }
-
-    /**
-     * Add an argument of type type to the Nth command
-     * 
-     * Note: waiting for the TODO implementation, can only add an argument to
-     * the commands visible on screen when the function is called
-     * 
-     * @param cmdIndex the index of the command to add an argument to
-     * @param type     the type of the argument to add
-     * @param value    the value of the argument to add
-     */
-    public void addArg(int cmdIndex, Models.Argument.Type type, Object value) {
-        // TODO scroll to command
-        ImageView addArgButton = drive.lookup(Ids.CMD_ADD_ARG_BUTTON_ID).nth(cmdIndex).query();
-        drive.clickOn(addArgButton);
-
-        new ArgumentSelectorPage(drive).selectArgType(type, value);
-    }
 
     /**
      * Check that an argument has the correct values
@@ -98,6 +67,38 @@ public class ArgumentUIManager extends CommandUIManager {
     }
 
     /**
+     * Start adding an argument to the Nth command without selecting a type
+     * 
+     * Note: waiting for the TODO implementation, can only add an argument to
+     * the commands visible on screen when the function is called
+     * 
+     * @param cmdIndex the index of the command to add an argument to
+     */
+    public void addArg(int cmdIndex) {
+        // TODO scroll to command
+        ImageView addArgButton = drive.find(Ids.CMD_ADD_ARG_BUTTON_ID, cmdIndex);
+        drive.clickOn(addArgButton);
+    }
+
+    /**
+     * Add an argument of type type to the Nth command
+     * 
+     * Note: waiting for the TODO implementation, can only add an argument to
+     * the commands visible on screen when the function is called
+     * 
+     * @param cmdIndex the index of the command to add an argument to
+     * @param type     the type of the argument to add
+     * @param value    the value of the argument to add
+     */
+    public void addArg(int cmdIndex, Models.Argument.Type type, Object value) {
+        // TODO scroll to command
+        ImageView addArgButton = drive.find(Ids.CMD_ADD_ARG_BUTTON_ID, cmdIndex);
+        drive.clickOn(addArgButton);
+
+        new ArgumentSelectorPage(drive).selectArgType(type, value);
+    }
+
+    /**
      * Edit the targeted argument and set its new value
      * 
      * @param cmdIndex the command's index to which the argument belongs to
@@ -107,12 +108,36 @@ public class ArgumentUIManager extends CommandUIManager {
      */
     public void editArg(int cmdIndex, int argIndex, Models.Argument.Type type, Object value) {
 
-        ScrollPane argCmdScrollPane = drive.lookup(Ids.CMD_ARG_SCROLLPANE_ID).nth(cmdIndex).query();
+        ScrollPane argCmdScrollPane = drive.find(Ids.CMD_ARG_SCROLLPANE_ID, cmdIndex);
 
         Label argLabel = drive.from(argCmdScrollPane).lookup(Ids.ARGUMENT_VALUE_ID).nth(argIndex).query();
         drive.clickOn(argLabel);
 
         new ArgumentSelectorPage(drive).selectArgType(type, value);
+    }
+
+    /**
+     * Move a command's argument
+     * 
+     * Note: waiting for the TODO implementation, can move 1 visible argument to
+     * another that is also on screen
+     * 
+     * @param cmdIndex
+     * @param sourceIndex      index where to drag
+     * @param destinationIndex index where to drop
+     */
+    public void moveArg(int cmdIndex, int sourceIndex, int destinationIndex) {
+
+        // TODO scroll to source
+
+        ScrollPane argCmdScrollPane = drive.find(Ids.CMD_ARG_SCROLLPANE_ID, cmdIndex);
+
+        drive.drag((Label) drive.from(argCmdScrollPane).lookup(Ids.ARGUMENT_VALUE_ID).nth(sourceIndex).query(),
+                MouseButton.PRIMARY);
+
+        // TODO scroll to destination
+
+        drive.dropTo((Label) drive.from(argCmdScrollPane).lookup(Ids.ARGUMENT_VALUE_ID).nth(destinationIndex).query());
     }
 
     // #endregion
