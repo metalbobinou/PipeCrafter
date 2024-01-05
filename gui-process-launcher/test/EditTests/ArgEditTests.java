@@ -1,6 +1,7 @@
 package EditTests;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -44,17 +45,22 @@ public class ArgEditTests extends TestFXBase {
         cm.add("B", "echo");
 
         int cmdIndex = 1;
+        Models.Command cmdToUse = Business.Command.getCommands().get(0);
         Type type = Type.OUTPUT;
-        Object value = new OutputParameters(Business.Command.getCommands().get(0), OutputStream.OUT, Format.CONTENT);
+        Object value = new OutputParameters(cmdToUse, OutputStream.OUT, Format.CONTENT);
 
         Models.Command targetedCmd = Business.Command.getCommands().get(cmdIndex);
         int nbArgBeforeAdd = targetedCmd.getArgumentList().size();
 
         ArgumentUIManager am = new ArgumentUIManager(this);
-        am.add(cmdIndex, type,
-                value);
+        am.add(cmdIndex, type, value);
 
-        am.check(targetedCmd, nbArgBeforeAdd + 1, targetedCmd.getArgumentList().get(nbArgBeforeAdd), type, value);
+        Models.Argument addedArg = targetedCmd.getArgumentList().get(nbArgBeforeAdd);
+
+        am.check(targetedCmd, nbArgBeforeAdd + 1, addedArg, type, value);
+
+        assertTrue(cmdToUse.getReferringArgumentList().size() == 1
+                && cmdToUse.getReferringArgumentList().contains(addedArg));
     }
 
     @Test
