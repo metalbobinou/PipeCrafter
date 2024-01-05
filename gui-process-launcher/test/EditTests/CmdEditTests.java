@@ -124,4 +124,5 @@ public class CmdEditTests extends TestFXBase {
         }
     }
 
+    // TODO test breaking references by move or delete
 }
