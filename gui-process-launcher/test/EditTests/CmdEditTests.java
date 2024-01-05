@@ -2,9 +2,16 @@ package EditTests;
 
 import org.junit.jupiter.api.Test;
 
+import Models.Argument.Type;
 import Models.Command.State;
+import Utils.ArgumentUIManager;
 import Utils.CommandUIManager;
+import Utils.OutputParameters;
 import Utils.TestFXBase;
+import Utils.OutputParameters.Format;
+import Utils.OutputParameters.OutputStream;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 
 /** Command edit related tests class */
 public class CmdEditTests extends TestFXBase {
@@ -78,11 +85,43 @@ public class CmdEditTests extends TestFXBase {
     }
 
     @Test
-    void deleteSimple() {
+    void deleteMiddle() {
         CommandUIManager cm = new CommandUIManager(this);
         cm.add("0", null);
         cm.add("1", null);
         cm.add("1", null);
+
+        cm.delete(1);
+
+        State expectedState = State.NEXT_TO_RUN;
+
+        for (int i = 0; i < Business.Command.getCommands().size(); i++) {
+            cm.check(Business.Command.getCommands().get(i), expectedState, i + 1, 2, String.valueOf(i), "");
+            expectedState = State.TO_RUN;
+        }
+    }
+
+    @Test
+    void deleteReferenced() {
+        CommandUIManager cm = new CommandUIManager(this);
+        cm.add("0", null);
+        cm.add("0", null);
+
+        int referencedCmdIndex = 0;
+
+        ArgumentUIManager am = new ArgumentUIManager(this);
+        am.add(1, Type.OUTPUT, new OutputParameters(Business.Command.getCommands().get(referencedCmdIndex),
+                OutputStream.ERR, Format.CONTENT));
+
+        cm.delete(referencedCmdIndex);
+        cm.handleAlertPopup(AlertType.WARNING, ButtonType.YES);
+
+        State expectedState = State.NEXT_TO_RUN;
+
+        for (int i = 0; i < Business.Command.getCommands().size(); i++) {
+            cm.check(Business.Command.getCommands().get(i), expectedState, i + 1, 1, String.valueOf(i), "");
+            expectedState = State.TO_RUN;
+        }
     }
 
 }
