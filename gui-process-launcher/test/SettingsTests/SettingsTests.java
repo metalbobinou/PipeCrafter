@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import Business.Settings.Shell;
 import Utils.SettingsPage;
 import Utils.TestFXBase;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 
 /** Settings related tests class */
 public class SettingsTests extends TestFXBase {
@@ -54,7 +56,7 @@ public class SettingsTests extends TestFXBase {
 
         page.setOutputFolderField(text);
 
-        page.verifyErrorAlertDisplayed();
+        page.handleAlertPopup(AlertType.ERROR, ButtonType.OK);
 
         // check that the path was not changed
         page.verifyOutputFolderField(currentSetPath);
@@ -69,7 +71,7 @@ public class SettingsTests extends TestFXBase {
 
         page.setExecFolderField(text);
 
-        page.verifyErrorAlertDisplayed();
+        page.handleAlertPopup(AlertType.ERROR, ButtonType.OK);
 
         // check that the path was not changed
         page.verifyExecFolderField(currentSetPath);

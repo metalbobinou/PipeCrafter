@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 
 /** Parent class for all page classes */
@@ -61,12 +62,17 @@ public abstract class SuperPage {
         pressAndRelease(KeyCode.ENTER);
     }
 
-    /** Check that an alert is displayed and clear it */
-    public void verifyErrorAlertDisplayed() {
+    /**
+     * Check that an alert of the given type is displayed and clear it with the
+     * provided answer
+     * 
+     * @param alertType type of the alert to look for
+     * @param answer    button to press to handle the alert
+     */
+    public void handleAlertPopup(AlertType alertType, ButtonType answer) {
         DialogPane dialogPane = drive.find(".dialog-pane");
-        assumeTrue(dialogPane.getStyleClass().contains("error"));
-
-        drive.clickOn(dialogPane.lookupButton(ButtonType.OK));
+        assumeTrue(dialogPane.getStyleClass().contains(alertType.toString()));
+        drive.clickOn(dialogPane.lookupButton(answer));
     }
 
     // #endregion
