@@ -66,13 +66,11 @@ public class CommandUIManager extends MainPage {
      */
     public void setDetails(int cmdIndex, String name, String cmd) {
         if (name != null) {
-            TextField nameField = drive.find(Ids.CMD_NAME_TEXTFIELD_ID, cmdIndex);
-            drive.clickOn(nameField);
+            drive.clickOn((TextField) drive.find(Ids.CMD_NAME_TEXTFIELD_ID, cmdIndex));
             drive.write(name);
         }
         if (cmd != null) {
-            TextField cmdField = drive.find(Ids.CMD_TEXTFIELD_ID, cmdIndex);
-            drive.clickOn(cmdField);
+            drive.clickOn((TextField) drive.find(Ids.CMD_TEXTFIELD_ID, cmdIndex));
             drive.write(cmd);
         }
 
@@ -108,8 +106,7 @@ public class CommandUIManager extends MainPage {
     public void delete(int cmdIndex) {
         // TODO scroll to command
 
-        ImageView deleteButton = drive.find(Ids.CMD_DELETE_BUTTON_ID, cmdIndex);
-        drive.clickOn(deleteButton);
+        drive.clickOn((ImageView) drive.find(Ids.CMD_DELETE_BUTTON_ID, cmdIndex));
     }
 
     // #endregion

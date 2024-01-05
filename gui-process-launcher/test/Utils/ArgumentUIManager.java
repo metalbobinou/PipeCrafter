@@ -76,8 +76,7 @@ public class ArgumentUIManager extends CommandUIManager {
      */
     public void add(int cmdIndex) {
         // TODO scroll to command
-        ImageView addArgButton = drive.find(Ids.CMD_ADD_ARG_BUTTON_ID, cmdIndex);
-        drive.clickOn(addArgButton);
+        drive.clickOn((ImageView) drive.find(Ids.CMD_ADD_ARG_BUTTON_ID, cmdIndex));
     }
 
     /**
@@ -92,8 +91,7 @@ public class ArgumentUIManager extends CommandUIManager {
      */
     public void add(int cmdIndex, Models.Argument.Type type, Object value) {
         // TODO scroll to command
-        ImageView addArgButton = drive.find(Ids.CMD_ADD_ARG_BUTTON_ID, cmdIndex);
-        drive.clickOn(addArgButton);
+        drive.clickOn((ImageView) drive.find(Ids.CMD_ADD_ARG_BUTTON_ID, cmdIndex));
 
         new ArgumentSelectorPage(drive).selectArgType(type, value);
     }
@@ -108,10 +106,9 @@ public class ArgumentUIManager extends CommandUIManager {
      */
     public void edit(int cmdIndex, int argIndex, Models.Argument.Type type, Object value) {
 
-        ScrollPane argCmdScrollPane = drive.find(Ids.CMD_ARG_SCROLLPANE_ID, cmdIndex);
+        ScrollPane cmdArgScrollPane = drive.find(Ids.CMD_ARG_SCROLLPANE_ID, cmdIndex);
 
-        Label argLabel = drive.from(argCmdScrollPane).lookup(Ids.ARGUMENT_VALUE_ID).nth(argIndex).query();
-        drive.clickOn(argLabel);
+        drive.clickOn((Label) drive.from(cmdArgScrollPane).lookup(Ids.ARGUMENT_VALUE_ID).nth(argIndex).query());
 
         new ArgumentSelectorPage(drive).selectArgType(type, value);
     }
@@ -130,14 +127,32 @@ public class ArgumentUIManager extends CommandUIManager {
 
         // TODO scroll to source
 
-        ScrollPane argCmdScrollPane = drive.find(Ids.CMD_ARG_SCROLLPANE_ID, cmdIndex);
+        ScrollPane cmdArgScrollPane = drive.find(Ids.CMD_ARG_SCROLLPANE_ID, cmdIndex);
 
-        drive.drag((Label) drive.from(argCmdScrollPane).lookup(Ids.ARGUMENT_VALUE_ID).nth(sourceIndex).query(),
+        drive.drag((Label) drive.from(cmdArgScrollPane).lookup(Ids.ARGUMENT_VALUE_ID).nth(sourceIndex).query(),
                 MouseButton.PRIMARY);
 
         // TODO scroll to destination
 
-        drive.dropTo((Label) drive.from(argCmdScrollPane).lookup(Ids.ARGUMENT_VALUE_ID).nth(destinationIndex).query());
+        drive.dropTo((Label) drive.from(cmdArgScrollPane).lookup(Ids.ARGUMENT_VALUE_ID).nth(destinationIndex).query());
+    }
+
+    /**
+     * Delete the specified argument
+     * 
+     * Note: waiting for the TODO implementation, can only delete on screen args
+     * 
+     * @param cmdIndex index of the argument's command
+     * @param argIndex index of the targeted argument
+     */
+    public void delete(int cmdIndex, int argIndex) {
+        // TODO scroll to argument
+
+        ScrollPane cmdArgScrollPane = drive.find(Ids.CMD_ARG_SCROLLPANE_ID, cmdIndex);
+
+        drive.clickOn(
+                (ImageView) drive.from(cmdArgScrollPane).lookup(Ids.DELETE_ARGUMENT_BUTTON_ID).nth(argIndex).query());
+
     }
 
     // #endregion
