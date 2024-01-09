@@ -7,6 +7,7 @@ import java.io.File;
 
 import org.testfx.util.WaitForAsyncUtils;
 
+import javafx.geometry.VerticalDirection;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -91,7 +92,12 @@ public class ArgumentUIManager extends MainPage {
      */
     public void add(int cmdIndex, Models.Argument.Type type, Object value) {
         // TODO scroll to command
-        drive.clickOn((ImageView) drive.find(Ids.CMD_ADD_ARG_BUTTON_ID, cmdIndex));
+        try {
+            drive.clickOn((ImageView) drive.find(Ids.CMD_ADD_ARG_BUTTON_ID, cmdIndex));
+        } catch (Exception e) {
+            drive.scroll(30, VerticalDirection.UP);
+            drive.clickOn((ImageView) drive.find(Ids.CMD_ADD_ARG_BUTTON_ID, cmdIndex));
+        }
 
         new ArgumentSelectorPage(drive).selectArgType(type, value);
     }
