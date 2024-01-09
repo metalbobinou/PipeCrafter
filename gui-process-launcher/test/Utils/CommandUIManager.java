@@ -8,6 +8,7 @@ import Models.Command.State;
 import javafx.geometry.VerticalDirection;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 
 /** Sub MainPage class to handle interactions with commands */
@@ -52,8 +53,12 @@ public class CommandUIManager extends MainPage {
      * @param cmd  optional, command to assign
      */
     public void add(String name, String cmd) {
-        drive.scroll(30, VerticalDirection.UP);
-        drive.clickOn(Ids.ADD_CMD_BUTTON_ID);
+        try {
+            drive.clickOn(Ids.ADD_CMD_BUTTON_ID);
+        } catch (Exception e) {
+            drive.scroll(30, VerticalDirection.UP);
+            drive.clickOn(Ids.ADD_CMD_BUTTON_ID);
+        }
         setDetails(Business.Command.getCommands().size() - 1, name, cmd);
     }
 
@@ -67,10 +72,12 @@ public class CommandUIManager extends MainPage {
     public void setDetails(int cmdIndex, String name, String cmd) {
         if (name != null) {
             drive.clickOn((TextField) drive.find(Ids.CMD_NAME_TEXTFIELD_ID, cmdIndex));
+            pressAndRelease(controlKey, KeyCode.A, KeyCode.BACK_SPACE);
             drive.write(name);
         }
         if (cmd != null) {
             drive.clickOn((TextField) drive.find(Ids.CMD_TEXTFIELD_ID, cmdIndex));
+            pressAndRelease(controlKey, KeyCode.A, KeyCode.BACK_SPACE);
             drive.write(cmd);
         }
 
