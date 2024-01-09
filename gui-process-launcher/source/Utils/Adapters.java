@@ -192,7 +192,7 @@ public class Adapters {
 
             JsonObject jsonObject = json.getAsJsonObject();
 
-            Command cmdToUse = Business.Command.getCommands().get(jsonObject.get("cmdToUsesIndex").getAsInt());
+            Command cmdToUse = Business.Command.getCommands().get(jsonObject.get("cmdToUse").getAsInt());
 
             OutputStream stream = OutputStream.valueOf(jsonObject.get("stream").getAsString());
 
@@ -206,7 +206,7 @@ public class Adapters {
 
             JsonObject obj = new JsonObject();
 
-            obj.addProperty("cmdToUsesIndex", src.getCmdToUse().getIndex());
+            obj.addProperty("cmdToUse", src.getCmdToUse().getIndex());
             obj.addProperty("stream", src.getStream().toString());
             obj.addProperty("format", src.getFormat().toString());
 
@@ -222,9 +222,12 @@ public class Adapters {
                 throws JsonParseException {
             JsonObject jsonObject = json.getAsJsonObject();
 
+            JsonElement JSONstate = jsonObject.get("state");
+            JsonElement JSONexitCode = jsonObject.get("exitCode");
+
             return new Tuple<Models.Command.State, Integer>(
-                    Models.Command.State.valueOf(jsonObject.get("state").getAsString()),
-                    jsonObject.get("exitCode").getAsInt());
+                    Models.Command.State.valueOf(JSONstate.isJsonNull() ? null : JSONstate.getAsString()),
+                    JSONexitCode.isJsonNull() ? null : JSONexitCode.getAsInt());
         }
 
         @Override
