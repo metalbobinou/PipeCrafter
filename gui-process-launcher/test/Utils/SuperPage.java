@@ -37,7 +37,7 @@ public abstract class SuperPage {
      * 
      * @param keys to press and release
      */
-    private void pressAndRelease(KeyCode... keys) {
+    protected void pressAndRelease(KeyCode... keys) {
         for (KeyCode key : keys) {
             drive.press(key);
         }
