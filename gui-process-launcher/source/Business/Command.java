@@ -278,7 +278,8 @@ public class Command {
 
     /** Delete all commands */
     public static void deleteAllCmd() {
-        for (Models.Command command : commands) {
+        for (int i = 0; i < commands.size();) {
+            Models.Command command = commands.get(i);
             deleteCommand(command, command.getCmdView().getCommandNode());
         }
     }
