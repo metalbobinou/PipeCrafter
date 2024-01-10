@@ -1,6 +1,7 @@
 package SettingsTests;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -11,6 +12,7 @@ import Utils.TestFXBase;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 
+@Timeout(10)
 /** Settings related tests class */
 public class SettingsTests extends TestFXBase {
 

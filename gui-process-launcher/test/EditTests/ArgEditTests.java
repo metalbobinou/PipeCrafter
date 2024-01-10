@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.testfx.api.FxRobotException;
 
 import Models.Argument.Type;
@@ -16,6 +17,7 @@ import Utils.TestFXBase;
 import Utils.OutputParameters.Format;
 import Utils.OutputParameters.OutputStream;
 
+@Timeout(20)
 /** Edit related tests class */
 public class ArgEditTests extends TestFXBase {
 

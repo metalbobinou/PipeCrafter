@@ -1,6 +1,7 @@
 package EditTests;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import Models.Argument.Type;
 import Models.Command.State;
@@ -13,6 +14,7 @@ import Utils.OutputParameters.OutputStream;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 
+@Timeout(20)
 /** Command edit related tests class */
 public class CmdEditTests extends TestFXBase {
 
@@ -30,24 +32,25 @@ public class CmdEditTests extends TestFXBase {
         cm.check(Business.Command.getCommands().get(0), State.NEXT_TO_RUN, 1, nbCmdsBeforeAdd + 1, name, cmd);
     }
 
-    // @Test
-    // public void addMany() {
-    // CommandUIManager page = new CommandUIManager(this);
+    @Test
+    @Timeout(100)
+    public void addMany() {
+        CommandUIManager cm = new CommandUIManager(this);
 
-    // int nbCmdsToAdd = 20;
+        int nbCmdsToAdd = 40;
 
-    // for (int i = 0; i < nbCmdsToAdd; i++) {
-    // page.addCmd(null, null);
-    // }
+        for (int i = 0; i < nbCmdsToAdd; i++) {
+            cm.add(null, null);
+        }
 
-    // State expectedState = State.NEXT_TO_RUN;
+        State expectedState = State.NEXT_TO_RUN;
 
-    // for (int i = 0; i < nbCmdsToAdd; i++) {
-    // page.checkCmd(Business.Command.getCommands().get(i), expectedState, i + 1,
-    // nbCmdsToAdd, "", "");
-    // expectedState = State.TO_RUN;
-    // }
-    // }
+        for (int i = 0; i < nbCmdsToAdd; i++) {
+            cm.check(Business.Command.getCommands().get(i), expectedState, i + 1,
+                    nbCmdsToAdd, "", "");
+            expectedState = State.TO_RUN;
+        }
+    }
 
     @Test
     void moveMiddle() {

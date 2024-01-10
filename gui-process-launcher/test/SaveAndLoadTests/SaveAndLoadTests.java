@@ -5,26 +5,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.io.IOException;
 
-import javax.management.RuntimeErrorException;
-
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import Models.Argument.Type;
 import Models.Command.State;
-import Utils.Alerts;
 import Utils.ArgumentUIManager;
 import Utils.CommandUIManager;
 import Utils.OutputParameters;
 import Utils.OutputParameters.Format;
 import Utils.OutputParameters.OutputStream;
 import javafx.application.Platform;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
 import Utils.TestFXBase;
 
 public class SaveAndLoadTests extends TestFXBase {
 
     @Test
+    @Timeout(30)
     void saveAndLoad() {
         CommandUIManager cm = new CommandUIManager(this);
         ArgumentUIManager am = new ArgumentUIManager(this);
