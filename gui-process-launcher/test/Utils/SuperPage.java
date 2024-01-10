@@ -1,7 +1,6 @@
 package Utils;
 
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Alert.AlertType;
@@ -71,7 +70,7 @@ public abstract class SuperPage {
      */
     public void handleAlertPopup(AlertType alertType, ButtonType answer) {
         DialogPane dialogPane = drive.find(".dialog-pane");
-        assumeTrue(dialogPane.getStyleClass().contains(alertType.toString()));
+        assertTrue(dialogPane.getStyleClass().contains(alertType.toString().toLowerCase()));
         drive.clickOn(dialogPane.lookupButton(answer));
     }
 
