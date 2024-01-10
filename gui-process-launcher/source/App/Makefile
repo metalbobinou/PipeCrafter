@@ -5,7 +5,8 @@ TARGET=Views
 
 # Files to compile in this package
 CLASSES=                           \
-         App.java
+         App.java				   \
+		 Main.java
 
 # JARs required for compiling this package
 CLASSPATH_JARS=javafx-base.jar     \

@@ -45,10 +45,3 @@ public class App extends Application {
 
     // #endregion
 }
-
-/** Launcher class to avoid needing a module.info file */
-class Launcher {
-    public static void main(String[] args) {
-        App.main(args);
-    }
-}
