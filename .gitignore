@@ -42,7 +42,6 @@ Thumbs.db
 *.lst
 *.core
 *.swp
-*.json
 *.o
 *.a
 *.so
