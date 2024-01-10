@@ -1,5 +1,6 @@
 package SaveAndLoadTests;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
@@ -52,12 +53,8 @@ public class SaveAndLoadTests extends TestFXBase {
 
         Platform.runLater(() -> {
             Business.App.resetAll();
-            try {
-                Utils.Load.loadPipeline(save);
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new Error("Failed to load pipeline");
-            }
+
+            assertDoesNotThrow(() -> loadPipeline(save));
 
             op.setCmdToUse(Business.Command.getCommands().get(indexOfReferedCmd));
 
