@@ -1,6 +1,9 @@
 package Utils;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.AfterEach;
@@ -9,6 +12,7 @@ import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
 
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -62,8 +66,6 @@ public abstract class TestFXBase extends ApplicationTest {
         release(new KeyCode[] {});
         release(new MouseButton[] {});
 
-        Utils.resetApp();
-
         // clean generated outputs/saves
         if (Business.Settings.getOutputSavingDirectory().getName().equals("output")) {
             for (File file : Business.Settings.getOutputSavingDirectory().listFiles())
@@ -74,6 +76,8 @@ public abstract class TestFXBase extends ApplicationTest {
         for (File file : savedDirectory.listFiles())
             if (!file.isDirectory())
                 file.delete();
+
+        Utils.resetApp();
     }
 
     /**
@@ -111,6 +115,45 @@ public abstract class TestFXBase extends ApplicationTest {
     public <T extends Node> void verifyThat(String nodeQuery, Predicate<T> nodePredicate) {
         WaitForAsyncUtils.waitForFxEvents();
         org.testfx.api.FxAssert.verifyThat(nodeQuery, nodePredicate);
+    }
+
+    /**
+     * Helper function to load a pipeline in the context of a test
+     * 
+     * @param file the save file to load
+     */
+    public void loadPipeline(File file) {
+        File execDir = Business.Settings.getExecutionDirectory();
+        File outputDir = Business.Settings.getOutputSavingDirectory();
+        Business.App.resetAll();
+        Platform.runLater(() -> {
+            assertDoesNotThrow(() -> Load.loadPipeline(file));
+
+            // Saves may have been made in a different environment, so the
+            // directories have to be set properly
+            Business.Settings.setExecutionDirectory(execDir);
+            Business.Settings.setOutputSavingDirectory(outputDir);
+        });
+
+        sleep(1000);
+    }
+
+    /**
+     * Helper function to load a state file in the context of a test
+     * 
+     * @param file the save file to load
+     */
+    public void loadState(File file) {
+        Platform.runLater(() -> {
+            try {
+                Load.loadState(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new Error("Failed to load state");
+            }
+        });
+
+        sleep(1000);
     }
 
     // #endregion
