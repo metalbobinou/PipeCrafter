@@ -42,13 +42,13 @@ public class CommandUIManager extends MainPage {
             int expectedCmdListSize, String name, String cmdText) {
         WaitForAsyncUtils.waitForFxEvents();
 
-        assertEquals(Business.Command.getCommands().size(), expectedCmdListSize);
+        assertEquals(expectedCmdListSize, Business.Command.getCommands().size());
 
-        assertEquals(cmd.getState(), expectedState);
-        assertEquals(cmd.getPosition(), expectedPosition);
-        assertEquals(cmd.getPosition(), Business.Command.getCommands().indexOf(cmd) + 1);
-        assertEquals(cmd.getName(), name);
-        assertEquals(cmd.getCmd(), cmdText);
+        assertEquals(expectedState, cmd.getState());
+        assertEquals(expectedPosition, cmd.getPosition());
+        assertEquals(Business.Command.getCommands().indexOf(cmd) + 1, cmd.getPosition());
+        assertEquals(name, cmd.getName());
+        assertEquals(cmdText, cmd.getCmd());
     }
 
     /**
@@ -67,8 +67,8 @@ public class CommandUIManager extends MainPage {
             String expectedStdoutOutput, String expectedStderrOutput) throws IOException {
 
         WaitForAsyncUtils.waitForFxEvents();
-        assertEquals(cmd.getState(), expectedState);
-        assertEquals(cmd.getExitCode(), expectedExitCode);
+        assertEquals(expectedState, cmd.getState());
+        assertEquals(expectedExitCode, cmd.getExitCode());
         if (expectedStdoutOutput != null) {
             File outputFile = new File(Business.Settings.getOutputSavingDirectory(),
                     String.valueOf(cmd.getPosition()) + OutputStream.OUT.getExtension());

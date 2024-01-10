@@ -39,25 +39,25 @@ public class ArgumentUIManager extends MainPage {
 
         WaitForAsyncUtils.waitForFxEvents();
 
-        assertEquals(cmd.getArgumentList().size(), expectedArgListSize);
+        assertEquals(expectedArgListSize, cmd.getArgumentList().size());
 
-        assertEquals(arg.getMotherCommand(), cmd);
-        assertEquals(arg.getType(), type);
+        assertEquals(cmd, arg.getMotherCommand());
+        assertEquals(type, arg.getType());
 
         switch (type) {
             case FILE:
-                assertEquals(((File) arg.getObjectValue()).getAbsolutePath(), value.toString());
+                assertEquals(value.toString(), ((File) arg.getObjectValue()).getAbsolutePath());
                 break;
             case TEXT:
-                assertEquals(arg.getObjectValue().toString(), value.toString());
+                assertEquals(value.toString(), arg.getObjectValue().toString());
                 break;
             case OUTPUT:
                 OutputParameters op = arg.getOutputParameter();
                 OutputParameters givenOp = (OutputParameters) value;
 
-                assertEquals(op.getFormat(), givenOp.getFormat());
-                assertEquals(op.getStream(), givenOp.getStream());
-                assertEquals(op.getCmdToUse(), givenOp.getCmdToUse());
+                assertEquals(givenOp.getFormat(), op.getFormat());
+                assertEquals(givenOp.getStream(), op.getStream());
+                assertEquals(givenOp.getCmdToUse(), op.getCmdToUse());
 
                 assertTrue(op.getCmdToUse().getReferringArgumentList().contains(arg));
                 break;
