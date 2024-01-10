@@ -14,7 +14,6 @@ import Utils.CommandUIManager;
 import Utils.OutputParameters;
 import Utils.OutputParameters.Format;
 import Utils.OutputParameters.OutputStream;
-import javafx.application.Platform;
 import Utils.TestFXBase;
 
 public class SaveAndLoadTests extends TestFXBase {
@@ -49,44 +48,39 @@ public class SaveAndLoadTests extends TestFXBase {
 
         cm.add("XXX", "X");
 
-        Platform.runLater(() -> {
-            Business.App.resetAll();
+        assertDoesNotThrow(() -> loadPipeline(save));
+        op.setCmdToUse(Business.Command.getCommands().get(indexOfReferedCmd));
 
-            assertDoesNotThrow(() -> loadPipeline(save));
+        State expectedState = State.NEXT_TO_RUN;
 
-            op.setCmdToUse(Business.Command.getCommands().get(indexOfReferedCmd));
+        for (int i = 0; i < Business.Command.getCommands().size() - 1; i++) {
+            Models.Command cmd = Business.Command.getCommands().get(i);
 
-            State expectedState = State.NEXT_TO_RUN;
+            cm.check(cmd, expectedState, i + 1, nbOfCmds, String.valueOf(i), "echo");
 
-            for (int i = 0; i < Business.Command.getCommands().size() - 1; i++) {
-                Models.Command cmd = Business.Command.getCommands().get(i);
-
-                cm.check(cmd, expectedState, i + 1, nbOfCmds, String.valueOf(i), "echo");
-
-                for (int j = 0; j < nbOfArgs; j++) {
-                    am.check(cmd, nbOfArgs, cmd.getArgumentList().get(j), Type.TEXT,
-                            String.valueOf(i) + "-" + String.valueOf(j));
-                }
-                expectedState = State.TO_RUN;
-            }
-
-            Models.Command cmd = Business.Command.getCommands()
-                    .get(nbOfCmds - 1);
-            cm.check(cmd, expectedState, nbOfCmds, nbOfCmds, String.valueOf(nbOfCmds - 1), "");
             for (int j = 0; j < nbOfArgs; j++) {
-                am.check(cmd, nbOfArgs + 1, cmd.getArgumentList().get(j), Type.TEXT,
-                        String.valueOf(nbOfCmds - 1) + "-" + String.valueOf(j));
+                am.check(cmd, nbOfArgs, cmd.getArgumentList().get(j), Type.TEXT,
+                        String.valueOf(i) + "-" + String.valueOf(j));
             }
+            expectedState = State.TO_RUN;
+        }
 
-            Models.Argument referingArg = cmd.getArgumentList()
-                    .get(nbOfArgs);
-            am.check(cmd, nbOfArgs + 1, referingArg, Type.OUTPUT, op);
+        Models.Command cmd = Business.Command.getCommands()
+                .get(nbOfCmds - 1);
+        cm.check(cmd, expectedState, nbOfCmds, nbOfCmds, String.valueOf(nbOfCmds - 1), "");
+        for (int j = 0; j < nbOfArgs; j++) {
+            am.check(cmd, nbOfArgs + 1, cmd.getArgumentList().get(j), Type.TEXT,
+                    String.valueOf(nbOfCmds - 1) + "-" + String.valueOf(j));
+        }
 
-            Models.Command referedCmd = Business.Command.getCommands().get(indexOfReferedCmd);
+        Models.Argument referingArg = cmd.getArgumentList()
+                .get(nbOfArgs);
+        am.check(cmd, nbOfArgs + 1, referingArg, Type.OUTPUT, op);
 
-            assertTrue(referedCmd.getReferringArgumentList().size() == 1
-                    && referedCmd.getReferringArgumentList().contains(referingArg));
-        });
+        Models.Command referedCmd = Business.Command.getCommands().get(indexOfReferedCmd);
+
+        assertTrue(referedCmd.getReferringArgumentList().size() == 1
+                && referedCmd.getReferringArgumentList().contains(referingArg));
     }
 
     // TODO load after exec to load state
