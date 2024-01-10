@@ -1,0 +1,37 @@
+{
+  "executionDirectoryPath": "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher",
+  "outputSavingDirectoryPath": "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher",
+  "usedShell": "BASH",
+  "commands": [
+    {
+      "name": "",
+      "position": 1,
+      "cmd": "echo",
+      "argumentList": [
+        {
+          "type": "TEXT",
+          "objectValue": "redirect me !"
+        },
+        {
+          "type": "TEXT",
+          "objectValue": "\u003e\u00262"
+        }
+      ]
+    },
+    {
+      "name": "",
+      "position": 2,
+      "cmd": "cat",
+      "argumentList": [
+        {
+          "type": "OUTPUT",
+          "objectValue": {
+            "cmdToUse": 0,
+            "stream": "ERR",
+            "format": "PATH"
+          }
+        }
+      ]
+    }
+  ]
+}
