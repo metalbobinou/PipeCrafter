@@ -2,9 +2,14 @@ package Utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
 import org.testfx.util.WaitForAsyncUtils;
 
 import Models.Command.State;
+import Utils.OutputParameters.OutputStream;
 import javafx.geometry.VerticalDirection;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -44,6 +49,38 @@ public class CommandUIManager extends MainPage {
         assertEquals(cmd.getPosition(), Business.Command.getCommands().indexOf(cmd) + 1);
         assertEquals(cmd.getName(), name);
         assertEquals(cmd.getCmd(), cmdText);
+    }
+
+    /**
+     * Check a command and its outputs after it has been executed
+     * 
+     * @param cmd                  command to check
+     * @param expectedState        the expected state post execution
+     * @param expectedExitCode     the expected exit code
+     * @param expectedStdoutOutput optional, the expected content of the stdout
+     *                             output file
+     * @param expectedStderrOutput optional, the expected content of the stderr
+     *                             output file
+     * @throws IOException
+     */
+    public void checkExec(Models.Command cmd, State expectedState, Integer expectedExitCode,
+            String expectedStdoutOutput, String expectedStderrOutput) throws IOException {
+
+        WaitForAsyncUtils.waitForFxEvents();
+        assertEquals(cmd.getState(), expectedState);
+        assertEquals(cmd.getExitCode(), expectedExitCode);
+        if (expectedStdoutOutput != null) {
+            File outputFile = new File(Business.Settings.getOutputSavingDirectory(),
+                    String.valueOf(cmd.getPosition()) + OutputStream.OUT.getExtension());
+
+            assertEquals(expectedStdoutOutput, Files.readString(outputFile.toPath()));
+        }
+        if (expectedStderrOutput != null) {
+            File outputFile = new File(Business.Settings.getOutputSavingDirectory(),
+                    String.valueOf(cmd.getPosition()) + OutputStream.ERR.getExtension());
+
+            assertEquals(expectedStderrOutput, Files.readString(outputFile.toPath()));
+        }
     }
 
     /**
@@ -114,6 +151,26 @@ public class CommandUIManager extends MainPage {
         // TODO scroll to command
 
         drive.clickOn((ImageView) drive.find(Ids.CMD_DELETE_BUTTON_ID, cmdIndex));
+    }
+
+    /**
+     * Press the run button of the specified command
+     * 
+     * Note: waiting for the TODO implementation, can only press the run button
+     * of a command that is visible on screen
+     * 
+     * @param cmdIndex index of the command to interact with
+     */
+    public void pressRun(int cmdIndex) {
+
+        // TODO scroll to source
+
+        try {
+            drive.clickOn((ImageView) drive.find(Ids.CMD_RUN_BUTTON_ID, cmdIndex), MouseButton.PRIMARY);
+        } catch (Exception e) {
+            drive.scroll(30, VerticalDirection.UP);
+        }
+
     }
 
     // #endregion
