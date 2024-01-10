@@ -117,7 +117,7 @@ public class CmdEditTests extends TestFXBase {
                 OutputStream.ERR, Format.CONTENT));
 
         cm.delete(referencedCmdIndex);
-        cm.handleAlertPopup(AlertType.WARNING, ButtonType.YES);
+        cm.handleAlertPopup(AlertType.CONFIRMATION, ButtonType.YES);
 
         State expectedState = State.NEXT_TO_RUN;
 
