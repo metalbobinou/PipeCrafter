@@ -11,11 +11,11 @@
 
 <StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Main">
    <children>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="500.0" prefHeight="765.0" prefWidth="1352.0" style="-fx-background-color: black;">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="500.0" prefHeight="765.0" prefWidth="1352.0" style="-fx-background-color: rgb(20, 20, 20);">
          <children>
-            <ScrollPane fx:id="cmdScrollPane" fitToHeight="true" fitToWidth="true" layoutX="-3.0" layoutY="191.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="573.0" prefWidth="1358.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="191.0">
+            <ScrollPane fx:id="cmdScrollPane" fitToHeight="true" fitToWidth="true" layoutX="-3.0" layoutY="191.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="573.0" prefWidth="1358.0" style="-fx-background-color: rgb(20, 20, 20);" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="191.0">
                <content>
-                  <VBox fx:id="commandVBox" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="521.0" prefWidth="1356.0" style="-fx-background-color: black;">
+                  <VBox fx:id="commandVBox" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="521.0" prefWidth="1356.0" style="-fx-background-color: rgb(20, 20, 20);">
                      <children>
                         <ImageView fx:id="addCmdButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#add_command" pickOnBounds="true" preserveRatio="true">
                            <image>

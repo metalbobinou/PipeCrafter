@@ -10,9 +10,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="751.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Command">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="751.0" style="-fx-background-color: rgb(20, 20, 20);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Command">
    <children>
-      <TextField fx:id="nameField" layoutX="14.0" layoutY="41.0" prefHeight="26.0" prefWidth="675.0" promptText="Name..." style="-fx-background-color: black; -fx-text-fill: white;" AnchorPane.bottomAnchor="157.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="41.0" />
+      <TextField fx:id="nameField" layoutX="14.0" layoutY="41.0" prefHeight="26.0" prefWidth="675.0" promptText="Name..." style="-fx-background-color: rgb(20, 20, 20); -fx-text-fill: white;" AnchorPane.bottomAnchor="157.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="41.0" />
       <Group layoutX="704.0" layoutY="33.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="704.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="41.0" layoutX="1.0" stroke="WHITE" strokeType="INSIDE" width="46.0" />
@@ -37,10 +37,10 @@
                </image>
             </ImageView>
             <Text fx:id="postion_label" fill="WHITE" layoutX="5.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N" />
-            <TextField fx:id="textField" alignment="CENTER" layoutX="64.0" layoutY="15.0" prefHeight="25.0" prefWidth="623.0" promptText="CMD" style="-fx-border-color: white; -fx-background-color: black; -fx-text-fill: white;" />
-            <ScrollPane fx:id="arguments_scrollPane" fitToHeight="true" fitToWidth="true" layoutX="65.0" layoutY="48.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="623.0" style="-fx-border-color: black; -fx-background-color: black;" vbarPolicy="NEVER">
+            <TextField fx:id="textField" alignment="CENTER" layoutX="64.0" layoutY="15.0" prefHeight="25.0" prefWidth="623.0" promptText="CMD" style="-fx-border-color: white; -fx-background-color: rgb(20, 20, 20); -fx-text-fill: white;" />
+            <ScrollPane fx:id="arguments_scrollPane" fitToHeight="true" fitToWidth="true" layoutX="65.0" layoutY="48.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="623.0" style="-fx-border-color: rgb(20, 20, 20); -fx-background-color: rgb(20, 20, 20);" vbarPolicy="NEVER">
                <content>
-                  <HBox fx:id="argumentsHbox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="59.0" prefWidth="619.0" style="-fx-background-color: black; -fx-border-color: black;" />
+                  <HBox fx:id="argumentsHbox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="59.0" prefWidth="619.0" style="-fx-background-color: rgb(20, 20, 20); -fx-border-color: rgb(20, 20, 20);" />
                </content>
             </ScrollPane>
          </children>

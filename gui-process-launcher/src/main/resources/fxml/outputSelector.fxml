@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="447.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.OutputSelector">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="447.0" style="-fx-background-color: rgb(20, 20, 20);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.OutputSelector">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="317.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="447.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Text fill="WHITE" layoutX="104.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose an output" textAlignment="CENTER" AnchorPane.bottomAnchor="272.25" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="104.9375" AnchorPane.topAnchor="7.0625">
