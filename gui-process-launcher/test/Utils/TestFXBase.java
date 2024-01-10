@@ -125,8 +125,8 @@ public abstract class TestFXBase extends ApplicationTest {
     public void loadPipeline(File file) {
         File execDir = Business.Settings.getExecutionDirectory();
         File outputDir = Business.Settings.getOutputSavingDirectory();
-        Business.App.resetAll();
         Platform.runLater(() -> {
+            Business.App.resetAll();
             assertDoesNotThrow(() -> Load.loadPipeline(file));
 
             // Saves may have been made in a different environment, so the
