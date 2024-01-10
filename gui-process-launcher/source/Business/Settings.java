@@ -2,6 +2,8 @@ package Business;
 
 import java.io.File;
 
+import Execution.ProcessManager;
+
 /** Business class for app settings */
 public class Settings {
 
@@ -41,6 +43,7 @@ public class Settings {
                     "The specified execution directory is not specified, is not a directory or is not writable.");
         }
         Settings.executionDirectory = executionDirectory;
+        ProcessManager.setExecution();
     }
 
     public static void setExecutionDirectory(String executionDirectoryPath) {
