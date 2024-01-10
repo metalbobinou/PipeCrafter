@@ -46,8 +46,10 @@ public class ProcessManager {
      */
     private static void setRedirection(int step) {
 
-        File stdOutsDestination = new File(Business.Settings.getOutputSavingDirectory(), step + ".out");
-        File stdErrsDestination = new File(Business.Settings.getOutputSavingDirectory(), step + ".err");
+        File stdOutsDestination = new File(Business.Settings.getOutputSavingDirectory(),
+                step + OutputStream.OUT.getExtension());
+        File stdErrsDestination = new File(Business.Settings.getOutputSavingDirectory(),
+                step + OutputStream.ERR.getExtension());
 
         // Settings setters guarantee that the directories exist and can be written to
         // Check that if files already exist, they can still be written to
