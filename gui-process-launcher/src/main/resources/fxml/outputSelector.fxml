@@ -19,15 +19,15 @@
             <Font size="32.0" />
          </font>
       </Text>
-      <ComboBox fx:id="commandBox" layoutX="76.0" layoutY="97.0" prefHeight="26.0" prefWidth="296.0" promptText="Command" AnchorPane.bottomAnchor="194.0" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="97.0">
+      <ComboBox fx:id="commandBox" layoutX="76.0" layoutY="97.0" prefHeight="26.0" prefWidth="296.0" promptText="Command" style="-fx-cursor: hand;" AnchorPane.bottomAnchor="194.0" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="97.0">
          <tooltip>
             <Tooltip fx:id="cmdTooltip" text="Empty Tooltip" />
          </tooltip>
       </ComboBox>
-      <ChoiceBox fx:id="streamBox" layoutX="177.0" layoutY="136.0" prefWidth="150.0" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="136.0" />
-      <Button fx:id="doneButton" layoutX="200.0" layoutY="277.0" mnemonicParsing="false" onMouseClicked="#done" text="Done" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.5" AnchorPane.topAnchor="277.0" />
-      <CheckBox fx:id="displayCheckbox" layoutX="161.0" layoutY="234.0" mnemonicParsing="false" onAction="#dispCmd" text="Dispay commands" textFill="WHITE" AnchorPane.bottomAnchor="65.5" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="161.5" AnchorPane.topAnchor="234.0" />
-      <ChoiceBox fx:id="formatBox" layoutX="148.0" layoutY="184.0" prefWidth="150.0" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="184.0" />
+      <ChoiceBox fx:id="streamBox" layoutX="177.0" layoutY="136.0" prefWidth="150.0" style="-fx-cursor: hand;" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="136.0" />
+      <Button fx:id="doneButton" layoutX="200.0" layoutY="277.0" mnemonicParsing="false" onMouseClicked="#done" style="-fx-cursor: hand;" text="Done" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.5" AnchorPane.topAnchor="277.0" />
+      <CheckBox fx:id="displayCheckbox" layoutX="161.0" layoutY="234.0" mnemonicParsing="false" onAction="#dispCmd" style="-fx-cursor: hand;" text="Dispay commands" textFill="WHITE" AnchorPane.bottomAnchor="65.5" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="161.5" AnchorPane.topAnchor="234.0" />
+      <ChoiceBox fx:id="formatBox" layoutX="148.0" layoutY="184.0" prefWidth="150.0" style="-fx-cursor: hand;" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="184.0" />
       <Label fx:id="cmdText" alignment="CENTER" layoutX="19.0" layoutY="64.0" prefHeight="17.0" prefWidth="415.0" textFill="WHITE" AnchorPane.bottomAnchor="236.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="64.0" />
    </children>
 </AnchorPane>
