@@ -286,12 +286,12 @@ public class Command implements Initializable {
         switch (commandModel.getState()) {
             case ALREADY_RUN:
                 run_button.setImage(restart_icon);
-                boxBorders.setStroke(Color.GRAY);
+                boxBorders.setStroke(Color.DIMGRAY);
                 exitCode_label.setText("Exit code: " + commandModel.getExitCode());
                 break;
             case SKIPPED:
                 run_button.setImage(restart_icon);
-                boxBorders.setStroke(Color.rgb(20, 20, 20));
+                boxBorders.setStroke(Color.rgb(40, 40, 40));
                 exitCode_label.setText("--- Skipped ---");
                 break;
             case NEXT_TO_RUN:
