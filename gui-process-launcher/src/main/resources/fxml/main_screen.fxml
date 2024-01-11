@@ -28,40 +28,48 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <ImageView fx:id="stopAllButton" fitHeight="53.0" fitWidth="69.0" layoutX="1273.0" layoutY="24.0" onMouseClicked="#stopAll" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" AnchorPane.bottomAnchor="688.0" AnchorPane.leftAnchor="1273.0" AnchorPane.rightAnchor="19.229076385498047" AnchorPane.topAnchor="24.0">
-               <image>
-                  <Image url="@../images/stop_icon.png" />
-               </image>
-            </ImageView>
-            <HBox alignment="CENTER" layoutY="24.0" prefHeight="52.0" prefWidth="200.0" spacing="15.0" AnchorPane.bottomAnchor="689.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="24.0">
+            <HBox alignment="CENTER_LEFT" layoutY="24.0" prefHeight="53.0" prefWidth="1353.0" spacing="20.0">
                <children>
-                  <ImageView fx:id="settingsButton" fitHeight="40.0" fitWidth="47.0" onMouseClicked="#open_settings" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                     <image>
-                        <Image url="@../images/settings_icon.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="loadButton" fitHeight="56.0" fitWidth="47.0" onMouseClicked="#load" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                     <image>
-                        <Image url="@../images/download_icon.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="saveButton" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#save" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                     <image>
-                        <Image url="@../images/save_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="192.0" layoutY="25.0" prefHeight="46.0" prefWidth="971.0" AnchorPane.leftAnchor="192.0" AnchorPane.topAnchor="25.0">
-               <children>
-                  <Text fx:id="status_text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Editing" textAlignment="CENTER">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Text>
+                  <HBox alignment="CENTER" prefHeight="52.0" prefWidth="200.0" spacing="15.0">
+                     <children>
+                        <ImageView fx:id="settingsButton" fitHeight="40.0" fitWidth="47.0" onMouseClicked="#open_settings" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@../images/settings_icon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="loadButton" fitHeight="56.0" fitWidth="47.0" onMouseClicked="#load" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@../images/download_icon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="saveButton" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#save" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@../images/save_icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="53.0" prefWidth="911.0">
+                     <children>
+                        <Text fx:id="status_text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Editing" textAlignment="CENTER">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="186.0">
+                     <children>
+                        <ImageView fx:id="stopAllButton" fitHeight="53.0" fitWidth="69.0" onMouseClicked="#stopAll" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@../images/stop_icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
          </children>
