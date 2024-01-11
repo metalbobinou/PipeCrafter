@@ -15,9 +15,9 @@
       <HBox alignment="BOTTOM_LEFT" prefHeight="41.0" prefWidth="751.0">
          <children>
             <TextField fx:id="nameField" prefHeight="26.0" prefWidth="675.0" promptText="Name..." style="-fx-background-color: transparent; -fx-text-fill: white;" />
-            <HBox alignment="BOTTOM_RIGHT" prefHeight="41.0" prefWidth="75.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="75.0">
                <children>
-                  <ImageView fx:id="run_button" fitHeight="41.0" fitWidth="47.0" onMouseClicked="#run" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                  <ImageView fx:id="run_button" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#run" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                      <image>
                         <Image url="@../images/start_icon.png" />
                      </image>
@@ -29,7 +29,7 @@
       <Group>
          <children>
             <Rectangle fx:id="boxBorders" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="110.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="751.0" />
-            <ImageView fx:id="addArgButton" fitHeight="21.0" fitWidth="26.0" layoutX="726.0" layoutY="86.0" onMouseClicked="#add_argument" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+            <ImageView fx:id="addArgButton" fitHeight="19.0" fitWidth="19.0" layoutX="726.0" layoutY="86.0" onMouseClicked="#add_argument" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@../images/add2_icon.png" />
                </image>
