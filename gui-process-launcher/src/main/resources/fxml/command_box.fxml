@@ -14,7 +14,7 @@
    <children>
       <HBox alignment="BOTTOM_LEFT" prefHeight="41.0" prefWidth="751.0">
          <children>
-            <TextField fx:id="nameField" prefHeight="26.0" prefWidth="675.0" promptText="Name..." style="-fx-background-color: rgb(20, 20, 20); -fx-text-fill: white;" />
+            <TextField fx:id="nameField" prefHeight="26.0" prefWidth="675.0" promptText="Name..." style="-fx-background-color: transparent; -fx-text-fill: white;" />
             <HBox alignment="BOTTOM_RIGHT" prefHeight="41.0" prefWidth="75.0">
                <children>
                   <ImageView fx:id="run_button" fitHeight="41.0" fitWidth="47.0" onMouseClicked="#run" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
@@ -40,10 +40,10 @@
                </image>
             </ImageView>
             <Text fx:id="postion_label" fill="WHITE" layoutX="5.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N" />
-            <TextField fx:id="textField" alignment="CENTER" layoutX="65.0" layoutY="13.0" prefHeight="25.0" prefWidth="623.0" promptText="CMD" style="-fx-border-color: white; -fx-background-color: rgb(20, 20, 20); -fx-text-fill: white;" />
-            <ScrollPane fx:id="arguments_scrollPane" fitToHeight="true" fitToWidth="true" layoutX="65.0" layoutY="48.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="623.0" style="-fx-border-color: rgb(20, 20, 20); -fx-background-color: rgb(20, 20, 20);" vbarPolicy="NEVER">
+            <TextField fx:id="textField" alignment="CENTER" layoutX="65.0" layoutY="13.0" prefHeight="25.0" prefWidth="623.0" promptText="CMD" style="-fx-border-color: white; -fx-background-color: transparent; -fx-text-fill: white;" />
+            <ScrollPane fx:id="arguments_scrollPane" fitToHeight="true" fitToWidth="true" layoutX="65.0" layoutY="48.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="623.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
                <content>
-                  <HBox fx:id="argumentsHbox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="59.0" prefWidth="619.0" spacing="10.0" style="-fx-background-color: rgb(20, 20, 20);" />
+                  <HBox fx:id="argumentsHbox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="59.0" prefWidth="619.0" spacing="10.0" />
                </content>
             </ScrollPane>
          </children>
