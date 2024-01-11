@@ -11,12 +11,12 @@ import Utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -34,7 +34,7 @@ public class ArgumentTypeSelector implements Initializable {
 
     /** Group containing elements to choose an output */
     @FXML
-    public Group outputGroup;
+    public HBox outputGroup;
 
     // #endregion
 
