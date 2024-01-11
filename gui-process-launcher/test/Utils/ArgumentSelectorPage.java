@@ -1,5 +1,7 @@
 package Utils;
 
+import org.testfx.util.WaitForAsyncUtils;
+
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 
@@ -51,6 +53,8 @@ public class ArgumentSelectorPage extends ArgumentUIManager {
                 }
 
                 drive.clickOn(Ids.FORMAT_SELECTOR_BOX_ID);
+
+                WaitForAsyncUtils.waitForFxEvents();
 
                 switch (op.getFormat()) {
                     case CONTENT:

@@ -26,7 +26,7 @@
                               <Image url="@../images/file_icon.png" />
                            </image>
                         </ImageView>
-                        <Text fill="WHITE" onMouseClicked="#file" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Existing file" textAlignment="CENTER" wrappingWidth="139.64447784423828">
+                        <Text fx:id="fileGroup" fill="WHITE" onMouseClicked="#file" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Existing file" textAlignment="CENTER" wrappingWidth="139.64447784423828">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -40,7 +40,7 @@
                               <Image url="@../images/text_input_icon.png" />
                            </image>
                         </ImageView>
-                        <Text fill="WHITE" onMouseClicked="#text" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Text" textAlignment="CENTER" wrappingWidth="82.64447784423828">
+                        <Text fx:id="textGroup" fill="WHITE" onMouseClicked="#text" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Text" textAlignment="CENTER" wrappingWidth="82.64447784423828">
                            <font>
                               <Font size="25.0" />
                            </font>
