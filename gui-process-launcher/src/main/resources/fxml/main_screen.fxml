@@ -28,7 +28,7 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <HBox alignment="CENTER_LEFT" layoutY="24.0" pickOnBounds="false" prefHeight="53.0" prefWidth="1353.0" spacing="20.0">
+            <HBox alignment="CENTER_LEFT" layoutY="24.0" pickOnBounds="false" prefHeight="53.0" prefWidth="1352.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
                <children>
                   <HBox alignment="CENTER" pickOnBounds="false" prefHeight="52.0" prefWidth="200.0" spacing="15.0">
                      <children>

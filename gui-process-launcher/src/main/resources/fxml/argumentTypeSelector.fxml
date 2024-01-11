@@ -54,7 +54,7 @@
                               <Image url="@../images/output_icon.png" />
                            </image>
                         </ImageView>
-                        <Text fill="WHITE" onMouseClicked="#output" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Command output" textAlignment="CENTER" wrappingWidth="194.06085968017578">
+                        <Text fill="WHITE" onMouseClicked="#output" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Command output" textAlignment="CENTER">
                            <font>
                               <Font size="25.0" />
                            </font>
