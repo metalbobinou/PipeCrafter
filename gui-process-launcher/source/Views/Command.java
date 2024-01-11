@@ -291,12 +291,12 @@ public class Command implements Initializable {
                 break;
             case SKIPPED:
                 run_button.setImage(restart_icon);
-                boxBorders.setStroke(Color.BLACK);
+                boxBorders.setStroke(Color.rgb(20, 20, 20));
                 exitCode_label.setText("--- Skipped ---");
                 break;
             case NEXT_TO_RUN:
                 run_button.setImage(start_icon);
-                boxBorders.setStroke(Color.BLUE);
+                boxBorders.setStroke(Color.rgb(123, 104, 238));
                 exitCode_label.setText("");
                 break;
             case RUNNING:
