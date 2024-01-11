@@ -5,25 +5,29 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="751.0" style="-fx-background-color: rgb(20, 20, 20);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Command">
+
+<VBox spacing="2.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Command">
    <children>
-      <TextField fx:id="nameField" layoutX="14.0" layoutY="41.0" prefHeight="26.0" prefWidth="675.0" promptText="Name..." style="-fx-background-color: rgb(20, 20, 20); -fx-text-fill: white;" AnchorPane.bottomAnchor="157.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="41.0" />
-      <Group layoutX="704.0" layoutY="33.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="704.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+      <HBox alignment="BOTTOM_LEFT" prefHeight="41.0" prefWidth="751.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="41.0" layoutX="1.0" stroke="WHITE" strokeType="INSIDE" width="46.0" />
-            <ImageView fx:id="run_button" fitHeight="41.0" fitWidth="47.0" layoutX="1.0" layoutY="1.0" onMouseClicked="#run" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-               <image>
-                  <Image url="@../images/start_icon.png" />
-               </image>
-            </ImageView>
+            <TextField fx:id="nameField" prefHeight="26.0" prefWidth="675.0" promptText="Name..." style="-fx-background-color: rgb(20, 20, 20); -fx-text-fill: white;" />
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="41.0" prefWidth="75.0">
+               <children>
+                  <ImageView fx:id="run_button" fitHeight="41.0" fitWidth="47.0" onMouseClicked="#run" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@../images/start_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
          </children>
-      </Group>
-      <Group layoutY="74.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="74.0">
+      </HBox>
+      <Group>
          <children>
             <Rectangle fx:id="boxBorders" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="110.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="751.0" />
             <ImageView fx:id="addArgButton" fitHeight="21.0" fitWidth="26.0" layoutX="726.0" layoutY="86.0" onMouseClicked="#add_argument" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
@@ -40,11 +44,15 @@
             <TextField fx:id="textField" alignment="CENTER" layoutX="64.0" layoutY="15.0" prefHeight="25.0" prefWidth="623.0" promptText="CMD" style="-fx-border-color: white; -fx-background-color: rgb(20, 20, 20); -fx-text-fill: white;" />
             <ScrollPane fx:id="arguments_scrollPane" fitToHeight="true" fitToWidth="true" layoutX="65.0" layoutY="48.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="623.0" style="-fx-border-color: rgb(20, 20, 20); -fx-background-color: rgb(20, 20, 20);" vbarPolicy="NEVER">
                <content>
-                  <HBox fx:id="argumentsHbox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="59.0" prefWidth="619.0" style="-fx-background-color: rgb(20, 20, 20); -fx-border-color: rgb(20, 20, 20);" />
+                  <HBox fx:id="argumentsHbox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="59.0" prefWidth="619.0" style="-fx-background-color: rgb(20, 20, 20);" />
                </content>
             </ScrollPane>
          </children>
       </Group>
-      <Text fx:id="exitCode_label" fill="WHITE" layoutX="340.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="339.23974609375" AnchorPane.topAnchor="191.0" />
+      <HBox alignment="CENTER">
+         <children>
+            <Text fx:id="exitCode_label" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" />
+         </children>
+      </HBox>
    </children>
-</AnchorPane>
+</VBox>
