@@ -67,6 +67,9 @@
                            <image>
                               <Image url="@../images/stop_icon.png" />
                            </image>
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
                         </ImageView>
                      </children>
                   </HBox>
