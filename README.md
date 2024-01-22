@@ -1,5 +1,5 @@
-# GUI-Pipeline-Launcher
-GUI for launching steps of a pipeline
+# PipeCrafter
+GUI for buidling and launching steps of a pipeline of programs
 
 # Dependencies:
 - Java (linux: OpenJDK)
