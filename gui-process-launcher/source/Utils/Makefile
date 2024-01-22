@@ -4,18 +4,26 @@
 TARGET=Models
 
 # Files to compile in this package
-CLASSES=                     \
-		 Adapters.java		 \
-		 Alerts.java         \
-		 Load.java			 \
-         OutputStream.java   \
-		 Save.java			 \
-		 Tuple.java			 \
-		 CommandBuilder.java \
-		 Utils.java
+CLASSES=                      \
+        Adapters.java         \
+        Alerts.java           \
+        CommandBuilder.java   \
+        Load.java             \
+        OutputParameters.java \
+        Save.java             \
+        Tuple.java            \
+        Utils.java
 
 # JARs required for compiling this package
-CLASSPATH_JARS=
+CLASSPATH_JARS=javafx-base.jar     \
+               javafx-controls.jar \
+               javafx-fxml.jar     \
+               javafx-graphics.jar \
+               gson.jar
+
+#               javafx-media.jar    \
+#               javafx-swing.jar    \
+#               javafx-web.jar
 
 # Build CLASSPATH for this package
 empty:=

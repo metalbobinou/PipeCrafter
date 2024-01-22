@@ -4,14 +4,22 @@
 TARGET=Business
 
 # Files to compile in this package
-CLASSES=               \
-         App.java      \
-         Argument.java \
-         Process.java  \
-         Settings.java
+CLASSES=              \
+        App.java      \
+        Argument.java \
+        Command.java  \
+        Settings.java
 
 # JARs required for compiling this package
-CLASSPATH_JARS=
+CLASSPATH_JARS=javafx-base.jar     \
+               javafx-controls.jar \
+               javafx-fxml.jar     \
+               javafx-graphics.jar
+
+#               javafx-media.jar    \
+#               javafx-swing.jar    \
+#               javafx-web.jar
+#               gson.jar
 
 # Build CLASSPATH for this package
 empty:=

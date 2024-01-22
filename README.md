@@ -4,6 +4,7 @@ GUI for launching steps of a pipeline
 # Dependencies:
 - Java (linux: OpenJDK)
 - JavaFX (linux: OpenJFX)
+- gson
 
 # How to launch:
 
@@ -14,4 +15,4 @@ javafx.media,javafx.swing,javafx.web           \
 
 # Contributors:
 - BOISSIER Fabrice (Project Leader & Architecture) [2023-...]
-- AMOVIN Ivance (Architecture & Design & Developper) [2023-2024]
+- AMOVIN Ivance (Architecture & Design & Developper) [2023-2024] - V0 & V1

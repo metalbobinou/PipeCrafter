@@ -1,7 +1,7 @@
 -include Makefile.rules
 
 TARGET=GUI-Process-Launcher
-DIST_FOLDER=$(LOGIN_L)-$(TARGET)
+DIST_FOLDER=$(TARGET)
 MANIFEST=Manifest.mf
 
 SRC_DIRS=App 		\

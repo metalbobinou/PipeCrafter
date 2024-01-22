@@ -6,10 +6,10 @@ TARGET=Views
 # Files to compile in this package
 CLASSES=                           \
          Main.java                 \
-         ArgumentTypeSelector.java \
          Argument.java             \
-         Process.java              \
-         OutputSelector            \
+         ArgumentTypeSelector.java \
+         Command.java              \
+         OutputSelector.java       \
          Settings.java
 
 # JARs required for compiling this package

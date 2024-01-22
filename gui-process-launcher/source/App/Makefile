@@ -5,14 +5,15 @@ TARGET=Views
 
 # Files to compile in this package
 CLASSES=                           \
-         App.java				   \
-		 Main.java
+         App.java                  \
+         Main.java
 
 # JARs required for compiling this package
 CLASSPATH_JARS=javafx-base.jar     \
                javafx-controls.jar \
                javafx-fxml.jar     \
-               javafx-graphics.jar
+               javafx-graphics.jar \
+               gson.jar
 
 #               javafx-media.jar    \
 #               javafx-swing.jar    \

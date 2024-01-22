@@ -6,10 +6,17 @@ TARGET=Models
 # Files to compile in this package
 CLASSES=               \
          Argument.java \
-         Process.java
+         Command.java
 
 # JARs required for compiling this package
-CLASSPATH_JARS=
+CLASSPATH_JARS=javafx-fxml.jar
+
+#               javafx-base.jar     \
+#               javafx-controls.jar \
+#               javafx-graphics.jar \
+#               javafx-media.jar    \
+#               javafx-swing.jar    \
+#               javafx-web.jar
 
 # Build CLASSPATH for this package
 empty:=
