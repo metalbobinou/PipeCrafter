@@ -27,7 +27,7 @@ public class App extends Application {
 
         Business.App.setEditMode();
 
-        stage.setTitle("Execution Pipeline Builder");
+        stage.setTitle("PipeCrafter");
 
         stage.setScene(new Scene(mainNode));
         // stage.sizeToScene();
