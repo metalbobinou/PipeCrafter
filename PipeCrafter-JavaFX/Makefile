@@ -1,6 +1,6 @@
 -include Makefile.rules
 
-TARGET=GUI-Process-Launcher
+TARGET=PipeCrafter-JavaFX
 DIST_FOLDER=$(TARGET)
 MANIFEST=Manifest.mf
 
