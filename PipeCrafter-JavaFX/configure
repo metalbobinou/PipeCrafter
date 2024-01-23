@@ -113,6 +113,20 @@ PREV_MAKEFILE_DIR=`echo ${PREV_MAKEFILE_DIR} | sed -e "s/ /\\\\\\\ /g"`
 PREV_MAKEFILE="${PREV_MAKEFILE_DIR}/Makefile.rules"
 
 
+# MD5 and SHA1 commands
+MD5="openssl dgst -md5"
+SHA1="openssl dgst -sha1"
+SHA256="openssl dgst -sha256"
+if [ "$OS" = "FreeBSD" ]; then
+    MD5="md5sum"
+    SHA1="sha1sum"
+    SHA256="sha256sum"
+elif [ "$CYG_OS" = "CYGWIN" ]; then
+    MD5="openssl dgst -md5"
+    SHA1="openssl dgst -sha1"
+    SHA256="openssl dgst -sha256"
+fi
+
 # Export useful vars
 echo "-include ${PREV_MAKEFILE_DIR}/Makefile.rules" > Makefile.rules
 
@@ -123,6 +137,9 @@ echo "CLASSPATH_BIN=${CLASSPATH_BIN}" >> Makefile.rules
 echo "JFLAGS=${JFLAGS}" >> Makefile.rules
 echo "JAR=${JAR}" >> Makefile.rules
 echo "JARFLAGS=${JARFLAGS}" >> Makefile.rules
+echo "MD5=${MD5}" >> Makefile.rules
+echo "SHA1=${SHA1}" >> Makefile.rules
+echo "SHA256=${SHA256}" >> Makefile.rules
 
 echo "JC=${JC}"
 echo "CLASSPATH_SEP=${CLASSPATH_SEP}"
@@ -131,3 +148,6 @@ echo "CLASSPATH_BIN=${CLASSPATH_BIN}"
 echo "JFLAGS=${JFLAGS}"
 echo "JAR=${JAR}"
 echo "JARFLAGS=${JARFLAGS}"
+echo "MD5=${MD5}"
+echo "SHA1=${SHA1}"
+echo "SHA256=${SHA256}"
