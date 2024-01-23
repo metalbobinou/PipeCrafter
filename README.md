@@ -4,13 +4,20 @@ GUI for buidling and launching steps of a pipeline of programs
 # Dependencies:
 - Java (linux: OpenJDK)
 - JavaFX (linux: OpenJFX)
-- gson
+- gson (linux: libgoogle-gson-java)
 
 # How to launch:
 
-java --module-path /usr/share/openjfx/lib      \
+# (method 1)
+java --module-path "/usr/share/openjfx/lib:/usr/share/java/"  \
      --add-modules=javafx.base,javafx.controls,javafx.fxml,javafx.graphics,\
-javafx.media,javafx.swing,javafx.web           \
+javafx.media,javafx.swing,javafx.web,com.google.gson          \
+     -jar PipeCrafter-JavaFX.jar
+
+# (method 2) : create a "libs" folder with all of the required JARs files
+java --module-path "./libs" \
+     --add-modules=javafx.base,javafx.controls,javafx.fxml,javafx.graphics,\
+javafx.media,javafx.swing,javafx.web,com.google.gson  \
      -jar PipeCrafter-JavaFX.jar
 
 # Contributors:
