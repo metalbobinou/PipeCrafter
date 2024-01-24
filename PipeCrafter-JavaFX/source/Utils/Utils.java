@@ -1,6 +1,7 @@
 package Utils;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import com.google.gson.Gson;
@@ -16,6 +17,9 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class Utils {
 
     // #region Attributes
+
+    /** The current working directory */
+    public static final Path cwd = Path.of(System.getProperty("user.dir"));
 
     /** A single refrence to a file chooser */
     private static FileChooser fc = null;
