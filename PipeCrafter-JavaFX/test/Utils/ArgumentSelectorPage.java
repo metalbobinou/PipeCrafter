@@ -55,7 +55,7 @@ public class ArgumentSelectorPage extends ArgumentUIManager {
                 drive.clickOn(Ids.FORMAT_SELECTOR_BOX_ID);
 
                 WaitForAsyncUtils.waitForFxEvents();
-                drive.sleep(10);
+                drive.sleep(100);
 
                 switch (op.getFormat()) {
                     case CONTENT:
