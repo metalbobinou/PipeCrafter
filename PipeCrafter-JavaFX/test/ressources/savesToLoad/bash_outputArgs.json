@@ -1,6 +1,6 @@
 {
-  "executionDirectoryPath": "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher",
-  "outputSavingDirectoryPath": "/Users/ivance/Documents/Pro/Metalab/GUI-Pipeline-Launcher",
+  "executionDirectoryPath": "",
+  "outputSavingDirectoryPath": "",
   "usedShell": "BASH",
   "commands": [
     {
