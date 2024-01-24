@@ -105,7 +105,6 @@ public class Command {
             Argument argument = referringArgumentList.get(i);
             argument.setArgument(Type.INVALID, null);
             argument.getArgumentView().refresh();
-            referringArgumentList.remove(i);
         }
     }
 

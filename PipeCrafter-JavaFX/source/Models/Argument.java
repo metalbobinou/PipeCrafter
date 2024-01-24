@@ -79,7 +79,7 @@ public class Argument {
         }
         // If argument was already set as a reference to a command, update the
         // reference to the arg in the command's reffering list
-        if (this.type == Type.OUTPUT) {
+        if (this.type == Type.OUTPUT || (this.type == Type.INVALID && this.objectValue != null)) {
             getOutputParameter().getCmdToUse().getReferringArgumentList().remove(this);
         }
         this.type = type;
