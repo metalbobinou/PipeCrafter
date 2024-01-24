@@ -30,9 +30,12 @@ public class Adapters {
 
             Save save = new Save(null);
 
-            save.executionDirectoryPath = jsonObject.get("executionDirectoryPath").getAsString();
+            save.executionDirectoryPath = Utils.cwd.resolve(jsonObject.get("executionDirectoryPath").getAsString())
+                    .normalize().toString();
 
-            save.outputSavingDirectoryPath = jsonObject.get("outputSavingDirectoryPath").getAsString();
+            save.outputSavingDirectoryPath = Utils.cwd
+                    .resolve(jsonObject.get("outputSavingDirectoryPath").getAsString())
+                    .normalize().toString();
 
             save.usedShell = Business.Settings.Shell.valueOf(jsonObject.get("usedShell").getAsString());
 
@@ -140,7 +143,7 @@ public class Adapters {
                 case TEXT:
                     return new Argument(type, jsonObject.get("objectValue").getAsString());
                 case FILE:
-                    return new Argument(type, new File(jsonObject.get("objectValue").getAsString()));
+                    return new Argument(type, Utils.cwd.resolve(jsonObject.get("objectValue").getAsString()).toFile());
                 case INVALID:
                 case OUTPUT:
 
@@ -162,8 +165,11 @@ public class Adapters {
 
             switch (src.getType()) {
                 case TEXT:
-                case FILE:
                     obj.addProperty("objectValue", src.getObjectValue().toString());
+                    break;
+                case FILE:
+                    obj.addProperty("objectValue",
+                            Utils.cwd.relativize(((File) src.getObjectValue()).toPath()).toString());
                     break;
                 case INVALID:
                 case OUTPUT:

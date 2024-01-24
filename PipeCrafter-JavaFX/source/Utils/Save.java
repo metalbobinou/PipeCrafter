@@ -60,8 +60,10 @@ public class Save {
     // #region Constructors
 
     public Save() {
-        this.executionDirectoryPath = Business.Settings.getExecutionDirectory().getAbsolutePath();
-        this.outputSavingDirectoryPath = Business.Settings.getOutputSavingDirectory().getAbsolutePath();
+        this.executionDirectoryPath = Utils.cwd.relativize(Business.Settings.getExecutionDirectory().toPath())
+                .toString();
+        this.outputSavingDirectoryPath = Utils.cwd.relativize(Business.Settings.getOutputSavingDirectory().toPath())
+                .toString();
         this.usedShell = Business.Settings.getUsedShell();
         this.commands = Business.Command.getCommands();
     }
