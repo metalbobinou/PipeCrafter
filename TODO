@@ -1,0 +1,5 @@
+- Fix slow scroll when 34 commands, 34 arguments on a command
+
+- Add test about breaking references by move or delete
+- Add test to load state file
+- Add a way to scroll to a specific command/argument in the test suit
